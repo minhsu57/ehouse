@@ -52,3 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['luyen-noi-tieng-anh-nhom-4-5-nguoi'] = "Speaking_English/english_45_member";
+// $route['vi-tri.html'] 					= "vitri/index";
+// $route['tien-ich.html'] 				= "tienich/index";
+// $route['mat-bang.html'] 				= "matbang/index";
+// $route['can-ho-mau.html'] 				= "canhomau/index";
+// $route['thanh-toan.html'] 				= "thanhtoan/index";
+// $route['tin-tuc'] 						= "tintuc/index";
+// $route['tin-tuc/(:num)-(:any)'] 		= "tintuc/detail/$1";
+// $route['ky-gui/(:num)-(:any)'] 			= "kygui/detail/$1";
+// $route['ky-gui'] 						= "kygui/index";
+// $route['lien-he.html'] 					= "lienhe/index";

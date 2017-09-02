@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="middle mid-header">
             <div class="container">
                 <div class="col-md-5">
-                    <a href="#"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
+                    <a href="<?php echo base_url(); ?>"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
                 </div>
                 <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
                     <p class="ct-text-2"><i class="fa fa-phone"></i> (04) 6674 2332 - (04) 3786 8904</p>
@@ -57,11 +57,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
+                            <li><a href="<?php echo base_url('luyen-noi-tieng-anh-nhom-4-5-nguoi'); ?>">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
                             <li><a href="#">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Luyện nói tiếng Anh tại công ty</a></li>
+                    <li><a href="#">Khóa luyện nói tiếng Anh tại công ty</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa luyện thi IELTS<span class="caret"></span></a>
                         <ul class="dropdown-menu">

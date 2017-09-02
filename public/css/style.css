@@ -45,7 +45,7 @@ h5, h6 {
 }
 
 h6{
-    font-size: 13px;
+    font-size: 15px;
     line-height: 25px;
     font-weight: 400;
     letter-spacing: 0;
@@ -555,6 +555,7 @@ a.dropdown-toggle{ pointer-events: none;}
       margin: 0; 
   }
 
+
 }
 /* Custom, iPhone Retina */
 @media only screen and (max-width: 320px) {
@@ -651,7 +652,8 @@ a.dropdown-toggle{ pointer-events: none;}
 .c-align-center{ text-align: center;}
 .btn-push-up{
   border-bottom: 5px solid #301c63;
-  background-color: #7765a3;  
+  background-color: #7765a3;
+  color: white;  
   font-size: 16px;
   padding: 15px 30px;
   border-radius: 8px;
@@ -663,6 +665,7 @@ a.dropdown-toggle{ pointer-events: none;}
 .btn-push-up:hover{
   border-bottom: 1px solid gray;
   margin-top: 4px;
+  color: white;
 }
 .btn-push-up a{
     color: white !important;
@@ -716,11 +719,15 @@ a.dropdown-toggle{ pointer-events: none;}
 .presentation{
   margin-bottom: 15px;
 }
+.presentation h2 {
+    font-size: 40px;
+    color: #365899;
+    font-family: Lato;
+}
 .presentation a.btn-slider-presentation{
   display: inline-block;
   color: #fff;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
   text-transform: uppercase;
   background-color: rebeccapurple;
   padding: 10px 40px;
@@ -738,6 +745,12 @@ a.dropdown-toggle{ pointer-events: none;}
   background-color: #dbccea !important;
   box-shadow: none !important;
 }
+.presentation ul.nav-pills {
+    margin-left: 25px;
+}
+.presentation .nav-pills li{
+    margin-bottom: 10px;
+}
 .presentation a.btn-slider-presentation:active{
   color: #755da0 !important;
   background-color: #dbccea !important;
@@ -747,4 +760,16 @@ a.dropdown-toggle{ pointer-events: none;}
   color: #755da0;
   background-color: #dbccea;
   box-shadow: none;
+}
+#tab_a {
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+}
+#tab_b {
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+}
+#tab_c {
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
 }

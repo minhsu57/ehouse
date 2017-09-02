@@ -158,15 +158,15 @@
         <div id="map" style="width:100%;height:450px; margin-bottom: 20px" class="col-lg-12"></div>
         <script>
             function myMap() {
-                var myCenter = new google.maps.LatLng(11.087386, 107.036523);
+                var myCenter = new google.maps.LatLng(10.789931, 106.693402);
                 var mapCanvas = document.getElementById("map");
-                var mapOptions = { center: myCenter, zoom: 15, scrollwheel: false, alt: "ehouse coffe" };
+                var mapOptions = { center: myCenter, zoom: 15, scrollwheel: false, alt: "Ehouse coffee" };
                 var map = new google.maps.Map(mapCanvas, mapOptions);
                 var marker = new google.maps.Marker({ position: myCenter });
                 marker.setMap(map);
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: "ehouse coffe"
+                    content: "ehouse coffee"
                 });
             }
         </script>
