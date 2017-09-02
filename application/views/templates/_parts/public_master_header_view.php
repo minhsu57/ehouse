@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url('luyen-noi-tieng-anh-nhom-4-5-nguoi'); ?>">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
-                            <li><a href="#">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
+                            <li><a href="<?php echo base_url('luyen-noi-tieng-anh-nhom-8-nguoi'); ?>">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Khóa luyện nói tiếng Anh tại công ty</a></li>

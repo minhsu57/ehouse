@@ -18,7 +18,17 @@ class Speaking_English extends Public_Controller {
         $this->data['sliders'] = $this->slider_model->get_list($input);
         //get content of course consultant
         $input['where'] = array('id' => 'english_45_member');
-        $this->data['course_consultant'] = $this->page_content_model->get_row($input);
+        $this->data['item'] = $this->page_content_model->get_row($input);
 		$this->render('user/speaking_view');
 	}
+
+    public function english_8_member()
+    {
+        $input['where'] = array('status' => 1);
+        $this->data['sliders'] = $this->slider_model->get_list($input);
+        //get content of course consultant
+        $input['where'] = array('id' => 'english_8_member');
+        $this->data['item'] = $this->page_content_model->get_row($input);
+        $this->render('user/speaking_view');
+    }
 }
