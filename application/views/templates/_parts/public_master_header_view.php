@@ -1,54 +1,93 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<!-- Header -->
-<div class="header">
-    <div class="middle mid-header">
-        <div class="container">
-            <div class="col-md-5">
-            <a href="#"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
-            </div>
-            <div class="col-md-offset-1 col-md-4 hidden-xs hidden-sm">
-                <p class="ct-text-2"><i class="fa fa-phone"></i> (04) 6674 2332 - (04) 3786 8904</p>
-                <form action="https://greenshop-theme.bizwebvietnam.net/search" class="search-box">
-                    <input type="text" name="query" class="input-control" placeholder="Tìm kiếm...">
-                    <button><i class="fa fa-search"></i></button>
-                </form> 
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end Header -->
-<!-- Navbar -->
-<nav class="navbar" role="navigation">  
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand visible-xs" href="#">Green shop</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"> <a href="#">Trang chủ</a> </li>
-                <li> <a href="#">Giới thiệu</a> </li>
-                <li> <a href="#">Sản phẩm</a> </li>
-                <li> <a href="#">Dịch vụ</a> </li>
-                <li> <a href="#">Tin tức &amp; sự kiện</a> </li>
-                <li> <a href="#">Liên hệ</a> </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
+    <!-- Header -->
+    <div class="header">
+        <div class="top top-header">
+            <div class="container">
+                <div class="col-md-8 social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-fw fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-google-plus"></i></a></li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+                <div class="col-md-4 social">
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li><a href="#"><i class="fa fa-fw fa-user"></i><span class="hidden-xs">Đăng nhập</span></a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-user-plus"></i><span class="hidden-xs">Đăng ký</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="middle mid-header">
+            <div class="container">
+                <div class="col-md-5">
+                    <a href="#"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
+                </div>
+                <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
+                    <p class="ct-text-2"><i class="fa fa-phone"></i> (04) 6674 2332 - (04) 3786 8904</p>
+                    <form action="https://greenshop-theme.bizwebvietnam.net/search" class="search-box">
+                        <input type="text" name="query" class="input-control" placeholder="Tìm kiếm...">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+    </div>
+    <!-- end Header -->
+    <!-- Navbar -->
+    <nav id="header-2" class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav c-nav-left">
+                    <li><a href="#">Giới thiệu<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
+                            <li><a href="#">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Luyện nói tiếng Anh tại công ty</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa luyện thi IELTS<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Luyện thi SPEAKING & WRITING</a></li>
+                            <li><a href="#">Luyện thi READING & LISTENING</a></li>
+                            <li><a href="#">Luyện thi 4 kĩ năng IELTS</a></li>
+                        </ul>
+                    </li>
+                                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thi thử IELTS<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">IELTS 5.0</a></li>
+                            <li><a href="#">IELTS 6.0</a></li>
+                            <li><a href="#">IELTS 7.0</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">IELTS MASTER OVER SKILL</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    </div>
+    <!-- End navbar -->

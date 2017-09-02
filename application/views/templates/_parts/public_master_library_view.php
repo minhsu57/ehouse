@@ -15,74 +15,11 @@
     <link rel="stylesheet" href="<?php echo public_helper('lib/font-awesome/css/font-awesome.min.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('owlcarousel/owl.carousel.min.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('owlcarousel/owl.theme.green.css'); ?>"/>
+    <link rel="stylesheet" href="<?php echo public_helper('css/animate.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('css/style.css'); ?>"/>
     
     <!-- Javascript -->
     <script type="text/javascript" src="<?php echo public_helper("lib/jquery/jquery.min.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo public_helper('lib/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo public_helper("owlcarousel/owl.carousel.min.js"); ?>"></script>
-    <script>
-    // Custom Javascript
-    $(document).ready(function() {
-      $slider = $('#slider');
-      $slider.addClass('owl-carousel owl-theme');
-      $slider.owlCarousel({
-        items: 1,
-        dots: true,
-        nav: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        loop: true,
-        dotData:true,
-        navText: ["<i class=\"fa fa-angle-left fa-lg\"></i>", "<i class=\"fa fa-angle-right fa-lg\"></i>"]
-    });
-
-      $sanphammoi = $('#sanphammoi');
-      $sanphammoi.addClass('owl-carousel owl-theme');
-      $sanphammoi.owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 6000,
-        autoplayHoverPause: true,
-        nav: true,
-        navText: ["<i class=\"fa fa-angle-left fa-lg\"></i>", "<i class=\"fa fa-angle-right fa-lg\"></i>"],
-        responsiveClass:true,
-        responsive:{
-          0:{
-            items:1
-        },
-        600:{
-            items:2
-        },
-        1000:{
-            items:4
-        }
-    }
-});
-
-      $sanphamkhuyenmai = $('#sanphamkhuyenmai');
-      $sanphamkhuyenmai.addClass('owl-carousel owl-theme');
-      $sanphamkhuyenmai.owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 6000,
-        autoplayHoverPause: true,
-        dots: false,
-        nav: true,
-        navText: ["<i class=\"fa fa-angle-left fa-lg\"></i>", "<i class=\"fa fa-angle-right fa-lg\"></i>"],
-        responsiveClass:true,
-        responsive:{
-          0:{
-            items:1
-        },
-        600:{
-            items:2
-        },
-        1000:{
-            items:3
-        }
-    }
-});
-  });
-</script>
+    <script type="text/javascript" src="<?php echo public_helper("js/script.js"); ?>"></script>
