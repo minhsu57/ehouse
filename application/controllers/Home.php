@@ -18,6 +18,7 @@ class Home extends Public_Controller {
         $this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of home page
         $input['where'] = array('class' => 'course');
+        $input['order'] = array('id','ASC');
         $this->data['content'] = $this->page_content_model->get_list($input);
         // get content of course consultant
         $input['where'] = array('id' => 'course_consultant');

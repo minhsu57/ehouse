@@ -35,7 +35,7 @@ $config['base_url'] = 'http://localhost/github/ehouse/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -521,3 +521,11 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['upload_path']          = './uploads/';
+$config['allowed_types']        = 'gif|jpg|png';
+$config['max_size']             = 2048;
+$config['max_width']            = 1024;
+$config['max_height']           = 768;
+
+$config['sess_save_path'] = sys_get_temp_dir();

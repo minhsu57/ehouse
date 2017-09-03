@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-xs-12 col-md-4 social">
                         <p>
                             <label>Kênh thông tin từ chúng tôi:</label><br>
-                            <a href="https://greenshop-theme.bizwebvietnam.net/#"><i class="fa fa-facebook"></i></a>
-                            <a href="https://greenshop-theme.bizwebvietnam.net/#"><i class="fa fa-twitter"></i></a>
-                            <a href="https://greenshop-theme.bizwebvietnam.net/#"><i class="fa fa-google-plus"></i></a>
+                            <a href="https://www.facebook.com/Ehouse.hcmc/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href=""><i class="fa fa-twitter"></i></a>
+                            <a href=""><i class="fa fa-google-plus"></i></a>
                         </p>
                     </div>
                     <div class="col-xs-12 col-md-8">
