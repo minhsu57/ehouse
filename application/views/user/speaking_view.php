@@ -21,9 +21,9 @@
     </div>
     <div class="row"">
         <ul class="nav nav-pills">
-            <li class="active"><a class="btn-slider-presentation" href="#tab_a" data-toggle="tab" aria-expanded="false"><i class="fa fa-info-circle"></i> Thông tin khóa học</a></li>
-            <li><a class="btn-slider-presentation" href="#tab_b" data-toggle="tab" aria-expanded="true"><i class="fa fa-registered"></i> Đăng kí khóa học</a></li>
-            <li><a class="btn-slider-presentation" href="#tab_c" data-toggle="tab" aria-expanded="true"><i class="fa fa-registered"></i> Nội dung khóa học</a></li>
+            <li class="active"><a class="btn-slider-presentation" href="#tab_a" data-toggle="tab" aria-expanded="false"><i class="fa fa-info-circle"></i> <?php echo $tab1_title; ?></a></li>
+            <li><a class="btn-slider-presentation" href="#tab_b" data-toggle="tab" aria-expanded="true"><i class="fa fa-registered"></i> <?php echo $tab2_title; ?></a></li>
+            <li><a class="btn-slider-presentation" href="#tab_c" data-toggle="tab" aria-expanded="true"><i class="fa fa-star"></i> <?php echo $tab3_title; ?></a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane animated bounceInLeft active col-xs-12" id="tab_a">            

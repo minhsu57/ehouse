@@ -11,7 +11,11 @@ class Speaking_English extends Public_Controller {
        	$this->load->model('slider_model');
        	$this->load->model('page_content_model');
                 $input['where'] = array('status' => 1);
-        $this->data['sliders'] = $this->slider_model->get_list($input);
+        $this->data['sliders']  = $this->slider_model->get_list($input);
+        // title for button in view
+        $this->data['tab1_title'] = "Thông tin khóa học";
+        $this->data['tab2_title'] = "Đăng kí khóa học";
+        $this->data['tab3_title'] = "Nội dung khóa học";
 	}
 
 	public function english_45_member()
@@ -58,6 +62,17 @@ class Speaking_English extends Public_Controller {
     {
         //get content of ielts_4_skills
         $input['where'] = array('id' => 'speaking_company');
+        $this->data['item'] = $this->page_content_model->get_row($input);
+        $this->render('user/speaking_view');
+    }
+
+    public function ielts_testing()
+    {
+        $this->data['tab1_title'] = "Thông tin thi thử IELTS";
+        $this->data['tab2_title'] = "Lịch thi thử IELTS 2017";
+        $this->data['tab3_title'] = "Đăng ký thi thử ITELS";
+        //get content of ielts_4_skills
+        $input['where'] = array('id' => 'ielts_testing');
         $this->data['item'] = $this->page_content_model->get_row($input);
         $this->render('user/speaking_view');
     }

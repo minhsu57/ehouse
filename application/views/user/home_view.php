@@ -151,27 +151,5 @@
     </div>
 </div>
 <!-- End News -->
-<!-- Google map -->
-<div class="container">
-    <div class="panel-xanh">
-        <div class="panel-heading"><div class="panel-title">Bản đồ Coffee Ehouse</div></div>
-        <div id="map" style="width:100%;height:450px; margin-bottom: 20px" class="col-lg-12"></div>
-        <script>
-            function myMap() {
-                var myCenter = new google.maps.LatLng(10.789931, 106.693402);
-                var mapCanvas = document.getElementById("map");
-                var mapOptions = { center: myCenter, zoom: 15, scrollwheel: false, alt: "Ehouse coffee" };
-                var map = new google.maps.Map(mapCanvas, mapOptions);
-                var marker = new google.maps.Marker({ position: myCenter });
-                marker.setMap(map);
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: "ehouse coffee"
-                });
-            }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA28Z3iKdILw1QtJk0P_I-R_hhVDYp6PA8&callback=myMap"></script>
-    </div>
-</div>
-<!-- End google map -->
+<?php $this->load->view('user/google_map_view') ?>
 

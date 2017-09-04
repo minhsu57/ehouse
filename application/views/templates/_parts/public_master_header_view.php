@@ -14,8 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-md-4 social">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="#"><i class="fa fa-fw fa-user"></i><span class="hidden-xs">Đăng nhập</span></a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-user-plus"></i><span class="hidden-xs">Đăng ký</span></a></li>
+                    <li><a href="<?php echo base_url('login'); ?>"><i class="fa fa-fw fa-user"></i><span class="hidden-xs">Đăng nhập</span></a></li>
+                    <li><a href="<?php echo base_url('account'); ?>"><i class="fa fa-fw fa-user-plus"></i><span class="hidden-xs">Đăng ký</span></a></li>
                 </ul>
             </div>
         </div>
@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav c-nav-left">
+            <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
             <li><a href="#">Giới thiệu<span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
@@ -71,16 +72,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thi thử IELTS<span class="caret"></span></a>
-                <ul class="dropdown-menu">
+                <a href="<?php echo base_url('thi-thu-ielts'); ?>">Thi thử IELTS</a>
+                <!--<ul class="dropdown-menu">
                     <li><a href="#">IELTS 5.0</a></li>
                     <li><a href="#">IELTS 6.0</a></li>
                     <li><a href="#">IELTS 7.0</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">IELTS MASTER OVER SKILL</a></li>
-                </ul>
+                </ul>-->
             </li>
-            <li><a href="#">Liên hệ</a></li>
+            <li><a href="<?php echo base_url('contact'); ?>">Liên hệ</a></li>
         </ul>
         <ul class="nav navbar-nav">
         </ul>

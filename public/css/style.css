@@ -19,12 +19,18 @@
    /* Font */
    @import url(//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,vietnamese);
    /* Apply Font */
+   /* Font */
+   @font-face {
+      font-family: su-font;
+      src: url(../font/LeagueGothic-CondensedItalic) format("opentype");
+  }
+  /* Font */
    body {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    min-height: 800px;
-    color: #898989; 
-}
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      min-height: 800px;
+      color: #333; 
+  }
 
 /* Link */
 a {
@@ -724,12 +730,15 @@ a.dropdown-toggle{ pointer-events: none;}
     color: #365899;
     font-family: Lato;
 }
+.presentation img {
+    width: 100%;
+}
 .presentation a.btn-slider-presentation{
   display: inline-block;
-  color: #fff;
+  color: #755da0;
   font-size: 14px;
   text-transform: uppercase;
-  background-color: rebeccapurple;
+  background-color: #dbccea;
   padding: 10px 40px;
   margin-right: 20px;
   border-radius: 40px;
@@ -738,11 +747,12 @@ a.dropdown-toggle{ pointer-events: none;}
 }
 .presentation a.btn-slider-presentation:hover{
   box-shadow: 0px -3px 4px rgba(0,0,0,0.6) inset;
-  background: #a572d8;
+  background: #755da0 !important;
+  color: white !important;
 }
 .presentation .nav-pills>li.active>a{
-  color: #755da0 !important;
-  background-color: #dbccea !important;
+  color: white !important;
+  background-color: #755da0 !important;
   box-shadow: none !important;
 }
 .presentation ul.nav-pills {
@@ -772,4 +782,9 @@ a.dropdown-toggle{ pointer-events: none;}
 #tab_c {
   -webkit-animation-duration: 1.5s;
   -moz-animation-duration: 1.5s;
+}
+.border-bottom-solid {
+    border-bottom: 1px solid #C0C2CE;
+    padding-bottom: 10px;
+    padding-top: 5px;
 }

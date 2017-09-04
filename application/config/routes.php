@@ -13,3 +13,4 @@ $route['luyen-thi-tieng-anh-speaking-writing']  = "Speaking_English/ielts_speaki
 $route['luyen-thi-tieng-anh-reading-listening'] = "Speaking_English/ielts_reading_listening";
 $route['luyen-thi-tieng-anh-4-ki-nang-ielts'] 	= "Speaking_English/ielts_4_skills";
 $route['luyen-noi-tieng-anh-tai-cong-ty'] 		= "Speaking_English/speaking_company";
+$route['thi-thu-ielts'] 		                = "Speaking_English/ielts_testing";
