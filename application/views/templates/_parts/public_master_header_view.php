@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="<?php echo base_url(); ?>"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
-                <p class="ct-text-2"><i class="fa fa-phone"></i> (04) 6674 2332 - (04) 3786 8904</p>
+                <p class="ct-text-2"><i class="fa fa-phone"></i> 028 3939 0811 - 0906 911 022</p>
                 <form action="https://greenshop-theme.bizwebvietnam.net/search" class="search-box">
                     <input type="text" name="query" class="input-control" placeholder="Tìm kiếm...">
                     <button><i class="fa fa-search"></i></button>
