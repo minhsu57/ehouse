@@ -8,6 +8,9 @@ class Slider_model extends MY_Model
     function __construct()
     {
         parent::__construct();
-        $this->table = 'slider';
+        // pct change
+        //$this->table = 'slider';
+        $this->table = 'banner';
+        // end pct change
     }
 }
