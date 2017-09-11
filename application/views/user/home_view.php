@@ -17,7 +17,8 @@
                 <img src="<?php echo public_helper('images/'.$sliders[0]->image_name); ?>" class="img-responsive" alt="">
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1>Los Angeles</h1>
+                <h1 class="hidden-xs">Los Angeles</h1>
+                <h4 class="visible-xs">Los Angeles</h4>
                 <p>LA is always so much fun!</p>
             </div>
         </div>
@@ -29,7 +30,8 @@
                 <img src="<?php echo public_helper('images/'.$slider->image_name); ?>" class="img-responsive" alt="">
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1>Los Angeles</h1>
+                <h1 class="hidden-xs">Los Angeles</h1>
+                <h4 class="visible-xs">Los Angeles</h4>
                 <p>LA is always so much fun!</p>
             </div>
         </div>
@@ -47,11 +49,17 @@
 </div>
 <!-- end pct new slider -->
 <!-- Cac khoa hoc -->
-<div class="container course">
+<div class="container content-course">
     <?php foreach ($content as $item) { ?> 
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">        
-        <img class="img-circle img-thumbnail animated" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
-        <h4><?php echo $item->title; ?></h4>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"> 
+        <a href="#">     
+            <img class="img-thumbnail animated" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
+            <div class="content-course-title">
+                <div>
+                    <h4><?php echo $item->title; ?></h4>
+                </div>
+            </div>
+        </a>
         <div class="content-course"><?php echo $item->content; ?></div>        
     </div>
     <?php } ?>

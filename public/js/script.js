@@ -115,7 +115,7 @@ jQuery(window).bind('scroll', function () {
     }
     // pct end replace code
     if (jQuery(window).scrollTop() > 150 && jQuery(window).scrollTop() < 300) {
-        jQuery('.course img').animateCss('bounce');
+        jQuery('.content-course img').animateCss('bounce');
     }
     if (jQuery(window).scrollTop() > 600 && jQuery(window).scrollTop() < 800) {
         jQuery('.register img').animateCss('tada');

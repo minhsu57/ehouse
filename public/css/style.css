@@ -580,7 +580,7 @@ pct end cover code */
 **    content course 28/8/2017
 **
 **/
-.course{
+/* pct cover .course{
   text-align: center; 
   margin-top: 30px;
 }
@@ -590,23 +590,11 @@ pct end cover code */
   transition-duration: .3s;
   transition-timing-function: cubic-bezier(.29,1.19,.63,1.23);
 }
-.course div:nth-child(1){
-  color: rgba(60,15,15,.8);
-}
-.course div:nth-child(2){
-  color: rgba(15,60,15,.8);
-}
-.course div:nth-child(3){
-  color: rgba(60,60,15,.8);
-}
-.course div:nth-child(4){
-  color: rgba(15,15,60,.8);
-}
 .course .content-course p,h3,h4,h5{
   line-height: 25px;
   font-weight: 400;
   letter-spacing: 0;
-}
+} */
 .classroom{
   margin: 20px auto;
 }
@@ -801,19 +789,61 @@ pct cover code
 /* pct-css */
 #myCarousel img{
   width: 100%;
-  height: 450px;
 }
 #myCarousel .blend > div{ /* this div make img darker */
   position: absolute;
-  width:100%;
-  height: 450px;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   background: rgba(0,0,0,0.7);
 }
 #myCarousel .carousel-caption{
-  bottom: 40% !important;
+  bottom: 30% !important;
 }
-/* End pct-css */
+.content-course{
+  text-align: center; 
+  margin-top: 30px;
+}
+.content-course img{
+  width: 100%;
+  height: auto;
+  transition-duration: .3s;
+  transition-timing-function: cubic-bezier(.29,1.19,.63,1.23);
+}
+.content-course .content-course-title{
+  position: relative;
+  width: 100%;
+}
+.content-course-title > div{
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  bottom: 100%;
+  left: 0;
+  padding: 5px;
+  background-color: rgba(255,255,255,0.7);
+}
+.content-course p{
+  font-size: 14px;
+  text-align: justify;
+}
+.content-course p{
+  font-size: 14px;
+  text-align: justify;
+}
+.content-course div:nth-child(1) a > div{
+  color: rgba(60,15,15,.8);
+}
+.content-course div:nth-child(2) a > div{
+  color: rgba(15,60,15,.8);
+}
+.content-course div:nth-child(3) a > div{
+  color: rgba(60,60,15,.8);
+}
+.content-course div:nth-child(4) a > div{
+  color: rgba(15,15,60,.8);
+}
+
 @media only screen and (min-width: 0px) {
   #header-1{
     background: transparent;
@@ -900,3 +930,4 @@ pct cover code
     color:white; 
   }
 }
+/* End pct-css */

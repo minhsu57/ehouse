@@ -10,7 +10,7 @@ class Slider_model extends MY_Model
         parent::__construct();
         // pct change
         //$this->table = 'slider';
-        $this->table = 'banner';
+        $this->table = 'slider';
         // end pct change
     }
 }
