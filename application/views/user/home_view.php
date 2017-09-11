@@ -6,8 +6,6 @@
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -17,9 +15,9 @@
                 <img src="<?php echo public_helper('images/'.$sliders[0]->image_name); ?>" class="img-responsive" alt="">
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1 class="hidden-xs">Los Angeles</h1>
-                <h4 class="visible-xs">Los Angeles</h4>
-                <p>LA is always so much fun!</p>
+                <h1 class="hidden-xs">LET'S SPEAK ENGLISH BETTER TODAY</h1>
+                <h4 class="visible-xs">LET'S SPEAK ENGLISH BETTER TODAY</h4>
+                <P>EHOUSE ENGLISH SPEAKING</P>
             </div>
         </div>
         <?php foreach (array_slice($sliders, 1) as $slider) { ?> 
@@ -48,27 +46,27 @@
     </div>
 </div>
 <!-- end pct new slider -->
+<div class="text-center"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
 <!-- Cac khoa hoc -->
-<div class="container content-course">
+<div class="content-course">
     <?php foreach ($content as $item) { ?> 
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3"> 
+    <div class="col-xs-12 col-md-6 col-lg-15"> 
         <a href="#">     
-            <img class="img-thumbnail animated" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
+            <img class="img-thumbnail" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
             <div class="content-course-title">
                 <div>
-                    <h4><?php echo $item->title; ?></h4>
+                    <h5><?php echo $item->title; ?></h5>
                 </div>
             </div>
-        </a>
-        <div class="content-course"><?php echo $item->content; ?></div>        
+        </a>      
     </div>
     <?php } ?>
 </div>
 <!-- End cac khoa hoc -->
 <!-- Lop hoc -->
-<div class="container classroom media">
-    <div id="class-pics" class="col-xs-12 col-md-7">
-        <h3 class="text-center">Phản hồi của học viên</h3>
+<div class="classroom media"  style="background-image: url('<?php echo public_helper("images/3_member_english_speaking.jpg") ?>'); width: 100%">
+    <div id="class-pics" class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+        <!-- <h3 class="text-center">Phản hồi của học viên</h3>
         <div class="slider">
             <div id="comment-slider">
                 <div class="item">
@@ -89,9 +87,9 @@
                     <p>Ehouse cung cấp dịch vụ tốt, mình rất thích chương trình học và các giáo viên ở đây...</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div id="class-res" class="col-xs-12 col-md-5">
+    <div id="class-res" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <h3 class="text-center"><?php echo $course_consultant->title; ?></h3>
         <div class="register">
             <span class="col-xs-12"></span>
@@ -122,6 +120,7 @@
             </div>
         </div>
     </div>
+    <div class="hidden-xs col-sm-1 col-md-2 col-lg-2"></div>
 </div>
 <!-- End lop hoc -->
 <!-- Đăng ký kiểm tra trình độ và lưu ý -->
