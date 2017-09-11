@@ -34,12 +34,12 @@
 
 /* Link */
 a {
-    color: #581473;
+    color: #945100;
     text-decoration: none;
     transition: all 0.2s ease; 
 }
 a:hover, a:active, a:focus {
-    color: #622979;
+    color: #945100;
     text-decoration: none; 
 }
 h1, h2, h3, h4, h5, h6 {
@@ -69,6 +69,7 @@ h6, h6 a, h6 a:hover, a.content_link .title {
     font-size: 13px;
     height: 32px;
     line-height: 32px;
+    /* background-color: #7765a3;  */
     background-color: #ff8c00; 
 }
 .header .top ul {
@@ -92,7 +93,7 @@ a
     background: #3FB871; 
 } 
 .header .top li:hover a {
-    color: #301c63; 
+    color: #945100; 
     background-color: rgba(255,255,255,.4);
 }
 .header .top .thoiggianmo:hover {
@@ -100,8 +101,11 @@ a
     color: none; 
 }
 .header .middle {
-    background-image: url(../images/background.png); 
+    background-image: linear-gradient(to right, #ff8c00 0%, #ff8c00 100%), url('../images/background.png');
+    background-blend-mode: overlay;
     padding: 10px 8px;
+    /* background-image: url(../images/background.png); 
+    padding: 10px 8px; */
 }
 .mid-header .ct-text-2 {
     margin: 30px 0 10px 25px;
@@ -120,7 +124,7 @@ a
     padding: 5px;
 }
 .input-control:focus{
-    outline:none;border-color:#301c63;
+    outline:none;border-color:#945100;
 }
 .top-header .social a {
     color: white;
@@ -173,8 +177,10 @@ a
   background: #CCCCCC; 
 }
 .navbar .navbar-nav > li:hover > a{
-  box-shadow: 0 4px 0 #7765a3;
-  color:#7765a3; 
+  /* box-shadow: 0 4px 0 #7765a3; 
+  color:#7765a3; */
+  box-shadow: 0 4px 0 #ff8c00;
+  color:#ff8c00;
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
   border-color: #FFFFFF;
@@ -252,7 +258,7 @@ pct end cover code */
   padding:5px;
 }
 .owl-theme .owl-nav [class*='owl-']:hover {
-  background-color: rgba(128,0,160,0.55);
+  background-color: rgba(255,100,0,.55);
 }
 /* Footer */
 .footer {
@@ -336,7 +342,8 @@ pct end cover code */
   line-height: 45px;
   outline: none;
   border: none;
-  background-color: #7765a3;
+  /* background-color: #7765a3; */
+  background-color: #ff8c00;
   color: #fff;
 }
 .top-footer label {
@@ -651,8 +658,10 @@ pct end cover code */
 }
 .c-align-center{ text-align: center;}
 .btn-push-up{
-  border-bottom: 5px solid #301c63;
-  background-color: #7765a3;
+  /* border-bottom: 5px solid #301c63;
+  background-color: #7765a3; */
+  border-bottom: 5px solid #ad5f00;
+  background-color: #ff8c00;
   color: white;  
   font-size: 16px;
   padding: 15px 30px;
@@ -717,7 +726,7 @@ pct cover code
 /*# sourceMappingURL=style.css.map */
 /* Khoa hoc 45 nguoi */
 #slider-cource .item h6{
-  color:rebeccapurple;
+  color: #945100;
 }
 .presentation{
   margin-bottom: 15px;
@@ -849,7 +858,7 @@ pct cover code
     background: transparent;
   }
   #header-1 .navbar-nav > li:hover > a{
-    color:purple; 
+    color: #945100; 
   }
   .register span{
     font-size: 20px;
@@ -889,8 +898,8 @@ pct cover code
   .navbar-nav ul li:hover > a{ 
     padding-top: 15px; 
     padding-bottom: 15px; 
-    color: rebeccapurple;
-    background-color: rgba(150,100,200,0.2)
+    color: #945100;
+    background-color: rgba(255,200,100,0.5)
   }
   a.navbar-brand{ 
     display:none;
