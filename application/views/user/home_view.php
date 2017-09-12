@@ -1,18 +1,23 @@
  <?php
  defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
-<!-- pct new slider -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+ <!-- pct new slider -->
+ <div id="myCarousel" class="carousel slide" data-ride="carousel" >
     <!-- Indicators -->
+    <?php if(count($sliders) > 1) { ?>
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <?php foreach ($sliders as $key => $value) { ?>
+        <li data-target="#myCarousel" data-slide-to="<?php echo $key; ?>" class="<?php if($key == 0) echo "active"; ?>"></li>
+        <?php } ?>        
     </ol>
+    <?php } ?>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="item active">
+        <?php foreach ($sliders as $key => $value) { ?>
+        <div class="item <?php if($key == 0) echo "active"; ?>">
             <div class="blend">
                 <div></div>
-                <img src="<?php echo public_helper('images/'.$sliders[0]->image_name); ?>" class="img-responsive" alt="">
+                <img src="<?php echo public_helper('images/'.$value->image_name); ?>" class="img-responsive" alt="">
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
                 <h1 class="hidden-xs">LET'S SPEAK ENGLISH BETTER TODAY</h1>
@@ -20,20 +25,9 @@
                 <P>EHOUSE ENGLISH SPEAKING</P>
             </div>
         </div>
-        <?php foreach (array_slice($sliders, 1) as $slider) { ?> 
-        <div class="item">
-            <div class="blend">
-                <!-- thẻ div làm cho tấm hình ở dưới đen lại -->
-                <div></div>
-                <img src="<?php echo public_helper('images/'.$slider->image_name); ?>" class="img-responsive" alt="">
-            </div>
-            <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1 class="hidden-xs">Los Angeles</h1>
-                <h4 class="visible-xs">Los Angeles</h4>
-                <p>LA is always so much fun!</p>
-            </div>
-        </div>
         <?php } ?>
+
+        <?php if(count($sliders) > 1) { ?>
         <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -43,15 +37,16 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
         </a>
+        <?php } ?>
     </div>
 </div>
 <!-- end pct new slider -->
-<div class="text-center"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
+<div class="text-center" style="margin-top: 40px"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
 <!-- Cac khoa hoc -->
-<div class="content-course">
-    <?php foreach ($content as $item) { ?> 
+<div class="content-course container">
+    <?php foreach ($content_course as $item) { ?> 
     <div class="col-xs-12 col-md-6 col-lg-15"> 
-        <a href="#">     
+        <a href="<?php echo base_url().$item->link; ?>">     
             <img class="img-thumbnail" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
             <div class="content-course-title">
                 <div>
@@ -63,65 +58,45 @@
     <?php } ?>
 </div>
 <!-- End cac khoa hoc -->
-<!-- Lop hoc -->
-<div class="classroom media"  style="background-image: url('<?php echo public_helper("images/3_member_english_speaking.jpg") ?>'); width: 100%">
-    <div id="class-pics" class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
-        <!-- <h3 class="text-center">Phản hồi của học viên</h3>
-        <div class="slider">
-            <div id="comment-slider">
-                <div class="item">
-                    <a href="#"><img src="<?php echo public_helper("images/slider.jpg"); ?>" alt="room pic"></a>
-                    <h4><a href="#">Lê Minh Sự - IELTS 7.5 - 26 tuổi </a></h4>
-                    <p>Ehouse cung cấp dịch vụ tốt, mình rất thích chương trình học và các giáo viên ở đây...</p>
+
+<section class="testimonials-section" style="background-image:url('<?php echo public_helper("images/3_member_english_speaking.jpg"); ?>'); height: 100%; ">
+    <div class="container">
+        <div id="class-res" class="col-xs-12 col-md-5 pull-right">
+            <h3 class="text-center">Đăng ký tư vấn khóa học</h3>
+            <div class="register">
+                <span class="col-xs-12"></span>
+                <div class="text-center">
+                    <div class="col-xs-12">
+                        <img class="img-circle img-thumbnail" alt="logo_content" src="http://sudev.net/public/images/call.png">
+                    </div>
                 </div>
-                <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider1.jpg"); ?>"  alt="room pic"></a>
-                    <h4><a href="#">Lê Minh Sự - IELTS 7.5 - 26 tuổi </a></h4>
-                    <p>Cảm ơn Ehouse rất nhiều, nhờ có Ehouse bây giờ mình đã tự tin giao tiếp như ngôn ngữ thứ 2 của mình, chương trình học rất bổ ích ... </p>
+                <input class="form-control" placeholder="Họ và tên">
+                <input class="form-control" placeholder="Số điện thoại">
+                <input class="form-control" placeholder="Email">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Bạn cần tư vấn chương trình:">
+                    <label class="input-group-addon dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </label>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Luyện nghe nói tiếng Anh nhóm 4-5 bạn</a></li>
+                        <li><a href="#">Luyện nghe nói tiếng Anh nhóm 8 bạn</a></li>
+                        <li><a href="#">Luyện nghe nói tiếng Anh theo nhóm tại công ty</a></li>
+                        <li><a href="#">Luyện thi IELTS</a></li>
+                        <li><a href="#">Thi thử IELTS</a></li>
+                    </ul>
                 </div>
-                <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider2.jpg"); ?>" alt="room pic"></a>
-                    <h4><a href="#">Lê Minh Sự - IELTS 7.5 - 26 tuổi </a></h4>
-                    <p>Ehouse cung cấp dịch vụ tốt, mình rất thích chương trình học và các giáo viên ở đây...</p>
+                <textarea class="form-control" placeholder="Nếu bạn có lời nhắn, xin hãy để lại khung này"></textarea>
+                <div class="text-center" style="margin-top:20px;">
+                    <button class="btn btn-info">Gửi thông tin</button>
                 </div>
-                <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider3.jpg"); ?>" alt="room pic"></a>
-                    <h4><a href="#">Lê Minh Sự - IELTS 7.5 - 26 tuổi </a></h4>
-                    <p>Ehouse cung cấp dịch vụ tốt, mình rất thích chương trình học và các giáo viên ở đây...</p>
-                </div>
-            </div>
-        </div> -->
-    </div>
-    <div id="class-res" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-        <h3 class="text-center"><?php echo $course_consultant->title; ?></h3>
-        <div class="register">
-            <span class="col-xs-12"></span>
-            <div class="text-center">
-                <div class="col-xs-12">
-                    <img class="img-circle img-thumbnail animated" alt="logo_content" src="<?php echo public_helper('images/'.$course_consultant->image); ?>" />
-                </div>
-            </div>
-            <input class="form-control" placeholder="Họ và tên" />
-            <input class="form-control" placeholder="Số điện thoại" />
-            <input class="form-control" placeholder="Email" />
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Bạn cần tư vấn chương trình:">
-                <label class="input-group-addon dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                </label>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Luyện nghe nói tiếng Anh nhóm 4-5 bạn</a></li>
-                    <li><a href="#">Luyện nghe nói tiếng Anh nhóm 8 bạn</a></li>
-                    <li><a href="#">Luyện nghe nói tiếng Anh theo nhóm tại công ty</a></li>
-                    <li><a href="#">Luyện thi IELTS</a></li>
-                    <li><a href="#">Thi thử IELTS</a></li>
-                </ul>
-            </div>
-            <textarea class="form-control" placeholder="Nếu bạn có lời nhắn, xin hãy để lại khung này"></textarea>
-            <div class="text-center" style="margin-top:20px;">
-                <button class="btn btn-info">Gửi thông tin</button>
             </div>
         </div>
-    </div>
-    <div class="hidden-xs col-sm-1 col-md-2 col-lg-2"></div>
-</div>
+
+    </div>                  
+</section>
+<!-- Lop hoc -->
+
 <!-- End lop hoc -->
 <!-- Đăng ký kiểm tra trình độ và lưu ý -->
 <div class="seft-test container">
