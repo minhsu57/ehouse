@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="middle mid-header">
         <div class="container">
             <div class="col-md-5">
-                <a href="<?php echo base_url(); ?>"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt=""></a>
+                <a href="<?php echo base_url(); ?>"><p><img src="<?php echo public_helper('upload/images/logo.png'); ?>" class="img-responsive" alt=""></p></a>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
                 <p class="ct-text-2"><i class="fa fa-phone"></i> 028 3939 0811 - 0906 911 022</p>
@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav c-nav-left">
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
-            <li><a href="#">Giới thiệu<span class="sr-only">(current)</span></a></li>
+            <li><a href="<?php echo base_url('gioi-thieu'); ?>">Giới thiệu<span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
                 <ul class="dropdown-menu">

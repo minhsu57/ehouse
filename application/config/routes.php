@@ -6,6 +6,7 @@ $route['admin'] = 'admin/dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['gioi-thieu'] 		                	= "introduce";
 $route['luyen-noi-tieng-anh-nhom-4-5-nguoi'] 	= "Speaking_English/english_45_member";
 $route['luyen-noi-tieng-anh-nhom-8-nguoi'] 		= "Speaking_English/english_8_member";
 $route['luyen-thi-tieng-anh-speaking-writing']  = "Speaking_English/ielts_speaking_writting";

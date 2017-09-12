@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="container mid-footer">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="logo"><img src="<?php echo public_helper('images/logo.png'); ?>" class="img-responsive" alt="Image"></div>
+                    <div class="logo"><img src="<?php echo public_helper('upload/images/logo.png'); ?>" class="img-responsive" alt="Image"></div>
                     <p>Mang cả không gian xanh vào ngôi nhà của bạn!</p>
                     <p><i class="fa fa-phone"></i> Điện thoại : <a href="tel:01234 4321 32">0936 777 170</a></p>
                     <p><i class="fa fa-envelope-o"></i> Email : <a href="mailto:taisang1996@gmail.com">minhsu0602@gmail.com</a></p>

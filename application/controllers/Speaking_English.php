@@ -5,26 +5,26 @@ class Speaking_English extends Public_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
-       	$this->load->database();
-       	$this->load->library('session');
-       	// $this->load->helper('language');
-       	$this->load->model('slider_model');
-       	$this->load->model('page_content_model');
-                $input['where'] = array('status' => 1);
+        $this->load->database();
+        $this->load->library('session');
+       	$this->load->helper('language');
+        $this->load->model('slider_model');
+        $this->load->model('page_content_model');
+        $input['where'] = array('status' => 1);
         $this->data['sliders']  = $this->slider_model->get_list($input);
         // title for button in view
         $this->data['tab1_title'] = "Thông tin khóa học";
         $this->data['tab2_title'] = "Đăng kí khóa học";
         $this->data['tab3_title'] = "Nội dung khóa học";
-	}
+    }
 
-	public function english_45_member()
-	{
+    public function english_45_member()
+    {
         //get content of english_45_member
         $input['where'] = array('id' => 'english_45_member');
         $this->data['item'] = $this->page_content_model->get_row($input);
-		$this->render('user/speaking_view');
-	}
+        $this->render('user/speaking_view');
+    }
 
     public function english_8_member()
     {

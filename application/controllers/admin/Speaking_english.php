@@ -31,7 +31,8 @@ class Speaking_english extends Admin_Controller
             $content = $this->input->post('content');
             $content2 = $this->input->post('content2');
             $content3 = $this->input->post('content3');
-            $update_data = array('title' => $title, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3,);
+            $image = $this->input->post('image');
+            $update_data = array('title' => $title, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'image' => $image);
             if(!$this->page_content_model->update($id, $update_data))
             {             
                 $this->postal->add('Chỉnh sửa thất bại !','error');

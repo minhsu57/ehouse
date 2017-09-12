@@ -50,6 +50,14 @@
                     <?php echo form_error('content3','<p class="error">'); ?>
                 </div>
             </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Hình ảnh</strong>
+                <div id="editor">
+                    <?php //echo $this->ckeditor->editor('content',$item->content);?>
+                    <textarea class="ckeditor" name="image"><?php echo $item->image ?></textarea> 
+                    <?php echo form_error('image','<p class="error">'); ?>
+                </div>
+            </div>
             
             <!-- AJAX Response will be outputted on this DIV container -->
             <?php echo form_hidden('id',$item->id);?>

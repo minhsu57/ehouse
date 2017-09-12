@@ -1,53 +1,14 @@
  <?php
  defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
- <!-- pct new slider -->
- <div id="myCarousel" class="carousel slide" data-ride="carousel" >
-    <!-- Indicators -->
-    <?php if(count($sliders) > 1) { ?>
-    <ol class="carousel-indicators">
-        <?php foreach ($sliders as $key => $value) { ?>
-        <li data-target="#myCarousel" data-slide-to="<?php echo $key; ?>" class="<?php if($key == 0) echo "active"; ?>"></li>
-        <?php } ?>        
-    </ol>
-    <?php } ?>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <?php foreach ($sliders as $key => $value) { ?>
-        <div class="item <?php if($key == 0) echo "active"; ?>">
-            <div class="blend">
-                <div></div>
-                <img src="<?php echo public_helper('images/'.$value->image_name); ?>" class="img-responsive" alt="">
-            </div>
-            <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1 class="hidden-xs">LET'S SPEAK ENGLISH BETTER TODAY</h1>
-                <h4 class="visible-xs">LET'S SPEAK ENGLISH BETTER TODAY</h4>
-                <P>EHOUSE ENGLISH SPEAKING</P>
-            </div>
-        </div>
-        <?php } ?>
-
-        <?php if(count($sliders) > 1) { ?>
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <?php } ?>
-    </div>
-</div>
-<!-- end pct new slider -->
-<div class="text-center" style="margin-top: 40px"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
-<!-- Cac khoa hoc -->
-<div class="content-course container">
+ <?php require "slider_view.php" ?>
+ <div class="text-center" style="margin-top: 40px"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
+ <!-- Cac khoa hoc -->
+ <div class="content-course container">
     <?php foreach ($content_course as $item) { ?> 
     <div class="col-xs-12 col-md-6 col-lg-15"> 
         <a href="<?php echo base_url().$item->link; ?>">     
-            <img class="img-thumbnail" alt="logo_content" src="<?php echo public_helper('images/'.$item->image); ?>" />
+            <?php echo $item->image; ?>
             <div class="content-course-title">
                 <div>
                     <h5><?php echo $item->title; ?></h5>
@@ -59,7 +20,7 @@
 </div>
 <!-- End cac khoa hoc -->
 
-<section class="testimonials-section" style="background-image:url('<?php echo public_helper("images/3_member_english_speaking.jpg"); ?>'); height: 100%; ">
+<section class="testimonials-section" style="background-image:url('<?php echo public_helper("upload/images/3_member_english_speaking.jpg"); ?>'); height: 100%; ">
     <div class="container">
         <div id="class-res" class="col-xs-12 col-md-5 pull-right">
             <h3 class="text-center">Đăng ký tư vấn khóa học</h3>
@@ -67,7 +28,7 @@
                 <span class="col-xs-12"></span>
                 <div class="text-center">
                     <div class="col-xs-12">
-                        <img class="img-circle img-thumbnail" alt="logo_content" src="http://sudev.net/public/images/call.png">
+                        <img class="img-circle img-thumbnail" alt="logo_content" src="<?php echo public_helper('upload/images/call.png'); ?>">
                     </div>
                 </div>
                 <input class="form-control" placeholder="Họ và tên">
@@ -95,18 +56,19 @@
 
     </div>                  
 </section>
-<!-- Lop hoc -->
 
-<!-- End lop hoc -->
 <!-- Đăng ký kiểm tra trình độ và lưu ý -->
-<div class="seft-test container">
-    <div class="text-center">
-        <button class="btn btn-push-up"><a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp; <?php echo $note_rtl->title; ?></a></button>
+<section class="text-section">
+    <div class="seft-test container">
+        <div class="text-center">
+            <button class="btn btn-push-up"><a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp; <?php echo $note_rtl->title; ?></a></button>
+        </div>
+        <div>
+            <?php echo $note_rtl->content; ?>
+        </div>
     </div>
-    <div>
-        <?php echo $note_rtl->content; ?>
-    </div>
-</div>
+</section>
+
 <!-- End reg and note -->
 <!-- Student Info -->
 <div class="student-info">
@@ -127,7 +89,9 @@
                 </div>
             </div>
             <div style="clear: both;"></div>
-            <div><button type="button" class="btn btn-success pull-right">Xem thêm hình ảnh khác</button></div>
+            <div class="text-center">
+                <button type="button" class="btn btn-warning">Xem thêm hình ảnh khác</button>
+            </div>
         </div>
     </div>
 </div>
@@ -162,7 +126,9 @@
                     </div>
                 </div>
                 <div style="clear: both;"></div>
-                <div class="col-xs-12"><button type="button" class="btn btn-success pull-right">Xem thêm tin tức khác</button></div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-warning">Xem thêm tin tức khác</button>
+                </div>
             </div>
 
         </div>
