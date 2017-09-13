@@ -23,7 +23,7 @@ $_CONFIG = array(
 
     'disabled' => false,
     'uploadURL' => "../upload",
-    'uploadDir' => "D:/dev/github/ehouse/public/upload",
+    'uploadDir' => "",
     'theme' => "default",
 
     'types' => array(
@@ -113,9 +113,9 @@ $_CONFIG = array(
     //'_tinyMCEPath' => "/tiny_mce",
 
     '_sessionVar' => "KCFINDER",
-    '_sessionLifetime' => 30,
-    '_sessionDir' => "D:/dev/github/ehouse/public/upload",
-    '_sessionDomain' => "http://localhost",
+    // '_sessionLifetime' => 30,
+    // '_sessionDir' => "D:/dev/github/ehouse/public/upload",
+    // '_sessionDomain' => "http://localhost",
     //'_sessionPath' => "/my/path",
 
     //'_cssMinCmd' => "java -jar /path/to/yuicompressor.jar --type css {file}",

@@ -9,20 +9,21 @@ class Speaking_English extends Public_Controller {
         $this->load->library('session');
        	$this->load->helper('language');
         $this->load->model('slider_model');
-        $this->load->model('page_content_model');
-        $input['where'] = array('status' => 1);
-        $this->data['sliders']  = $this->slider_model->get_list($input);
+        $this->load->model('category_model');
+        
         // title for button in view
         $this->data['tab1_title'] = "Thông tin khóa học";
         $this->data['tab2_title'] = "Đăng kí khóa học";
         $this->data['tab3_title'] = "Nội dung khóa học";
     }
 
-    public function english_45_member()
+    public function index($id)
     {
-        //get content of english_45_member
-        $input['where'] = array('id' => 'english_45_member');
-        $this->data['item'] = $this->page_content_model->get_row($input);
+        $input['where'] = array('status' => 1, 'category_id' => $id);
+        $this->data['sliders']  = $this->slider_model->get_list($input);
+        //get content of this page
+        $input['where'] = array('id' => $id);
+        $this->data['item'] = $this->category_model->get_row($input);
         $this->render('user/speaking_view');
     }
 

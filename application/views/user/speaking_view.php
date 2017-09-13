@@ -5,7 +5,7 @@
  <?php require "slider_view.php" ?>
  <div class="presentation container">
     <div class="row">
-        <h2 class="text-center"><?php echo $item->title; ?></h2>
+        <h2 class="text-center"><?php echo $item->name; ?></h2>
         <div class="col-xs-12">
             <?php echo $item->description; ?>
         </div>

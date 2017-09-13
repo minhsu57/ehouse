@@ -14,12 +14,12 @@
         <div class="item <?php if($key == 0) echo "active"; ?>">
             <div class="blend">
                 <div></div>
-                <p><img src="<?php echo public_helper('upload/images/'.$value->image_name); ?>" class="img-responsive" alt=""></p>
+                <p><img src="<?php echo base_url($value->image_name); ?>" class="img-responsive" alt=""></p>
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
-                <h1 class="hidden-xs">LET'S SPEAK ENGLISH BETTER TODAY</h1>
-                <h4 class="visible-xs">LET'S SPEAK ENGLISH BETTER TODAY</h4>
-                <P>EHOUSE ENGLISH SPEAKING</P>
+                <h1 class="hidden-xs"><?php echo $value->description; ?></h1>
+                <h4 class="visible-xs"><?php echo $value->description; ?></h4>
+                <P><?php echo $value->description2; ?></P>
             </div>
         </div>
         <?php } ?>

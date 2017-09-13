@@ -8,10 +8,13 @@ class Contact extends Public_Controller {
        	$this->load->database();
        	$this->load->library('session');
        	$this->load->model('page_content_model');
+       	$this->load->model('slider_model');
 	}
 
 	public function index()
 	{
+		$input['where'] = array('status' => 1, 'category_id' => 'lien-he');
+    	$this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of contact page
         $input['where'] = array('class' => 'contact');
         $this->data['item'] = $this->page_content_model->get_row($input);

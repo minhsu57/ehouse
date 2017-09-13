@@ -1,7 +1,9 @@
  <?php
  defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
+ <!-- Slider section -->
  <?php require "slider_view.php" ?>
+ <!-- End slider section -->
  <div class="text-center" style="margin-top: 40px"><h2>CÁC CHƯƠNG TRÌNH TẠI EHOUSE</h2></div>
  <!-- Cac khoa hoc -->
  <div class="content-course container">

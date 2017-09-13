@@ -31,20 +31,11 @@ if($this->ion_auth->logged_in()) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Trang Chủ <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><?php echo anchor('admin/slider','Slider');?></li>
-                            <li><?php echo anchor('admin/home','Thông tin chung website');?></li>
-                            <li><?php echo anchor('admin/speaking_english/speaking_45_member','Luyện nói nhóm 4-5 bạn');?></li>
-                            <li><?php echo anchor('admin/speaking_english/speaking_8_member','Luyện nói nhóm 8 bạn');?></li>
-                            <li><?php echo anchor('admin/speaking_english/speaking_writing','Luyện thi tiếng anh SPEAKING & WRITING');?></li>
-                            <li><?php echo anchor('admin/speaking_english/reading_listening','Luyện thi tiếng anh Reading & Listening');?></li>
-                            <li><?php echo anchor('admin/speaking_english/test_4_skills','Luyện thi tiếng anh 4 kĩ năng IELTS');?></li>
+                            <li><?php echo anchor('admin/category','Category');?></li>
                         </ul>
                     </li>
                     
                     <li><?php echo anchor('admin/vitri/index','Vị Trí');?></li>
-                    <li><?php echo anchor('admin/tienich/index','Tiện ích');?></li>
-                    <li><?php echo anchor('admin/matbang/index','Mặt Bằng');?></li>
-                    <li><?php echo anchor('admin/canhomau/index','Căn Hỗ Mẫu');?></li>
-                    <li><?php echo anchor('admin/thanhtoan/index','Thanh Toán');?></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><?php echo anchor('admin/tintuc/index','Tin tức');?></li>
