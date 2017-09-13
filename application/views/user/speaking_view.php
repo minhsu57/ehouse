@@ -2,7 +2,9 @@
  defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
 
+ <!-- Slider section -->
  <?php require "slider_view.php" ?>
+ <!-- End slider section -->
  <div class="presentation container">
     <div class="row">
         <h2 class="text-center"><?php echo $item->name; ?></h2>

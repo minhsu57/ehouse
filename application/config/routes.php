@@ -7,7 +7,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['gioi-thieu'] 		= "introduce";
-$route['english/(:any)'] 	= "Speaking_English/index/$1";
+$route['english/(:any)'] 	= "speaking_english/index/$1";
+$route['lien-he'] 			= "contact";
 // $route['luyen-noi-tieng-anh-nhom-8-nguoi'] 		= "Speaking_English/english_8_member";
 // $route['luyen-thi-tieng-anh-speaking-writing']  = "Speaking_English/ielts_speaking_writting";
 // $route['luyen-thi-tieng-anh-speaking-writing']  = "Speaking_English/ielts_speaking_writting";

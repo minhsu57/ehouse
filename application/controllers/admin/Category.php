@@ -62,10 +62,10 @@ class Category extends Admin_Controller
             // check id is exist or not
             $name = ltrim($this->input->post('name'));
             $name = rtrim($name);
-            $input['where'] = array('id' => create_slug($name));
+            $input['where'] = array('id' => create_slug($name), 'id <>' => $id);
             $total_category_id = $this->category_model->get_total($input);
             if($total_category_id >0){
-                $this->postal->add('Tên Category đã tồn tại !','error');
+                $this->postal->add('Tiêu đề Category đã tồn tại !','error');
                 $this->render('admin/category/edit_view');
             }else{
                 $parent = $this->input->post('parent');
@@ -73,14 +73,16 @@ class Category extends Admin_Controller
                 $content = $this->input->post('content');
                 $content2 = $this->input->post('content2');
                 $content3 = $this->input->post('content3');
-                $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'parent' => $parent);
+                $update_data = array('name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'parent' => $parent);
                 if(!$this->category_model->update($id, $update_data))
                 {             
                     $this->postal->add('Chỉnh sửa thất bại !','error');
-                }else $this->postal->add('Chỉnh sửa thành công.','success');
-                redirect('admin/category/index/'.$id);
-            }
-            
+                    redirect('admin/category/index/'.$id);
+                }else{
+                    $this->postal->add('Chỉnh sửa thành công.','success');
+                    redirect('admin/category/index/');
+                }                 
+            }            
         }else{            
             $this->render('admin/category/edit_view');
         }

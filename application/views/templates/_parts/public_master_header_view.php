@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li class="dropdown">
                 <a href="<?php echo base_url('english/thi-thu-ielts'); ?>">Thi thử IELTS</a>
             </li>
-            <li><a href="<?php echo base_url('contact'); ?>">Liên hệ</a></li>
+            <li><a href="<?php echo base_url('lien-he'); ?>">Liên hệ</a></li>
         </ul>
         <ul class="nav navbar-nav">
         </ul>

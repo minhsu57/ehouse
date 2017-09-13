@@ -1,58 +1,64 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="container" style="margin-top:0px;">
     <div class="row">
-        <div class="col-md-10">
-            <h1 class="text-center">Sửa Slider</h1>
-            <?php echo form_open_multipart('admin/slider/edit/'.$item->id);?>
-            <div class="col-md-6">
-                <label>Category </label><span class="error">*</span>
-                <select class="form-control" name="category">
-                <option value="<?php echo $item->category_id; ?>"><?php echo $item->category_name; ?></option>
+        <div class="col-lg-12">
+            <h1 class="text-center">SỬA CATEGORY</h1>
+            <?php echo form_open_multipart('admin/category/edit/'.$item->id);?>
+            <div class="col-lg-12">
+                <h3 class="col-lg-10" style="margin-top: 0"></h3>
+
+                <div class="col-lg-2 pull-right">
+                    <?php echo form_submit('submit', 'Save', 'class="btn btn-primary btn-lg btn-sm"');?>
+                    <?php echo anchor('/admin/category', 'Cancel','class="btn btn-default btn-lg btn-sm"');?>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <?php
+                echo form_label('Tiêu đề','name');
+                echo form_error('name');
+                echo form_input('name',set_value('name', $item->name),'class="form-control"');
+                ?>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <?php
+                echo form_label('Category Cha','parent');
+                ?>
+                <select class="form-control" name="parent">
+                <option value="<?php echo $item->parent; ?>"><?php if($item->parent != "NULL") echo $item->parent; ?></option>
                 <?php foreach ($categories as $value) { ?>
                     <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
                 <?php } ?>
                 </select>
             </div>
-            <div class="col-md-6">
-                <label>Link </label><span class="error">*</span>
-                <?php
-                echo form_error('link');
-                echo form_input('link',set_value('link', $item->link),'class="form-control"');
-                ?>
-            </div>             
-            <div class="form-group col-md-5">
-                <label>Slogan 01 </label><span class="error">*</span>
-                <?php
-                echo form_error('description');
-                echo form_input('description',set_value('description', $item->description),'class="form-control"');
-                ?>
-            </div>
-            <div class="form-group col-md-5">
-                <label>Slogan 02 </label><span class="error">*</span>
-                <?php
-                echo form_error('description2');
-                echo form_input('description2',set_value('description2', $item->description2),'class="form-control"');
-                ?>
-            </div>
-            <div class="col-md-2">
-                <label>Status </label><span class="error">*</span>
-                <select class="form-control" name="status">
-                    <option value="<?php echo $item->status; ?>"><?php if($item->status == 1) echo "Hiện"; else echo "Ẩn"; ?></option>
-                    <option value="<?php if($item->status == 1) echo 0; else echo 1; ?>"><?php if($item->status == 1) echo "Ẩn"; else echo "Hiện"; ?></option>
-                </select>
-            </div>
-            <div class="form-group col-md-12">
-                <label>Hình ảnh <span class="error">*</span></label>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Mô tả</strong>   
                 <div id="editor">
-                    <textarea class="ckeditor" name="image"><?php echo $item->image; ?></textarea> 
-                    <?php echo form_error('image','<p class="error">'); ?>
+                    <textarea class="ckeditor" name="description"><?php echo $item->description ?></textarea> 
+                    <?php echo form_error('description','<p class="error">'); ?>
                 </div>
             </div>
-                     
-            <?php
-            $submit_button = 'Save';
-            echo form_submit('submit', $submit_button, 'class="btn btn-primary btn-lg btn-block"');?>
-            <?php echo anchor('/admin/slider', 'Cancel','class="btn btn-default btn-lg btn-block"');?>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Thông tin khóa học</strong>  
+                <div id="editor">
+                    <textarea class="ckeditor" name="content"><?php echo $item->content; ?></textarea> 
+                    <?php echo form_error('content','<p class="error">'); ?>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Đăng ký khóa học</strong>
+                <div id="editor">
+                    <textarea class="ckeditor" name="content2"><?php echo $item->content2; ?></textarea> 
+                    <?php echo form_error('content2','<p class="error">'); ?>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Nội dung khóa học</strong>
+                <div id="editor">
+                    <textarea class="ckeditor" name="content3"><?php echo $item->content3; ?></textarea> 
+                    <?php echo form_error('content3','<p class="error">'); ?>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="<?php echo $item->id; ?>">
             <?php echo form_close();?>
         </div>
     </div>

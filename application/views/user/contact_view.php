@@ -6,8 +6,7 @@
  <?php require "slider_view.php" ?>
  <!-- End slider section -->
  <div class="presentation container">
- 	<h2 class="text-center" style="display: none"><?php echo $item->title; ?></h2>
- 	<div class="content" style="margin-top: 30px"><?php echo $item->content; ?></div>
+ 	<div class="content" style="margin-top: 30px"><?php echo $item->description; ?></div>
  	<div class="form-contact" style="margin:10px 0 40px">
  		<div class="name">
  			<label>HỌ TÊN</label>

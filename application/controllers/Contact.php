@@ -7,7 +7,7 @@ class Contact extends Public_Controller {
 		$this->load->helper('url');
        	$this->load->database();
        	$this->load->library('session');
-       	$this->load->model('page_content_model');
+       	$this->load->model('category_model');
        	$this->load->model('slider_model');
 	}
 
@@ -16,8 +16,8 @@ class Contact extends Public_Controller {
 		$input['where'] = array('status' => 1, 'category_id' => 'lien-he');
     	$this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of contact page
-        $input['where'] = array('class' => 'contact');
-        $this->data['item'] = $this->page_content_model->get_row($input);
+        $input['where'] = array('id' => 'lien-he');
+        $this->data['item'] = $this->category_model->get_row($input);
 		$this->render('user/contact_view');
 	}
 }

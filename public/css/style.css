@@ -826,10 +826,10 @@ pct end cover code */
     background: transparent;
 }
 #header-1 .navbar-nav > li >a{
-    color: #fff;
+        color: #ffffff !important;
 }
 #header-1 .navbar-nav > li:hover > a{
-    color:white; 
+    color: white;
 }
 #header-1 .navbar-nav > li.open > a{
     background:transparent;
