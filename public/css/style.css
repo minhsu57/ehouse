@@ -808,12 +808,12 @@ pct end cover code */
     text-align: center;
 }
 .presentation .media-body{
-    display: block;
+    display: table-cell;
     width: 100%;
 }
-.presentation .media-middle{
+/*.presentation .media-middle{
     display: block;
-} 
+}*/ 
 }
 @media only screen and (min-width: 768px) {
   .col-lg-15 {
