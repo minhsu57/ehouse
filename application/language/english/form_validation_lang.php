@@ -38,3 +38,4 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['form_validation_datetime'] = 'The {field} field must have a DATETIME format.';
+$lang['required'] = 'Required - Please input data';

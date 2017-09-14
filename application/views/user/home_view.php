@@ -105,27 +105,15 @@
             <div class="panel-heading"><div class="panel-title">Tin tức</div></div>
             <div class="news-list">
                 <div>
+                <?php foreach ($news as $item) { ?>
                     <div class="item col-md-4">
-                        <div class="hinh"><a href="#"><img src="<?php echo public_helper("images/slider1.jpg"); ?>" class="img-responsive" alt=""></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo base_url($item->image); ?>" class="img-responsive" alt=""></a></div>
                         <p class="date">Ngày 20 tháng 01 năm 2016</p>
-                        <h3 class="title"><a href="#">Hướng dẫn lựa chọn cây cảnh trang trí trong văn phòng</a></h3>
-                        <p class="summary">Hướng dẫn lựa chọn cây cảnh trang trí trong văn phòng, Bạn muốn tạo bầu không khí mới lạ cho văn phòng của mình bằng những chậu cây xanh, Hay đơn giản chỉ là sáng tạo một chút khi bố trí nội thất để tạo điểm nhấn cho văn phòng của mình?</p>
-                        <div class="readmore"><a href="#"><i>Đọc tiếp</i></a></div>
+                        <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
+                        <p class="summary"><?php echo $item->short_content; ?></p>
+                        <div class="readmore"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><i>Đọc tiếp</i></a></div>
                     </div>
-                    <div class="item col-md-4">
-                        <div class="hinh"><a href="#"><img src="<?php echo public_helper("images/slider2.jpg"); ?>" class="img-responsive" alt=""></a></div>
-                        <p class="date">Ngày 20 tháng 01 năm 2016</p>
-                        <h3 class="title"><a href="#">Cách bố trí cây cảnh các vị trí quan trọng trong nhà để hút lộc</a></h3>
-                        <p class="summary">Ngôi nhà là nơi mà mọi người thường tìm lại cảm giác yên bình, an toàn và thư thái,thoải mái sau những giờ làm việc vất vả, căng thẳng. Chính vì vậy mà khi thiết kế nhà, gia chủ cần lưu ý tới việc đưa cây cảnh nội thất vào không gian.</p>
-                        <div class="readmore"><a href="#"><i>Đọc tiếp</i></a></div>
-                    </div>
-                    <div class="item col-md-4">
-                        <div class="hinh"><a href="#"><img src="<?php echo public_helper("images/slider3.jpg"); ?>" class="img-responsive" alt=""></a></div>
-                        <p class="date">Ngày 20 tháng 01 năm 2016</p>
-                        <h3 class="title"><a href="#">Loại cây xanh để bàn đang được giới văn phòng ưa chuộng</a></h3>
-                        <p class="summary">Loại cây xanh để bàn đang được giới văn phòng ưa chuộng, giúp trang trí không gian làm việc tạo cảm giác khi làm việc được thoải mái, ngoài ra nó còn làm thanh lọc không khí, tạo ra nhiều nguồn cảm hứng mới khi làm việc.</p>
-                        <div class="readmore"><a href="#"><i>Đọc tiếp</i></a></div>
-                    </div>
+                <?php } ?>                    
                 </div>
                 <div style="clear: both;"></div>
                 <div class="text-center">

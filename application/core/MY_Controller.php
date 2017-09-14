@@ -31,8 +31,13 @@ class Public_Controller extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('website_model');
+		$this->load->model('news_model');
 		$input['where'] = array('language_slug'=>'vi');
         $this->data['website'] = $this->website_model->get_row($input);
+        // get 7 items of news model
+        $input_news['limit'] = array('7' ,'0');
+        $input_news['order'] = array('modified_date','DESC');
+        $this->data['news'] = $this->news_model->get_list($input_news);
 	}
 
 	protected function render($the_view = NULL, $template = 'public_master')

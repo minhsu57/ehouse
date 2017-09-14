@@ -17,6 +17,7 @@ class News extends Admin_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $this->lang->load('form_validation', 'english');
     }
 
     public function index()
@@ -29,32 +30,35 @@ class News extends Admin_Controller
 
     public function create()
     {        
-        $this->data["title"] = '';
-        $this->data["content"] = '';
-        $this->data["short_content"] = '';
+        // $this->data["title"] = '';
+        // $this->data["content"] = '';
+        // $this->data["short_content"] = '';
         if($this->input->post('submit')){
-            // $this->form_validation->set_rules('title', 'Bạn chưa nhập tiêu đề', 'required');
-            // $this->form_validation->set_rules('content', 'Bạn chưa nhập nội dung', 'required');
-            // $this->form_validation->set_rules('short_content', 'Bạn chưa nhập tóm tắt nội dung', 'required');
-            $this->data["title"] = $this->input->post('title');
-            $this->data["content"] = $this->input->post('content');
-            $this->data["short_content"] = $this->input->post('short_content');
-            // if ($this->form_validation->run() == FALSE)
-            // {
-            //      $this->render('admin/news/create_view');
-            // }else{
+            $this->form_validation->set_message('required', $this->lang->line('required'));
+            $this->form_validation->set_rules('title', 'lang:title', 'required');
+            $this->form_validation->set_rules('content', 'lang:content', 'required');
+            $this->form_validation->set_rules('short_content', 'lang:short_content', 'required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                 $this->render('admin/news/create_view');
+            }else{
                 $title = $this->input->post('title');
                 $content = $this->input->post('content');
                 $short_content = $this->input->post('short_content');
                 $keyword = $this->input->post('keyword');
                 $meta_description = $this->input->post('meta_description');
-                $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
+                // get value of src img tag
+                $doc = new DOMDocument();
+                $doc->loadHTML($content);
+                $xpath = new DOMXPath($doc);
+                $image = $xpath->evaluate("string(//img/@src)");
+                $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'image' => $image, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->news_model->create($insert_data))
                 {             
                     $this->postal->add('Thêm bài viết thất bại !','error');
                 }else $this->postal->add('Thêm bài viết thành công.','success');
                 redirect('admin/news'); 
-            //}
+            }
             
         }else $this->render('admin/news/create_view');
     }
@@ -64,9 +68,10 @@ class News extends Admin_Controller
         $input['where'] = array('id' => $item_id);
         $this->data['item'] = $this->news_model->get_row($input);        
         if($this->input->post('submit')){
-            $this->form_validation->set_rules('title', 'Bạn chưa nhập tiêu đề', 'required');
-            $this->form_validation->set_rules('content', 'Bạn chưa nhập nội dung', 'required');
-            $this->form_validation->set_rules('short_content', 'Bạn chưa nhập tóm tắt nội dung', 'required');
+            $this->form_validation->set_message('required', $this->lang->line('required'));
+            $this->form_validation->set_rules('title', 'lang:title', 'required');
+            $this->form_validation->set_rules('content', 'lang:content', 'required');
+            $this->form_validation->set_rules('short_content', 'lang:short_content', 'required');
             if ($this->form_validation->run() == FALSE)
             {
                  $this->render('admin/news/edit_view');
@@ -74,12 +79,19 @@ class News extends Admin_Controller
                 $title = $this->input->post('title');
                 $content = $this->input->post('content');
                 $short_content = $this->input->post('short_content');
-                $insert_data = array('title' => $title,'short_content' => $short_content, 'content' => $content, 'created_date'=>date('Y-m-d h:i:s'));
+                $keyword = $this->input->post('keyword');
+                $meta_description = $this->input->post('meta_description');
+                // get value of src img tag
+                $doc = new DOMDocument();
+                $doc->loadHTML($content);
+                $xpath = new DOMXPath($doc);
+                $image = $xpath->evaluate("string(//img/@src)");
+                $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'image' => $image, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->news_model->update($item_id, $insert_data))
                 {             
                     $this->postal->add('Chỉnh sửa bài viết thất bại !','error');
                 }else $this->postal->add('Chỉnh sửa bài viết thành công.','success');
-                redirect('admin/tintuc');
+                redirect('admin/news');
             }
         }else $this->render('admin/news/edit_view');
     }
@@ -90,11 +102,11 @@ class News extends Admin_Controller
         if(!$this->news_model->delete($item_id))
         {
             $this->postal->add('Tin tức không tồn tại','error');
-            redirect('admin/tintuc');
+            redirect('admin/news');
         }else{
             $this->postal->add('Xóa tin tức thành công','success');            
         }
-        redirect('admin/tintuc');
+        redirect('admin/news');
     }
 
     public function changeStatus($item_id, $status){
@@ -105,27 +117,6 @@ class News extends Admin_Controller
         } else{            
             $this->postal->add('Cập nhật Trạng thái thành công - mã Tin tức : '.$item_id,'success');        
         }
-        redirect('admin/tintuc');
-    }
-    public function adda(){
-        if($this->input->post('submit')){
-            $fileName = strtolower($_FILES['sliderUpload']['name']);
-            $config = array('upload_path' => './public/images/slider/', 'allowed_types' => 'gif|jpg|png', 'max_size' => 800, 'file_name' => $fileName);                                        
-            // Define file rules
-            $this->load->library('upload', $config);
-            if(!isset($_FILES['sliderUpload']['name']) || empty($_FILES['sliderUpload']['name'])){
-                $this->postal->add('Bạn chưa chọn file !','error');
-            }else if($this->upload->do_upload("sliderUpload")){
-                $upload = $this->upload->data();
-                $insert_data = array('name' => $upload['file_name'], 'url' => $upload['file_name'], 'status' => 1, 'created_date' => date('Y-m-d H:i:s'));
-                if(!$this->slider_model->create($insert_data))
-                {             
-                    $this->postal->add('Thêm slider thất bại !','error');
-                }else $this->postal->add('Thêm slider thành công.','success');                      
-            }else $this->postal->add('Thêm slider thất bại.','error');
-            redirect('admin/slider');
-        // Exit to avoid further execution
-            exit();
-        }
+        redirect('admin/news');
     }
 }

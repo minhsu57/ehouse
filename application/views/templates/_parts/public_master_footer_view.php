@@ -40,11 +40,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="title">Bài viết mới</div>
                 <ul class="list-unstyled">
-                    <li><a href="#">Bài viết mới nhất trong ngày hôm nay</a></li>
-                    <li><a href="#">Bài viết mới nhất trong ngày hôm nay</a></li>
-                    <li><a href="#">Bài viết mới nhất trong ngày hôm nay</a></li>
-                    <li><a href="#">Bài viết mới nhất trong ngày hôm nay</a></li>
-                    <li><a href="#">Bài viết mới nhất trong ngày hôm nay</a></li>
+                    <?php foreach ($news as $item) { ?>
+                        <li><a href="#"><?php echo $item->title; ?></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2">

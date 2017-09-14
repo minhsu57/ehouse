@@ -1,14 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div class="container" style="margin-top:0px;">
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h2>NEWS MANAGEMENT</h2>
+            <h4 class="text-center"><b>NEWS MANAGEMENT</b></h4>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <a href="<?php echo base_url('admin/news/create'); ?>"><button class="pull-right btn btn-primary"><li class="fa fa-plus"></li> Thêm bài viết mới</button></a>
+            <a href="<?php echo base_url('admin/news/create'); ?>"><button class="pull-right btn btn-primary"><li class="fa fa-plus"></li> Add news</button></a>
         </div>
     </div>
     <div class="row">
@@ -18,10 +18,10 @@
             echo '<thead>';
             echo '<tr>';
             echo '<th style="width: 300px !important">Title</th>';
+            echo '<th>Sumary content</th>';
             echo '<th>Image</th>';
-            echo '<th>Modified date</th>';
-            echo '<th>Status</th>';
-            echo '<th>Action</th>';
+            echo '<th>Modified date</th>';            
+            echo '<th>Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -30,17 +30,14 @@
                 foreach($items as $item)
                 {
                     echo '<tr>';
-                    echo '<td>'.$item->title.'</td>'; 
-                    ?>
-                    <td><?php preg_match('@src="([^"]+)"@', $item->content, $matches); if(count($matches) > 0) echo '<img '.$matches[0].'" class="img-200"> '; ?></td>
-                    <?php                     
+                    echo '<td><div style="max-width: 300px;">'.$item->title.'</div></td>';
+                    echo '<td><div style="max-width: 300px;">'.$item->short_content.'</div></td>'; 
+                    echo '<td><img src="'.base_url($item->image).'" style="width: 150px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>';
-                    echo '<td>'.$item->status.'</td>';
                     echo '<td>';
-                    echo '<a href="'.base_url('admin/tintuc/edit/'.$item->id).'" style="color:#fff"><button class="btn btn-sm btn-info">Sửa</button></a>';
-                    echo '<a href="tintuc/delete/'.$item->id.'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Xóa</button></a>';
+                    echo '<a href="'.base_url('admin/news/edit/'.$item->id).'" style="color:#fff"><button class="btn btn-sm btn-info">Sửa</button></a>';
+                    echo '<a href="'.base_url('admin/news/delete/'.$item->id).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Xóa</button></a>';
                     ?>
-                    <a href="<?php echo 'tintuc/changeStatus/'.$item->id.'/'.$item->status ?>" style="color:#fff"><button class="btn btn-sm btn-warning" style="margin-left:5px"><?php if($item->status == 1) echo 'Ẩn'; else echo 'Hiện'; ?></button></a>
                     <?php
                     echo '</td>';
                     echo '</tr>';
