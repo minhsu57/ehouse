@@ -13,7 +13,9 @@ class Category extends Admin_Controller
             $this->postal->add('You are not allowed to visit the Categories page','error');
             redirect('admin');
         }
+        $this->load->model('slider_model');
         $this->load->model('category_model');
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
     }
 
     public function index()
@@ -35,12 +37,12 @@ class Category extends Admin_Controller
                 $this->postal->add('Tên Category đã tồn tại !','error');
                 $this->render('admin/category/create_view');
             }else{
-                $parent = $this->input->post('parent');
+                $parent = $this->input->post('parent') == "" ? NULL : $this->input->post('parent');
                 $description = $this->input->post('description');
                 $content = $this->input->post('content');
                 $content2 = $this->input->post('content2');
                 $content3 = $this->input->post('content3');
-                $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'parent' => $parent);
+                $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'parent' => $parent, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->category_model->create($update_data))
                 {             
                     $this->postal->add('Thêm mới thất bại !','error');
@@ -56,48 +58,43 @@ class Category extends Admin_Controller
     public function edit($id)
     {
         $this->data['categories'] = $this->category_model->get_list();
-        $input['where'] = array('id' => $id);
-        $this->data['item'] = $this->category_model->get_row($input);
+        
         if($this->input->post('submit')){
-            // check id is exist or not
-            $name = ltrim($this->input->post('name'));
-            $name = rtrim($name);
-            $input['where'] = array('id' => create_slug($name), 'id <>' => $id);
-            $total_category_id = $this->category_model->get_total($input);
-            if($total_category_id >0){
-                $this->postal->add('Tiêu đề Category đã tồn tại !','error');
-                $this->render('admin/category/edit_view');
-            }else{
-                $parent = $this->input->post('parent');
-                $description = $this->input->post('description');
-                $content = $this->input->post('content');
-                $content2 = $this->input->post('content2');
-                $content3 = $this->input->post('content3');
-                $update_data = array('name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'parent' => $parent);
-                if(!$this->category_model->update($id, $update_data))
-                {             
-                    $this->postal->add('Chỉnh sửa thất bại !','error');
-                    redirect('admin/category/index/'.$id);
-                }else{
-                    $this->postal->add('Chỉnh sửa thành công.','success');
-                    redirect('admin/category/index/');
-                }                 
-            }            
-        }else{            
+            $this->data['parent'] = $this->input->post('parent');
+            $this->data['description'] = $this->input->post('description');
+            $this->data['content'] = $this->input->post('content');
+            $this->data['content2'] = $this->input->post('content2');
+            $this->data['content3'] = $this->input->post('content3');
+            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['conten2'], 'content3' => $this->data['content3'], 'parent' => $this->data['parent'], 'modified_date'=>date('Y-m-d H:i:s'));
+            if(!$this->category_model->update($id, $update_data))
+            {             
+                $this->postal->add('Chỉnh sửa thất bại !','error');
+            }else $this->postal->add('Chỉnh sửa thành công.','success');
+            redirect('admin/category');            
+        }else{
+            $input['where'] = array('id' => $id);
+            $this->data['item'] = $this->category_model->get_row($input);            
             $this->render('admin/category/edit_view');
         }
     }
 
-    public function delete($slider_id){
-        $where = array('slider_id' => $slider_id);
-
-        if(!$this->slider_model->delete($slider_id))
-        {
-            $this->postal->add('Slider không tồn tại','error');
-            redirect('admin/slider');
+    public function delete($id){
+        // get data for category index view
+        $this->data['items'] = $this->category_model->get_list();
+        $this->render('admin/category/index_view');
+        // check exist slider relation with category
+        $where = array('category_id' => $id);
+        $is_existed_slider = $this->slider_model->check_exists($where);
+        if($is_existed_slider){
+            $this->postal->add('Không thể xóa, vui lòng xóa slider có liên quan đến Category này trước !','error');            
         }else{
-            $this->postal->add('Xóa Slider thành công','success');            
+            if(!$this->category_model->delete($id))
+            {
+                $this->postal->add('Category không tồn tại','error');
+            }else{
+                $this->postal->add('Xóa Category thành công','success');            
+            }
         }
-        redirect('admin/slider');
+        redirect('admin/category');             
     }
 }

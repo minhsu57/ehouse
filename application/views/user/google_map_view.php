@@ -1,19 +1,19 @@
 <!-- Google map -->
 <div class="container">
     <div class="panel-xanh">
-        <div class="panel-heading"><div class="panel-title">Bản đồ Coffee Ehouse</div></div>
+        <div class="panel-heading"><div class="panel-title"><?php echo $website->website_name; ?> GOOGLE MAP</div></div>
         <div id="map" style="width:100%;height:450px; margin-bottom: 20px" class="col-lg-12"></div>
         <script>
             function myMap() {
-                var myCenter = new google.maps.LatLng(10.789931, 106.693402);
+                var myCenter = new google.maps.LatLng(<?php echo $website->google_map; ?>);
                 var mapCanvas = document.getElementById("map");
-                var mapOptions = { center: myCenter, zoom: 15, scrollwheel: false, alt: "Ehouse coffee" };
+                var mapOptions = { center: myCenter, zoom: 15, scrollwheel: false, alt: "<?php echo $website->website_name; ?>" };
                 var map = new google.maps.Map(mapCanvas, mapOptions);
                 var marker = new google.maps.Marker({ position: myCenter });
                 marker.setMap(map);
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: "ehouse coffee"
+                    content: "<?php echo $website->website_name; ?>"
                 });
             }
         </script>

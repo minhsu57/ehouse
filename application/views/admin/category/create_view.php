@@ -24,7 +24,7 @@
                 echo form_label('Category Cha','parent');
                 ?>
                 <select class="form-control" name="parent">
-                <option value="NULL"></option>
+                <option value=""></option>
                 <?php foreach ($categories as $value) { ?>
                     <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
                 <?php } ?>

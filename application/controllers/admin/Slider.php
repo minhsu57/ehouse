@@ -34,7 +34,7 @@ class Slider extends Admin_Controller
             $description2 = $this->input->post('description2');
             $status = $this->input->post('status');
             $image = $this->input->post('image');
-                // get value of src img tag
+            // get value of src img tag
             $doc = new DOMDocument();
             $doc->loadHTML($image);
             $xpath = new DOMXPath($doc);
@@ -79,8 +79,6 @@ class Slider extends Admin_Controller
     }
 
     public function delete($slider_id){
-        $where = array('slider_id' => $slider_id);
-
         if(!$this->slider_model->delete($slider_id))
         {
             $this->postal->add('Slider không tồn tại','error');

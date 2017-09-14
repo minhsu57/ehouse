@@ -14,7 +14,7 @@ class Home extends Public_Controller {
 
   public function index()
   {
-    $input['where'] = array('status' => 1);
+    $input['where'] = array('status' => 1, "category_id" => 'home');
     $this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of home page
     $input['where'] = array('class' => 'course');

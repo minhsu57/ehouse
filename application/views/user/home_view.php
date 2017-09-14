@@ -22,10 +22,10 @@
 </div>
 <!-- End cac khoa hoc -->
 
-<section class="testimonials-section" style="background-image:url('<?php echo public_helper("upload/images/3_member_english_speaking.jpg"); ?>'); height: 100%; ">
+<section class="testimonials-section" style="background-image:url('<?php echo $course_consultant->image_name; ?>'); height: 100%; ">
     <div class="container">
         <div id="class-res" class="col-xs-12 col-md-5 pull-right">
-            <h3 class="text-center">Đăng ký tư vấn khóa học</h3>
+            <h3 class="text-center"><?php echo $course_consultant->title; ?></h3>
             <div class="register">
                 <span class="col-xs-12"></span>
                 <div class="text-center">
@@ -63,10 +63,10 @@
 <section class="text-section">
     <div class="seft-test container">
         <div class="text-center">
-            <button class="btn btn-push-up"><a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp; <?php echo $note_rtl->title; ?></a></button>
+            <button class="btn btn-push-up"><a href="<?php echo $note_rtl->link; ?>" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp; <?php echo $note_rtl->title; ?></a></button>
         </div>
         <div>
-            <?php echo $note_rtl->content; ?>
+            <?php echo $note_rtl->description; ?>
         </div>
     </div>
 </section>
@@ -92,7 +92,7 @@
             </div>
             <div style="clear: both;"></div>
             <div class="text-center">
-                <button type="button" class="btn btn-warning">Xem thêm hình ảnh khác</button>
+                <button type="button" class="btn btn-info">Xem thêm hình ảnh khác</button>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@
                 </div>
                 <div style="clear: both;"></div>
                 <div class="text-center">
-                    <button type="button" class="btn btn-warning">Xem thêm tin tức khác</button>
+                    <button type="button" class="btn btn-info">Xem thêm tin tức khác</button>
                 </div>
             </div>
 

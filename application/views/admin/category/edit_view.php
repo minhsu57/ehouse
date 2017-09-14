@@ -16,15 +16,18 @@
                 <?php
                 echo form_label('Tiêu đề','name');
                 echo form_error('name');
-                echo form_input('name',set_value('name', $item->name),'class="form-control"');
                 ?>
+                <input type="text" name="name" class="form-control" disabled value="<?php echo $item->name; ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Category Cha','parent');
                 ?>
                 <select class="form-control" name="parent">
-                <option value="<?php echo $item->parent; ?>"><?php if($item->parent != "NULL") echo $item->parent; ?></option>
+                <option value="<?php echo $item->parent; ?>"><?php if($item->parent != "NULL" && $item->parent != "") echo $item->parent; ?></option>
+                <?php if($item->parent != "NULL" && $item->parent != "") { ?>
+                <option value=""></option>
+                <?php } ?>
                 <?php foreach ($categories as $value) { ?>
                     <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
                 <?php } ?>

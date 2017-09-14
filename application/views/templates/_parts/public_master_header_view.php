@@ -7,9 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="container">
             <div class="col-md-8 social">
                 <ul>
-                <li><a href="https://www.facebook.com/Ehouse.hcmc/" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-google-plus"></i></a></li>
+                <li><a href="<?php echo $website->facebook; ?>" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+                    <li><a href="<?php echo $website->twitter; ?>"><i class="fa fa-fw fa-twitter"></i></a></li>
+                    <li><a href="<?php echo $website->google_plus; ?>"><i class="fa fa-fw fa-google-plus"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-4 social">
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="<?php echo base_url(); ?>"><p><img src="<?php echo public_helper('upload/images/logo.png'); ?>" class="img-responsive" alt=""></p></a>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
-                <p class="ct-text-2"><i class="fa fa-phone"></i> 028 3939 0811 - 0906 911 022</p>
+                <p class="ct-text-2"><i class="fa fa-phone"></i> <?php echo $website->phone; ?></p>
                 <form action="https://greenshop-theme.bizwebvietnam.net/search" class="search-box">
                     <input type="text" name="query" class="input-control" placeholder="Tìm kiếm...">
                     <button><i class="fa fa-search"></i></button>

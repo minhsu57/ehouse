@@ -79,8 +79,9 @@ class MY_Model extends CI_Model {
         if(is_numeric($id))
         {
             $where = array($this->key => $id);
-        }else
-        {
+        }else if(!is_numeric($id)){
+            $where = array($this->key => $id);
+        }else{
             //xoa nhieu row
             //$id = 1,2,3...
             $where = $this->key . " IN (".$id.") ";

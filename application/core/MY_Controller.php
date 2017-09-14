@@ -30,6 +30,9 @@ class Public_Controller extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('website_model');
+		$input['where'] = array('language_slug'=>'vi');
+        $this->data['website'] = $this->website_model->get_row($input);
 	}
 
 	protected function render($the_view = NULL, $template = 'public_master')

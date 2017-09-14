@@ -28,17 +28,18 @@ if($this->ion_auth->logged_in()) {
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Trang Chủ <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MANAGE <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><?php echo anchor('admin/slider','Slider');?></li>
                             <li><?php echo anchor('admin/category','Category');?></li>
+                            <li><?php echo anchor('admin/page_content','Page Content');?></li>
                         </ul>
                     </li>
                     
-                    <li><?php echo anchor('admin/vitri/index','Vị Trí');?></li>
+                    <li><?php echo anchor('admin/website/index','COMMON INFO');?></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><?php echo anchor('admin/tintuc/index','Tin tức');?></li>
+                    <li><?php echo anchor('admin/news/index','NEWS');?></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $this->ion_auth->user()->row()->username;?> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
