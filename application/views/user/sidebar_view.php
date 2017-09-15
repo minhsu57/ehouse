@@ -1,14 +1,15 @@
 <div class="sidebar">
 	<div class="row row-div col-lg-12"><label>TIN TỨC MỚI</label></div>
-	<?php foreach ($news as $new) { ?>
+	<?php foreach ($news as $item) { ?>
 	<div class="row row-article">
 		<div class="col-xs-4 col-md-2 col-lg-4">
-			<div class="news_image">
-				<a href="<?php echo base_url('tin-tuc/'.$new->id.'-'.create_slug($new->title)); ?>.html"><?php preg_match('@src="([^"]+)"@', $new->content, $matches); if(count($matches) > 0) echo '<img '.$matches[0].'" class="img-thumbnail" style="border:none"> '; else echo '<img src="'.public_helper('images/news.jpg').'" class="img-thumbnail">'; ?></a>
-			</div>			
+			<div class="news_image  hidden-md">
+				<a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)); ?>"><img src="<?php echo $item->image; ?>"></a>
+			</div>
+			<div class="visible-md">-</div>			
 		</div>
 		<div class="col-xs-8 col-md-10 col-lg-8 pd-lr-0">			
-			<div class="news_title"><span><a href="<?php echo base_url('tin-tuc/'.$new->id.'-'.create_slug($new->title)); ?>.html" style="color: #333"><?php echo $new->title; ?></a></span></div>
+			<div class="news_title"><span><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)); ?>" style="color: #333"><?php echo $item->title; ?></a></span></div>
 		</div>
 	</div>
 	<?php } ?>

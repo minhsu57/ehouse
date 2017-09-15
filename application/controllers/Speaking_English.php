@@ -19,6 +19,12 @@ class Speaking_English extends Public_Controller {
 
     public function index($id)
     {
+        // get content of category
+        $input['where'] = array("id" => $id);
+        $page = $this->category_model->get_row($input);
+        $this->data['website']->meta_keyword = $page->meta_keyword;
+        $this->data['website']->meta_description = $page->meta_description;
+        // get list slider
         $input['where'] = array('status' => 1, 'category_id' => $id);
         $this->data['sliders']  = $this->slider_model->get_list($input);
         //get content of this page
@@ -26,55 +32,4 @@ class Speaking_English extends Public_Controller {
         $this->data['item'] = $this->category_model->get_row($input);
         $this->render('user/speaking_view');
     }
-
-    // public function english_8_member()
-    // {
-    //     //get content of english_8_member
-    //     $input['where'] = array('id' => 'english_8_member');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
-
-    // public function ielts_speaking_writting()
-    // {
-    //     //get content of ielts_speaking_writting
-    //     $input['where'] = array('id' => 'ielts_speaking_writting');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
-
-    // public function ielts_reading_listening()
-    // {
-    //     //get content of ielts_reading_listening
-    //     $input['where'] = array('id' => 'ielts_reading_listening');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
-
-    // public function ielts_4_skills()
-    // {
-    //     //get content of ielts_4_skills
-    //     $input['where'] = array('id' => 'ielts_4_skills');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
-
-    // public function speaking_company()
-    // {
-    //     //get content of ielts_4_skills
-    //     $input['where'] = array('id' => 'speaking_company');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
-
-    // public function ielts_testing()
-    // {
-    //     $this->data['tab1_title'] = "Thông tin thi thử IELTS";
-    //     $this->data['tab2_title'] = "Lịch thi thử IELTS 2017";
-    //     $this->data['tab3_title'] = "Đăng ký thi thử ITELS";
-    //     //get content of ielts_4_skills
-    //     $input['where'] = array('id' => 'ielts_testing');
-    //     $this->data['item'] = $this->page_content_model->get_row($input);
-    //     $this->render('user/speaking_view');
-    // }
 }

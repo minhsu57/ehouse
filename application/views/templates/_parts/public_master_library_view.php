@@ -7,9 +7,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes"> <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- iOS Safari -->
 
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Green Shop</title>
+    <link href="<?php echo $website->favicon_icon; ?>" rel="shortcut icon" type="image/x-icon" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="description" content="<?php echo $website->meta_description; ?>" />
+    <meta name="keywords" content="<?php echo $website->meta_keyword; ?>" />
+    <meta name="robots" content="noodp,index,follow" />
+    <meta name='revisit-after' content='1 days' />
+
+    <title><?php echo $website->page_title; ?></title>
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo public_helper('lib/bootstrap/css/bootstrap.min.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('lib/font-awesome/css/font-awesome.min.css'); ?>"/>
@@ -17,7 +24,7 @@
     <link rel="stylesheet" href="<?php echo public_helper('owlcarousel/owl.theme.green.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('css/animate.css'); ?>"/>
     <link rel="stylesheet" href="<?php echo public_helper('css/style.css'); ?>"/>
-    
+
     <!-- Javascript -->
     <script type="text/javascript" src="<?php echo public_helper("lib/jquery/jquery.min.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo public_helper('lib/bootstrap/js/bootstrap.min.js'); ?>"></script>

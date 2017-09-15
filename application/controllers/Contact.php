@@ -13,6 +13,12 @@ class Contact extends Public_Controller {
 
 	public function index()
 	{
+		// get content of category
+        $input['where'] = array("id" => 'lien-he');
+        $page = $this->category_model->get_row($input);
+        $this->data['website']->meta_keyword = $page->meta_keyword;
+        $this->data['website']->meta_description = $page->meta_description;
+        // get list slider
 		$input['where'] = array('status' => 1, 'category_id' => 'lien-he');
     	$this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of contact page

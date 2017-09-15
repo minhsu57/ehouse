@@ -37,23 +37,11 @@
     <div class="row media">
         <div class="media-body">
             <div class="text-center">
-                <h3><b><strong>Nếu bạn có thắc mắc về chương trình học </strong></b></h3>
-                <h3><b><strong>xin liên lạc qua:</strong></b></h3>
-                <h6>Facebook: <a style="color:chocolate" href="https://www.facebook.com/Ehouse.hcmc/">https://www.facebook.com/mc.ielts/</a> (inbox)</h6>
-                <p style="text-align:center"><span style="font-size:16px"><span style="color:#000000"><span style="background-color:#fcfcfc"><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Tel: 028 3939 0811</span></span></span></span></p>
-
-                <p style="text-align:center"><span style="font-size:16px"><span style="color:#000000"><span style="background-color:#fcfcfc"><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hotline: 0906 911 022</span></span></span></span></p>
-
-                <p style="text-align:center"><span style="font-size:16px"><span style="color:#000000"><span style="background-color:#fcfcfc"><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Địa chỉ: 7 Thạch Thị Thanh, Phường T&acirc;n Định, Quận 1, HCM</span></span></span></span></p>
-
-                <p style="text-align:center"><span style="font-size:16px"><span style="color:#000000"><span style="background-color:#fcfcfc"><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Giờ l&agrave;m việc: Thứ 2 &ndash; Chủ nhật (9:00 &ndash; 21:00)</span></span></span></span></p>
-
-                <p style="text-align:center">&nbsp;</p>
-
+                <?php echo $item->content4; ?>
             </div>
         </div>
         <div class="text-center media-middle media-left">
-            <button class="btn btn-push-up"><i class="fa fa-user-plus"></i>&nbsp;&nbsp; Đăng ký ngay</button>
+            <a href="<?php echo $item->url; ?>" target="_blank"><button class="btn btn-push-up"><i class="fa fa-user-plus"></i>&nbsp;&nbsp; Đăng ký ngay</button></a>
         </div>
     </div>
 </div>

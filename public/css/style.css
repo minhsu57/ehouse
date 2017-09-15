@@ -64,6 +64,9 @@ h6, h6 a, h6 a:hover, a.content_link .title {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+img.img-opacity:hover {
+    opacity: 0.8; 
+}
 /* 5 Columns */
 
 .col-xs-15,
@@ -552,18 +555,18 @@ pct end cover code */
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.news ul {
+/*.news ul {
     padding: 0; 
-}
-.news li {
+}*/
+/*.news li {
     width: 31.2%;
     float: left;
     display: block;
     margin-left: 30px; 
-}
-.news li div {
+}*/
+/*.news li div {
     margin-bottom: 10px; 
-}
+}*/
 .news .item .date {
     font-style: italic;
     margin-top: 10px;
@@ -586,9 +589,7 @@ pct end cover code */
 .news .item:first-child {
     margin-left: 0; 
 }
-.news .item:hover img {
-    opacity: 0.5; 
-}
+
 .news .hinh img{
     height: 200px;
 }

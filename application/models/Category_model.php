@@ -23,5 +23,14 @@ class Category_model extends MY_Model
         $rows = $this->db->query('select c.id from category c where c.parent = '.'"'.$id.'"');
         return $rows->row();
     }
+
+    public function delete_category_id($id){
+        $query = $this->db->query('select level from category where id = '.'"'.$id.'" and level > -1');
+        if($query->num_rows() == 1){
+            $this->db->query('delete from category where id = '.'"'.$id.'"');
+            $return = $this->db->affected_rows() == 1;
+            if($return) return true; else return false;
+        }else return false;        
+    }
     
 }

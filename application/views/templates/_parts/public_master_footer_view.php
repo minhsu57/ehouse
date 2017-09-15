@@ -35,18 +35,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="logo"><img src="<?php echo public_helper('upload/images/logo.png'); ?>" class="img-responsive" alt="Image"></div>
                 <p><?php echo $website->slogan; ?></p>
                 <p><i class="fa fa-phone"></i> Điện thoại : <a href="tel:01234 4321 32"><?php echo $website->phone; ?></a></p>
-                <p><i class="fa fa-envelope-o"></i> Email : <a href="mailto:taisang1996@gmail.com"><?php echo $website->email; ?></a></p>
+                <p><i class="fa fa-envelope-o"></i> Email : <a href="mailto:<?php echo $website->email; ?>"><?php echo $website->email; ?></a></p>
+                <p><i class="fa fa-map-marker"></i> Address : <a href="#"><?php echo $website->address; ?></a></p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="title">Bài viết mới</div>
                 <ul class="list-unstyled">
                     <?php foreach ($news as $item) { ?>
-                        <li><a href="#"><?php echo $item->title; ?></a></li>
+                        <li><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)); ?>"><?php echo $item->title; ?></a></li>
                     <?php } ?>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2">
-                <div class="title">Từ khóa</div>
+                <div class="title">Keyword</div>
                 <ul class="list-unstyled">
                     <div class="tagcloud">
                         <?php echo $website->keyword; ?>

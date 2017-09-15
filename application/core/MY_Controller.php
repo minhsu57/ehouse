@@ -33,17 +33,27 @@ class Public_Controller extends MY_Controller
 		$this->load->model('website_model');
 		$this->load->model('news_model');
 		$input['where'] = array('language_slug'=>'vi');
-        $this->data['website'] = $this->website_model->get_row($input);
+		$this->data['website'] = $this->website_model->get_row($input);
+        // get value of src favicon tag
+		if($this->data['website']->favicon != "" && $this->data['website']->favicon != NULL){
+			$doc = new DOMDocument();
+			$doc->loadHTML($this->data['website']->favicon);
+			$xpath = new DOMXPath($doc);
+			$this->data['website']->favicon_icon = $xpath->evaluate("string(//img/@src)");
+		}else $this->data['website']->favicon_icon = "";	
+		$this->data['website']->page_title = $this->data['website']->website_name;
+		$this->data['website']->meta_keyword = "";
+		$this->data['website']->meta_description = "";
         // get 7 items of news model
-        $input_news['limit'] = array('7' ,'0');
-        $input_news['order'] = array('modified_date','DESC');
-        $this->data['news'] = $this->news_model->get_list($input_news);
+		$input_news['limit'] = array('7' ,'0');
+		$input_news['order'] = array('modified_date','DESC');
+		$this->data['news'] = $this->news_model->get_list($input_news);
 	}
 
 	protected function render($the_view = NULL, $template = 'public_master')
-    {
-    	parent::render($the_view, $template);
-    }
+	{
+		parent::render($the_view, $template);
+	}
 }
 class Admin_Controller extends MY_Controller
 {
@@ -52,16 +62,16 @@ class Admin_Controller extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->library('ion_auth');
-        $this->load->library('postal');
+		$this->load->library('postal');
 		$this->load->helper('url');
 		if (!$this->ion_auth->logged_in())
 		{
-            $_SESSION['redirect_to'] = current_url();
+			$_SESSION['redirect_to'] = current_url();
 			//redirect them to the login page
 			redirect('admin/user/login', 'refresh');
 		}
-        $current_user = $this->ion_auth->user()->row();
-        $this->user_id = $current_user->id;
+		$current_user = $this->ion_auth->user()->row();
+		$this->user_id = $current_user->id;
 		$this->data['current_user'] = $current_user;
 		$this->data['current_user_menu'] = '';
 		if($this->ion_auth->in_group('admin'))

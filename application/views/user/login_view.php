@@ -1,6 +1,9 @@
  <?php
  defined('BASEPATH') OR exit('No direct script access allowed');
  ?>
+  <!-- Slider section -->
+ <?php require "slider_view.php" ?>
+ <!-- End slider section -->
 <div class="presentation container">
     <div id="login-form" class="col-main col-md-12 home_page">
 		<!--Page Title -->
@@ -34,7 +37,7 @@
 			</form>
 			</div>
 		</div>
-		<div class="box box-primary col-md-6">
+		<!-- <div class="box box-primary col-md-6">
 			<div class="box-header with-border">
 				<h3 class="box-title">&nbsp;</h3>
 			</div>
@@ -43,7 +46,7 @@
 			<div class="box-footer">
 				<a href="<?php echo base_url('account'); ?>"><button type="submit" class="btn btn-info">Nhấp để tạo tài khoản</button></a>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 </div>

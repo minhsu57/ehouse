@@ -7,6 +7,7 @@ class News extends Public_Controller {
         $this->load->helper('url');
        	$this->load->database();
        	$this->load->library('session');
+        $this->load->model('category_model');
         $this->load->model('slider_model');
        	$this->load->model('news_model');
         // slider
@@ -15,7 +16,13 @@ class News extends Public_Controller {
     }
     
 	public function index()
-	{	
+	{
+        // get content of category
+        $input['where'] = array("id" => 'tin-tuc');
+        $page = $this->category_model->get_row($input);
+        $this->data['website']->meta_keyword = $page->meta_keyword;
+        $this->data['website']->meta_description = $page->meta_description;
+        // get list news	
         $this->data['items'] = $this->news_model->get_list();
 		$this->render('user/news_view');
 	}
@@ -28,7 +35,7 @@ class News extends Public_Controller {
         if($this->data['item']->meta_description != "")
         	$this->data['website']->meta_description = $this->data['item']->meta_description;
         if($this->data['item']->title != "")
-        	$this->data["page_title"] = $this->data['item']->title;
+        	$this->data["website"]->page_title = $this->data['item']->title;
         
 		$this->render('user/news_detail_view');
 	}

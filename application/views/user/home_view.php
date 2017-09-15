@@ -10,7 +10,8 @@
     <?php foreach ($content_course as $item) { ?> 
     <div class="col-xs-12 col-md-6 col-lg-15"> 
         <a href="<?php echo base_url().$item->link; ?>">     
-            <?php echo $item->image; ?>
+            <p><img src="<?php echo $item->image_name; ?>" class="img-opacity"></p>
+            
             <div class="content-course-title">
                 <div>
                     <h5><?php echo $item->title; ?></h5>
@@ -107,7 +108,7 @@
                 <div>
                 <?php foreach ($news as $item) { ?>
                     <div class="item col-md-4">
-                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo base_url($item->image); ?>" class="img-responsive" alt=""></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo base_url($item->image); ?>" class="img-responsive img-opacity" alt=""></a></div>
                         <p class="date">Ngày 20 tháng 01 năm 2016</p>
                         <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
                         <p class="summary"><?php echo $item->short_content; ?></p>
@@ -117,7 +118,7 @@
                 </div>
                 <div style="clear: both;"></div>
                 <div class="text-center">
-                    <button type="button" class="btn btn-info">Xem thêm tin tức khác</button>
+                    <a href="<?php echo base_url('tin-tuc') ?>"><button type="button" class="btn btn-info"><li class="fa fa-arrow-right "></li> Xem thêm tin tức khác</button></a>
                 </div>
             </div>
 

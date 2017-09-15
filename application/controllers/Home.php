@@ -8,6 +8,7 @@ class Home extends Public_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->helper('language');
+        $this->load->model('category_model');
         $this->load->model('slider_model');
         $this->load->model('page_content_model');
         $this->load->model('news_model');
@@ -15,6 +16,12 @@ class Home extends Public_Controller {
 
     public function index()
     {
+        // get content of category
+        $input['where'] = array("id" => 'home');
+        $page = $this->category_model->get_row($input);
+        $this->data['website']->meta_keyword = $page->meta_keyword;
+        $this->data['website']->meta_description = $page->meta_description;
+        // get content of slider
         $input['where'] = array('status' => 1, "category_id" => 'home');
         $this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of home page

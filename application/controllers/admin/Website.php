@@ -27,6 +27,7 @@ class Website extends Admin_Controller
         if($this->input->post('submit')){
             $id = $this->input->post('id');
             $website_name = $this->input->post('website_name');
+            $favicon = $this->input->post('favicon');
             $facebook = $this->input->post('facebook');
             $youtube = $this->input->post('youtube');
             $google_plus = $this->input->post('google_plus');                
@@ -38,7 +39,7 @@ class Website extends Admin_Controller
             $address = $this->input->post('address');
             $slogan = $this->input->post('slogan');            
             $keyword = $this->input->post('keyword');
-            $update_data = array('website_name' => $website_name, 'facebook' => $facebook, 'youtube' => $youtube, 'google_plus' => $google_plus, 'twitter' => $twitter, 'phone' => $phone, 'mobile_phone' => $mobile_phone, 'google_map' => $google_map,'email' => $email, 'address' => $address, 'slogan' => $slogan, 'slogan' => $slogan, 'keyword'=>$keyword, 'modified_date'=>date('Y-m-d'));
+            $update_data = array('website_name' => $website_name, 'favicon' => $favicon,'facebook' => $facebook, 'youtube' => $youtube, 'google_plus' => $google_plus, 'twitter' => $twitter, 'phone' => $phone, 'mobile_phone' => $mobile_phone, 'google_map' => $google_map,'email' => $email, 'address' => $address, 'slogan' => $slogan, 'slogan' => $slogan, 'keyword'=>$keyword, 'modified_date'=>date('Y-m-d'));
             if(!$this->website_model->update($id, $update_data))
             {             
                 $this->postal->add('Update failed !','error');

@@ -17,7 +17,7 @@
                 echo form_label('Tiêu đề','name');
                 echo form_error('name');
                 ?>
-                <input type="text" name="name" class="form-control" disabled value="<?php echo $item->name; ?>">
+                <input type="text" name="name" class="form-control" disabled value="<?php echo $item->name; ?>" title="<?php echo $item->name; ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
@@ -60,6 +60,37 @@
                     <textarea class="ckeditor" name="content3"><?php echo $item->content3; ?></textarea> 
                     <?php echo form_error('content3','<p class="error">'); ?>
                 </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Nội dung 4</strong>
+                <div id="editor">
+                    <textarea class="ckeditor" name="content4"><?php echo $item->content4; ?></textarea> 
+                    <?php echo form_error('content4','<p class="error">'); ?>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <?php
+                echo form_label('Link đăng ký ngay','url');
+                echo form_error('url');
+                ?>
+                <input type="text" name="url" class="form-control" value="<?php echo $item->url; ?>" >
+            </div>
+            <div class="form-group col-md-12 col-lg-12">
+                <h5><b>SEO SECTION</b></h5>
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                <?php
+                echo form_label('Meta keyword','meta_keyword');
+                echo form_error('meta_keyword','<p class="error">');
+                ?>
+                <textarea class="form-control" name="meta_keyword"><?php echo $item->meta_keyword; ?></textarea>
+            </div>
+            <div class="form-group col-md-12 col-lg-6">
+                <?php
+                echo form_label('Meta Description','meta_description');
+                echo form_error('meta_description','<p class="error">');
+                ?>
+                <textarea class="form-control" name="meta_description"><?php echo $item->meta_description; ?></textarea>
             </div>
             <input type="hidden" name="id" value="<?php echo $item->id; ?>">
             <?php echo form_close();?>
