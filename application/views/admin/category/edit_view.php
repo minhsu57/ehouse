@@ -19,11 +19,12 @@
                 ?>
                 <input type="text" name="name" class="form-control" disabled value="<?php echo $item->name; ?>" title="<?php echo $item->name; ?>">
             </div>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Category Cha','parent');
                 ?>
-                <select class="form-control" name="parent">
+                <select class="form-control" name="parent" <?php if($item->level == -1) echo "disabled"; ?>>
                 <option value="<?php echo $item->parent; ?>"><?php if($item->parent != "NULL" && $item->parent != "") echo $item->parent; ?></option>
                 <?php if($item->parent != "NULL" && $item->parent != "") { ?>
                 <option value=""></option>
@@ -33,6 +34,7 @@
                 <?php } ?>
                 </select>
             </div>
+            <?php } ?>
             <div class="form-group col-md-6 col-lg-6">
                 <strong>Mô tả</strong>   
                 <div id="editor">
@@ -40,6 +42,7 @@
                     <?php echo form_error('description','<p class="error">'); ?>
                 </div>
             </div>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <strong>Thông tin khóa học</strong>  
                 <div id="editor">
@@ -47,6 +50,8 @@
                     <?php echo form_error('content','<p class="error">'); ?>
                 </div>
             </div>
+            <?php } ?>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <strong>Đăng ký khóa học</strong>
                 <div id="editor">
@@ -54,6 +59,8 @@
                     <?php echo form_error('content2','<p class="error">'); ?>
                 </div>
             </div>
+            <?php } ?>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <strong>Nội dung khóa học</strong>
                 <div id="editor">
@@ -61,6 +68,8 @@
                     <?php echo form_error('content3','<p class="error">'); ?>
                 </div>
             </div>
+            <?php } ?>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <strong>Nội dung 4</strong>
                 <div id="editor">
@@ -68,6 +77,8 @@
                     <?php echo form_error('content4','<p class="error">'); ?>
                 </div>
             </div>
+            <?php } ?>
+            <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Link đăng ký ngay','url');
@@ -75,6 +86,7 @@
                 ?>
                 <input type="text" name="url" class="form-control" value="<?php echo $item->url; ?>" >
             </div>
+            <?php } ?>
             <div class="form-group col-md-12 col-lg-12">
                 <h5><b>SEO SECTION</b></h5>
             </div>

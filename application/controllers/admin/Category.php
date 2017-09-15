@@ -29,7 +29,8 @@ class Category extends Admin_Controller
 
     public function create()
     {
-        $this->data['categories'] = $this->category_model->get_list();
+        $input_categories['where'] = array('level' => 0);
+        $this->data['categories'] = $this->category_model->get_list($input_categories);
         if($this->input->post('submit')){
             $this->form_validation->set_message('required', $this->lang->line('required'));
             $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
@@ -49,6 +50,7 @@ class Category extends Admin_Controller
                     $this->render('admin/category/create_view');
                 }else{
                     $parent = $this->input->post('parent') == "" ? NULL : $this->input->post('parent');
+                    $level = $parent != NULL && $parent != "" ? 1 : 0;
                     $description = $this->input->post('description');
                     $content = $this->input->post('content');
                     $content2 = $this->input->post('content2');
@@ -57,7 +59,7 @@ class Category extends Admin_Controller
                     $this->data['url'] = $this->input->post('url');
                     $meta_keyword = $this->input->post('meta_keyword');
                     $meta_description = $this->input->post('meta_description');
-                    $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $parent, 'meta_keyword' => $meta_keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
+                    $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $parent, 'level' => $level, 'meta_keyword' => $meta_keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                     if(!$this->category_model->create($update_data))
                     {             
                         $this->postal->add('Thêm mới thất bại !','error');
@@ -72,10 +74,15 @@ class Category extends Admin_Controller
 
     public function edit($id)
     {
-        $this->data['categories'] = $this->category_model->get_list();
+        $input_categories['where'] = array('level' => 0, 'id <>' => $id);
+        $this->data['categories'] = $this->category_model->get_list($input_categories);
+        // get level of this $id
+        $input_level['where'] = array('id' => $id);
+        $level_id = $this->category_model->get_row($input_level);
 
         if($this->input->post('submit')){
             $this->data['parent'] = $this->input->post('parent');
+            $level = $level_id->level == -1 ? -1 : ($this->data['parent'] != NULL && $this->data['parent']  != "" ? 1 : 0);
             $this->data['description'] = $this->input->post('description');
             $this->data['content'] = $this->input->post('content');
             $this->data['content2'] = $this->input->post('content2');
@@ -84,7 +91,7 @@ class Category extends Admin_Controller
             $this->data['url'] = $this->input->post('url');
             $this->data['meta_keyword'] = $this->input->post('meta_keyword');
             $this->data['meta_description'] = $this->input->post('meta_description');
-            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['conten2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
+            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['conten2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'level' => $level, 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
             if(!$this->category_model->update($id, $update_data))
             {             
                 $this->postal->add('Chỉnh sửa thất bại !','error');
@@ -104,9 +111,15 @@ class Category extends Admin_Controller
         // check exist slider relation with category
         $where = array('category_id' => $id);
         $is_existed_slider = $this->slider_model->check_exists($where);
+        // check exist children category of this category
+        $where = array('parent' => $id);
+        $is_existed_child_category = $this->category_model->check_exists($where);
         if($is_existed_slider){
-            $this->postal->add('Không thể xóa, vui lòng xóa slider có liên quan đến Category này trước !','error');            
-        }else{
+            $this->postal->add('Không thể xóa, vui lòng xóa slider có liên quan đến Category này trước !','error');          
+        }else if($is_existed_child_category){
+            $this->postal->add('Không thể xóa, vui lòng xóa category con của category này trước !','error');
+        }
+        else{
             if(!$this->category_model->delete_category_id($id))
             {
                 $this->postal->add('Xóa Category thất bại','error');
