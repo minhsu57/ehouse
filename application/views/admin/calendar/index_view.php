@@ -17,6 +17,7 @@
             echo '<table class="table table-hover table-bordered table-condensed">';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Course name</th>';
             echo '<th>Student name</th>';
             echo '<th>Email</th>';
             echo '<th>Phone</th>';
@@ -30,7 +31,8 @@
                 foreach($items as $item)
                 {
                     echo '<tr>';
-                    echo '<td><a href="'.base_url('admin/update?user_name='.$item->user_name).'">'.$item->last_name .' '.$item->first_name.'</a></td>';
+                    echo '<td>'.$item->course_name.'</td>'; 
+                    echo '<td><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'">'.$item->last_name .' '.$item->first_name.'</a></td>';
                     echo '<td>'.$item->email.'</td>';                    
                     echo '<td>'.$item->phone.'</td>';
                     echo '<td></td>';

@@ -9,5 +9,10 @@ class Calendar_model extends MY_Model
         parent::__construct();
         $this->table = 'calendar';
     }
+
+    public function get_list_canlendar_user_course(){
+    	$rows = $this->db->query('select distinct u.last_name, u.first_name, u.email, u.phone, u.username user_name, s.name course_name, c.course_id from calendar c, users u, course s where c.user_name = u.username and c.course_id = s.id');
+        return $rows->result();
+    }
     
 }

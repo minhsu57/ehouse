@@ -1,4 +1,4 @@
-<link rel='stylesheet' href="<?php echo public_helper('fullcalendar/fullcalendar.css'); ?>" />
+<link rel='stylesheet' href="<?php echo public_helper('fullcalendar/fullcalendar.min.css'); ?>" />
 <link href="<?php echo public_helper('fullcalendar/fullcalendar.print.css'); ?>" rel='stylesheet' media='print' />
 <script src="<?php echo public_helper("fullcalendar/moment.min.js"); ?>"></script>
 <script src="<?php echo public_helper("fullcalendar/jquery-ui.min.js"); ?>"></script>
@@ -12,7 +12,7 @@
 
 		url: 'process',
     type: 'POST', // Send post data
-    data: 'type=fetch&user_name=<?php echo $user_name; ?>',
+    data: 'type=fetch&user_name=<?php echo $user_name; ?>&course_id=<?php echo $course_id; ?>',
     async: false,
     success: function(s){
     	json_events = s;
@@ -66,14 +66,14 @@
 		editable: true,
 		droppable: true, 
 		slotDuration: '00:30:00',
-		allDay: true,
+		allDay: false,
 		eventReceive: function(event){
 			var title = event.title;
 			var start = event.start.format("YYYY-MM-DD[T]HH:mm:SS");
 			var color = event.color;
 			$.ajax({
 				url: 'process',
-				data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone+'&color='+color+'&user_name=<?php echo $user_name; ?>',
+				data: 'type=new&title='+title+'&startdate='+start+'&zone='+zone+'&color='+color+'&user_name=<?php echo $user_name; ?>&course_id=<?php echo $course_id; ?>',
 				type: 'POST',
 				dataType: 'json',
 				success: function(response){
