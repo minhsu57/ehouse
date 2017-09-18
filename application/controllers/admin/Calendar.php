@@ -19,13 +19,14 @@ class Calendar extends Admin_Controller
 
     public function index()
     {
-        $this->data['items'] = $this->slider_model->get_list_slider_category();
+        $this->data['items'] = $this->calendar_model->get_list();
         $this->render('admin/calendar/index_view');
     }
 
-    public function update($user_id)
+    public function update()
     {
-        $this->data['user_id'] = $user_id;
+        $user_name = $this->input->get('user_name');
+        $this->data['user_name'] = $user_name;
         $this->render('admin/calendar/edit_view');
     }
 
@@ -38,7 +39,8 @@ class Calendar extends Admin_Controller
             $startdate = $this->input->post('startdate').'+'.$this->input->post('zone');
             $title = $this->input->post('title');
             $color = $this->input->post('color');
-            $update_data = array('title' => $title, 'start_date' => $startdate, 'end_date' => $startdate, 'all_day' => false, 'color' => $color);
+            $user_name = $this->input->post('user_name');
+            $update_data = array('title' => $title, 'start_date' => $startdate, 'end_date' => $startdate, 'all_day' => false, 'color' => $color, 'user_name' => $user_name);
             if($this->calendar_model->create($update_data))
             {   
                 $lastid = $this->db->insert_id();
@@ -90,9 +92,9 @@ class Calendar extends Admin_Controller
         if($type == 'fetch')
         {
             $events = array();
-            // $user_id = $this->input->post('user_id');
-            // $input['where'] = array('user_id' => $user_id);
-            $calendar = $this->calendar_model->get_list();
+            $user_name = $this->input->post('user_name');
+            $input['where'] = array('user_name' => $user_name);
+            $calendar = $this->calendar_model->get_list($input);
             foreach ($calendar as $fetch) {
                 $e = array();
                 $e['id'] = $fetch->id;
