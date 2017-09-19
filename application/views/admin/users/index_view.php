@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/user/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <a href="<?php echo base_url('admin/users/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
         </div>
     </div>
     <div class="row">
@@ -43,7 +43,7 @@
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
                     echo '<a href="'.base_url("admin/").'users/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Edit</button></a> ';
-                        echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Del</button></a>';                
+                        echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'/'.$item->username.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Del</button></a>';                
                     ?>
                     <?php
                     echo '</td>';

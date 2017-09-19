@@ -2,10 +2,10 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>EDIT USER</b></h4>
+            <h4 class="text-center"><b>CREATE NEW USER</b></h4>
         </div>
     </div>
-    <?php echo form_open_multipart('admin/users/edit/'.$user->id);?>
+    <?php echo form_open_multipart('admin/users/create');?>
     <div class="row">
         <div class="col-xs-12">
             <div class="col-xs-12 ">
@@ -24,14 +24,14 @@
                 echo form_label('User name','username');
                 echo form_error('username','<p class="error">');
                 ?>
-                <input type="text" name="username" class="form-control" disabled value="<?php echo $user->username; ?>">
+                <input type="text" name="username" class="form-control" value="<?php echo set_value("username"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Email','email');
                 echo form_error('email','<p class="error">');
                 ?>
-                <input type="text" name="email" class="form-control" value="<?php if(set_value("email")) echo set_value("email"); else echo $user->email; ?>">
+                <input type="text" name="email" class="form-control" value="<?php echo set_value("email"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
@@ -52,38 +52,36 @@
                 echo form_label('First name','first_name');
                 echo form_error('first_name','<p class="error">');
                 ?>
-                <input type="text" name="first_name" class="form-control" value="<?php if(set_value("first_name")) echo set_value("first_name"); else echo $user->first_name; ?>">
+                <input type="text" name="first_name" class="form-control" value="<?php echo set_value("first_name"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Last name','last_name');
                 echo form_error('last_name','<p class="error">');
                 ?>
-                <input type="text" name="last_name" class="form-control" value="<?php if(set_value("last_name")) echo set_value("last_name"); else echo $user->last_name; ?>">
+                <input type="text" name="last_name" class="form-control" value="<?php echo set_value("last_name"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Phone','phone');
                 echo form_error('phone','<p class="error">');
                 ?>
-                <input type="text" name="phone" class="form-control" value="<?php if(set_value("phone")) echo set_value("phone"); else echo $user->phone; ?>">
+                <input type="text" name="phone" class="form-control" value="<?php echo set_value("phone"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Address','address');
                 echo form_error('address','<p class="error">');
                 ?>
-                <input type="text" name="address" class="form-control" value="<?php if(set_value("address")) echo set_value("address"); else echo $user->address; ?>">
+                <input type="text" name="address" class="form-control" value="<?php echo set_value("address"); ?>">
             </div>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
                 echo form_label('Birth day','birth_day');
                 echo form_error('birth_day','<p class="error">');
                 ?>
-                <input type="text" id="birth_day" name="birth_day" class="form-control" value="<?php if(set_value("birth_day")) echo set_value("birth_day"); else echo $user->birth_day; ?>">
+                <input type="text" id="birth_day" name="birth_day" class="form-control" value="<?php echo set_value("birth_day"); ?>">
             </div>
-            <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
-            <input type="hidden" name="groups[]" value="2" checked="checked">
             <?php echo form_close();?>
         </div>
     </div>
