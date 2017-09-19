@@ -1,0 +1,104 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Users extends Admin_Controller
+{
+
+    function __construct()
+    {
+        parent::__construct();
+        if(!$this->ion_auth->in_group('admin'))
+        {
+            $this->postal->add('You are not allowed to visit the Users page','error');
+            redirect('admin');
+        }
+        $this->load->helper(array('url'));
+        $this->load->model('users_model');
+    }
+
+    public function index()
+    {
+        $this->data['items'] = $this->users_model->get_list();
+        $this->render('admin/users/index_view');
+    }
+
+    // public function edit($id){
+    //     $input['where'] = array('id' => $id);
+    //     $this->data['item'] = $this->users_model->get_row($input);
+    //     $this->render('admin/users/edit_view');
+    // }
+
+    public function edit($user_id = NULL)
+    {
+        $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
+        if($this->data['current_user']->id == $user_id)
+        {
+            $this->postal->add('Use the profile page to change your own credentials.','error');
+            redirect('admin/users');
+        }
+        $this->data['page_title'] = 'Edit user';
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('first_name','First name','trim');
+        $this->form_validation->set_rules('last_name','Last name','trim');
+        $this->form_validation->set_rules('phone','Phone','trim');
+        $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+        $this->form_validation->set_rules('password','Password','min_length[6]');
+        $this->form_validation->set_rules('password_confirm','Password confirmation','matches[password]');
+        // $this->form_validation->set_rules('groups[]','Groups','required|integer');
+        $this->form_validation->set_rules('user_id','User ID','trim|integer|required');
+
+        if($this->form_validation->run() === FALSE)
+        {
+            if($user = $this->ion_auth->user((int) $user_id)->row())
+            {
+                $this->data['user'] = $user;
+            }
+            else
+            {
+                $this->postal->add('The user doesn\'t exist.','error');
+                redirect('admin/users');
+            }
+            $this->data['groups'] = $this->ion_auth->groups()->result();
+            $this->data['usergroups'] = array();
+            if($usergroups = $this->ion_auth->get_users_groups($user->id)->result())
+            {
+                foreach($usergroups as $group)
+                {
+                    $this->data['usergroups'][] = $group->id;
+                }
+            }
+            $this->load->helper('form');
+            $this->render('admin/users/edit_view');
+        }
+        else
+        {
+            $user_id = $this->input->post('user_id');
+            $new_data = array(
+                'email' => $this->input->post('email'),
+                'first_name' => $this->input->post('first_name'),
+                'last_name'  => $this->input->post('last_name'),
+                'birth_day'    => $this->input->post('birth_day'),
+                'address'    => $this->input->post('address'),
+                'phone'      => $this->input->post('phone')
+                );
+            if(strlen($this->input->post('password'))>=6) $new_data['password'] = $this->input->post('password');
+
+            $this->ion_auth->update($user_id, $new_data);
+
+            //Update the groups user belongs to
+            $groups = $this->input->post('groups');
+            if (isset($groups) && !empty($groups))
+            {
+                $this->ion_auth->remove_from_group('', $user_id);
+                foreach ($groups as $group)
+                {
+                    $this->ion_auth->add_to_group($group, $user_id);
+                }
+            }
+            $this->postal->add($this->ion_auth->messages(),'success');
+            redirect('admin/users');
+        }
+    }
+}

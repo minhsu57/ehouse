@@ -3,12 +3,69 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">QUẢN LÝ CALENDAR</h2>
+            <h2 class="text-center">CALENDAR MANAGEMENT</h2>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/category/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <div class="col-lg-5 pd-l-0">
+                <select class="form-control" name="user" id="user_name">
+                    <option value="0">Please select student</option>
+                    <?php foreach ($users as $user) { ?>
+                    <option value="<?php echo $user->username; ?>"><?php echo $user->first_name.' '.$user->last_name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-lg-5 pd-0">
+                <select class="form-control" name="course" id="course_id">
+                    <option value="0">Please select course name</option>
+                    <?php foreach ($courses as $value) { ?>
+                    <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-md pull-right" onclick="create_calendar()"><li class="fa fa-plus"></li> ADD CALENDAR</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="">Search Section</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form method="GET" action="<?php echo base_url('admin/calendar'); ?>">
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="email" class="form-control" placeholder="Enter email to search" value="<?php echo $this->input->get('email'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="phone" class="form-control" placeholder="Enter phone to search" value="<?php echo $this->input->get('phone'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <select class="form-control" name="course_id">
+                        <option value="">------- All Courses -------</option>
+                        <?php foreach ($courses as $value) { ?>
+                        <option value="<?php echo $value->id; ?>" <?php if($this->input->get('course_id') == $value->id) echo 'selected'; ?>><?php echo $value->name; ?></option>
+                        <?php } ?>
+                    </select>                    
+                </div>
+                <div class='col-lg-5 pd-l-0'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" name="start_date" value="<?php if($this->input->get('start_date') !="") echo $this->input->get('start_date'); ?>" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+                <button class="btn btn-primary btn-md pull-right"  type="submit"><li class="fa fa-search"></li> SEARCH</button>
+            </form>
         </div>
     </div>
     <div class="row">
@@ -36,11 +93,6 @@
                     echo '<td>'.$item->email.'</td>';                    
                     echo '<td>'.$item->phone.'</td>';
                     echo '<td></td>';
-                    echo '<td>';
-                    // echo '<a href="'.base_url("admin/").'category/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Sửa</button></a> ';                   
-                    ?>
-                    <?php
-                    echo '</td>';
                     echo '</tr>';
                 }
             }

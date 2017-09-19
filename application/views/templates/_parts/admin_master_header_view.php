@@ -33,6 +33,8 @@ if($this->ion_auth->logged_in()) {
                             <li><?php echo anchor('admin/slider','Slider');?></li>
                             <li><?php echo anchor('admin/category','Category');?></li>
                             <li><?php echo anchor('admin/page_content','Page Content');?></li>
+                            <li><?php echo anchor('admin/users','Users');?></li>
+                            <li><?php echo anchor('admin/courses','Courses');?></li>
                             <li><?php echo anchor('admin/calendar','Calendar');?></li>
                         </ul>
                     </li>

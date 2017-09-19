@@ -178,7 +178,7 @@
 		$.ajax({
 			url: 'process',
         type: 'POST', // Send post data
-        data: 'type=fetch&user_name=<?php echo $user_name; ?>',
+        data: 'type=fetch&user_name=<?php echo $user_name; ?>&course_id=<?php echo $course_id ?>',
         async: false,
         success: function(s){
         	freshevents = s;
@@ -210,10 +210,10 @@
 <div id='wrap'>
 	<div><input type="hidden" name="user_name" id="user_name"></div>
 	<div id='external-events'>
-		<h4>Draggable Events</h4>
-		<div class='fc-event' style="background: #3a87ad" data-color="#3a87ad">New Event</div>
-		<div class='fc-event' style="background: green" data-color="green">New Event</div>
-		<div class='fc-event' style="background: red" data-color="red">leave company</div>
+		<h5>Attendance status</h5>
+		<div class='fc-event' style="background: #3a87ad; padding: 2px; border: 1px solid #3a87ad;" data-color="#3a87ad">Present</div>
+		<div class='fc-event' style="background: #FF9800; padding: 2px; border: 1px solid #FF9800;" data-color="#FF9800">Absent</div>
+		<div class='fc-event' style="background: #E91E63; padding: 2px; border: 1px solid #E91E63;" data-color="#E91E63">Other</div>
 		<p>
 			<img src="<?php echo public_helper('fullcalendar/trash.png') ?>" id="trash" alt="">
 		</p>

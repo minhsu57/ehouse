@@ -1,6 +1,11 @@
 .error {
 	color: red;
 }
+.pd-l-0{
+	padding-left: 0;
+	padding-right: 5px;
+	padding-bottom: 5px;
+}
 .navbar-inverse {
     background-color: #3F51B5;
 }

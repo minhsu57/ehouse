@@ -15,11 +15,35 @@ class Calendar extends Admin_Controller
         }
         $this->load->helper(array('url'));
         $this->load->model('calendar_model');
+        $this->load->model('users_model');
+        $this->load->model('course_model');
+        $this->load->library('Ajax_pagination');
+        $this->perPage = 2;
     }
 
     public function index()
     {
-        $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course();
+        //total rows count
+        // $totalRec = $this->calendar_model->get_total();
+        // //pagination configuration
+        // $config['target']      = '#postList';
+        // $config['base_url']    = base_url().'/admin/calendar';
+        // $config['total_rows']  = $totalRec;
+        // $config['per_page']    = $this->perPage;
+        // $config['link_func']   = 'searchFilter';
+        // $this->ajax_pagination->initialize($config);
+        $email = $this->input->get('email');
+        $phone = $this->input->get('phone');
+        $course_id = $this->input->get('course_id');
+        $start_date = $this->input->get('start_date');
+        $start_date = strtotime($start_date);
+        $start_date = date( 'Y-m-d', $start_date );
+        // get data of user model
+        $this->data['users'] = $this->users_model->get_list();
+        // get data of course model
+        $this->data['courses'] = $this->course_model->get_list();
+        // get data of calendar model
+        $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course($email, $phone, $course_id, $start_date);
         $this->render('admin/calendar/index_view');
     }
 
