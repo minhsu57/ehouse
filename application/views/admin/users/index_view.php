@@ -6,9 +6,41 @@
             <h2 class="text-center">USERS MANAGEMENT</h2>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="">Search Section</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/users/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <form method="GET" action="<?php echo base_url('admin/users'); ?>">
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="first_name" class="form-control" placeholder="Enter First name to search" value="<?php echo $this->input->get('first_name'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="last_name" class="form-control" placeholder="Enter Last name to search" value="<?php echo $this->input->get('last_name'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="email" class="form-control" placeholder="Enter email to search" value="<?php echo $this->input->get('email'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="phone" class="form-control" placeholder="Enter phone to search" value="<?php echo $this->input->get('phone'); ?>">
+                </div>
+                <div class="col-lg-2 pd-l-0">
+                    <select name="active" class="form-control">
+                        <option value="" <?php if($this->input->get('active')=="") echo 'selected'; ?> >All users status</option>
+                        <option value="1" <?php if($this->input->get('active')==1) echo 'selected'; ?> >Actived</option>
+                        <option value="0" <?php if($this->input->get('active')==0) echo 'selected'; ?> >Locked</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-md pull-right"  type="submit"><li class="fa fa-search"></li> SEARCH</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <div class="col-xs-12">
+            <a href="<?php echo base_url('admin/users/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li></button></a>
         </div>
     </div>
     <div class="row">
@@ -24,7 +56,7 @@
             echo '<th>Email</th>';
             echo '<th>Phone</th>';
             echo '<th>Modifed date</th>';
-            echo '<th>Actions</th>';
+            echo '<th style="width: 120px !important">Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -42,8 +74,13 @@
                     echo '<td>'.$item->phone.'</td>';
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
-                    echo '<a href="'.base_url("admin/").'users/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Edit</button></a> ';
-                        echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'/'.$item->username.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Del</button></a>';                
+                    echo '<a href="'.base_url("admin/").'users/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a> ';
+                    echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'/'.$item->username.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
+                    if($item->active == 1){
+                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to lock it ?\')"><button class="btn btn-sm btn-warning"><li class="fa fa-lock"></li></button></a>';
+                    }else{
+                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to unlock it ?\')"><button class="btn btn-sm btn-default"><li class="fa fa-unlock"></li></button></a>';
+                    }                
                     ?>
                     <?php
                     echo '</td>';

@@ -20,7 +20,7 @@
                 <select class="form-control" name="course" id="course_id">
                     <option value="0">Please select course name</option>
                     <?php foreach ($courses as $value) { ?>
-                    <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
+                    <option value="<?php echo $value->id; ?>"><?php echo $value->name.' - '.$value->start_date; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -51,8 +51,8 @@
                 </div>
                 <div class='col-lg-5 pd-l-0'>
                     <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" name="start_date" value="<?php if($this->input->get('start_date') !="") echo $this->input->get('start_date'); ?>" />
+                        <div class='input-group' id='datetimepicker1'>
+                            <input type='text' class="form-control" placeholder="Enter date to search" name="start_date" value="<?php if($this->input->get('start_date') !="") echo $this->input->get('start_date'); ?>">
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -74,25 +74,29 @@
             echo '<table class="table table-hover table-bordered table-condensed">';
             echo '<thead>';
             echo '<tr>';
+            echo '<th><div class="text-center">No</div></th>';
             echo '<th>Course name</th>';
             echo '<th>Student name</th>';
             echo '<th>Email</th>';
+            echo '<th>Student start date</th>';
             echo '<th>Phone</th>';
-            echo '<th>Status</th>';
+            echo '<th style="width: 90px !important">Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
             if(!empty($items))
             {
 
-                foreach($items as $item)
+                foreach($items as $key=> $item)
                 {
                     echo '<tr>';
+                    echo '<td><div class="text-center">'.$key.'</div></td>';
                     echo '<td>'.$item->course_name.'</td>'; 
                     echo '<td><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'">'.$item->last_name .' '.$item->first_name.'</a></td>';
-                    echo '<td>'.$item->email.'</td>';                    
+                    echo '<td>'.$item->email.'</td>';
+                    echo '<td>'.$item->start_date.'</td>';                     
                     echo '<td>'.$item->phone.'</td>';
-                    echo '<td></td>';
+                    echo '<td><div style="width: 100%; text-align: center"><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'" style="color:#fff"><button class="btn btn-sm btn-success"><li class="fa fa-calendar"></li></button></a> <a href="'.base_url("admin/").'calendar/delete/'.$item->course_id.'/'.$item->user_name.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a> </div></td>';
                     echo '</tr>';
                 }
             }

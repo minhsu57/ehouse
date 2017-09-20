@@ -38,10 +38,12 @@ class Calendar extends Admin_Controller
         $start_date = $this->input->get('start_date');
         $start_date = strtotime($start_date);
         $start_date = date( 'Y-m-d', $start_date );
+        $input['where'] = array('active' => 1);
         // get data of user model
-        $this->data['users'] = $this->users_model->get_list();
+        $this->data['users'] = $this->users_model->get_list($input);
         // get data of course model
-        $this->data['courses'] = $this->course_model->get_list();
+
+        $this->data['courses'] = $this->course_model->get_list($input);
         // get data of calendar model
         $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course($email, $phone, $course_id, $start_date);
         $this->render('admin/calendar/index_view');
@@ -51,6 +53,12 @@ class Calendar extends Admin_Controller
     {
         $this->data['user_name'] = $this->input->get('user_name');
         $this->data['course_id'] = $this->input->get('course_id');
+        // get data of course table
+        $input['where'] = array('id' => $this->data['course_id']);
+        $this->data['course'] = $this->course_model->get_row($input);
+        // get data of user table
+        $input['where'] = array('username' => $this->data['user_name']);
+        $this->data['user'] = $this->users_model->get_row($input);
         $this->render('admin/calendar/edit_view');
     }
 
@@ -136,5 +144,16 @@ class Calendar extends Admin_Controller
             }            
             echo json_encode($events);
         }
+    }
+
+    public function delete($course_id, $user_name){        
+        if(!$this->calendar_model->delete_calendar_course_user($course_id, $user_name))
+        {
+            $this->postal->add("Calendar doesn't exist",'error');
+            redirect('admin/Calendar');
+        }else{
+            $this->postal->add('Deleted calendar successfully','success');            
+        }
+        redirect('admin/Calendar');
     }
 }

@@ -29,3 +29,12 @@
   var base_url = '<?php echo base_url(); ?>';
   var public_url = '<?php echo public_helper(); ?>';
   </script>
+  <script type="text/javascript">
+    $(function() {
+        $(".date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>

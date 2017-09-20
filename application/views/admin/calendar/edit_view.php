@@ -174,6 +174,8 @@
 		}
 	});
 
+	$('#calendar').fullCalendar('gotoDate', JSON.parse(json_events)[0].start);
+
 	function getFreshEvents(){
 		$.ajax({
 			url: 'process',
@@ -210,13 +212,20 @@
 <div id='wrap'>
 	<div><input type="hidden" name="user_name" id="user_name"></div>
 	<div id='external-events'>
-		<h5>Attendance status</h5>
+		<h4>Attendance status</h4>
 		<div class='fc-event' style="background: #3a87ad; padding: 2px; border: 1px solid #3a87ad;" data-color="#3a87ad">Present</div>
 		<div class='fc-event' style="background: #FF9800; padding: 2px; border: 1px solid #FF9800;" data-color="#FF9800">Absent</div>
 		<div class='fc-event' style="background: #E91E63; padding: 2px; border: 1px solid #E91E63;" data-color="#E91E63">Other</div>
 		<p>
 			<img src="<?php echo public_helper('fullcalendar/trash.png') ?>" id="trash" alt="">
 		</p>
+		<div><span style="font-weight: bold; font-size: 13px;">To :</span> <span style="font-weight: bold; color: #7c3b5e; font-size: 15px;"><?php echo $user->last_name.' '.$user->first_name; ?></span></div>
+		<div><span style="font-weight: bold; font-size: 13px;">Group :</span> </div>
+		<div><span style="font-weight: bold; color: #3b3b7c; font-size: 13px;"><?php echo $course->name; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Starting Date :</span> </div>
+		<div><span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->start_date; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Ending Date :</span> </div>
+		<div><span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->end_date; ?></span></div>
 	</div>
 
 	<div id='calendar'></div>
@@ -249,7 +258,7 @@
 
 	#external-events {
 		float: left;
-		width: 150px;
+		width: 190px;
 		padding: 0 10px;
 		border: 1px solid #ccc;
 		background: #eee;
@@ -260,6 +269,7 @@
 		font-size: 16px;
 		margin-top: 0;
 		padding-top: 1em;
+		text-align: center;
 	}
 
 	#external-events .fc-event {

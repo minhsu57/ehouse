@@ -20,7 +20,7 @@
             echo '<th>Category Name</th>';
             echo '<th>Category Parent</th>';
             echo '<th>Modify Date</th>';
-            echo '<th>Action</th>';
+            echo '<th style="width: 90px !important">Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -34,9 +34,9 @@
                     echo '<td>'.$item->parent.'</td>';                    
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
-                    echo '<a href="'.base_url("admin/").'category/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Sửa</button></a> ';
+                    echo '<a href="'.base_url("admin/").'category/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning"><li class="fa fa-pencil"></li></button></a> ';
                     if($item->level != -1){
-                        echo '<a href="'.base_url("admin/").'category/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Xóa</button></a>';
+                        echo '<a href="'.base_url("admin/").'category/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
                     }                    
                     ?>
                     <?php

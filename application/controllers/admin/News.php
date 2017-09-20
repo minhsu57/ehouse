@@ -30,9 +30,6 @@ class News extends Admin_Controller
 
     public function create()
     {        
-        // $this->data["title"] = '';
-        // $this->data["content"] = '';
-        // $this->data["short_content"] = '';
         if($this->input->post('submit')){
             $this->form_validation->set_message('required', $this->lang->line('required'));
             $this->form_validation->set_rules('title', 'lang:title', 'required');

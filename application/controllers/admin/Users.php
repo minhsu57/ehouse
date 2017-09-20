@@ -22,14 +22,19 @@ class Users extends Admin_Controller
 
     public function index()
     {
-        $this->data['items'] = $this->users_model->get_list();
+        $first_name = str_replace('"', "'", $this->input->get('first_name'));
+        $last_name  = str_replace('"', "'", $this->input->get('last_name'));
+        $email      = str_replace('"', "'", $this->input->get('email'));
+        $phone      = str_replace('"', "'", $this->input->get('phone'));
+        $active     = $this->input->get('active');
+        $this->data['items'] = $this->users_model->get_list_where($first_name, $last_name, $email, $phone, $active);
         $this->render('admin/users/index_view');
     }
 
     public function create()
     {
         $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
-        $this->form_validation->set_rules('username','Username','trim|required');
+        $this->form_validation->set_rules('username','Username','trim|required|regex_match[/^[a-z A-Z0-9%._\-@]+$/]|min_length[2]|max_length[30]');
         $this->form_validation->set_rules('first_name','First name','trim|required');
         $this->form_validation->set_rules('last_name','Last name','trim|required');
         $this->form_validation->set_rules('phone','Phone','trim|required');
@@ -45,11 +50,15 @@ class Users extends Admin_Controller
             $email_check = $this->ion_auth->email_check($this->input->post('email'));
             $input['where'] = array('username' => $this->input->post('username'));
             $username_check = $this->users_model->get_list($input);
+            $phone_check = $this->users_model->check_exists(array('phone' => $this->input->post('phone')));
             if(count($username_check) > 0){
                 $this->postal->add('Username already exists !','error');
                 $this->render('admin/users/create_view');
             }else if($email_check){
                 $this->postal->add('Email already exists !','error');                
+                $this->render('admin/users/create_view');
+            }else if($phone_check){
+                $this->postal->add('Phone already exists !','error');                
                 $this->render('admin/users/create_view');
             }else{
                 $username = $this->input->post('username');
@@ -57,13 +66,14 @@ class Users extends Admin_Controller
                 $password = $this->input->post('password');
                 $group_ids = $this->input->post('groups');
 
-                $additional_data = array(
-                    'first_name' => $this->input->post('first_name'),
-                    'last_name'  => $this->input->post('last_name'),
-                    'birth_day'    => $this->input->post('birth_day'),
-                    'address'    => $this->input->post('address'),
-                    'phone'      => $this->input->post('phone')
-                );
+                $additional_data    = array(
+                    'first_name'    => $this->input->post('first_name'),
+                    'last_name'     => $this->input->post('last_name'),
+                    'birth_day'     => $this->input->post('birth_day'),
+                    'address'       => $this->input->post('address'),
+                    'phone'         => $this->input->post('phone'),
+                    'modified_date' =>date('Y-m-d H:i:s')
+                    );
                 $this->ion_auth->register($username, $password, $email, $additional_data, $group_ids);
                 $this->postal->add($this->ion_auth->messages(),'success');
                 redirect('admin/users');
@@ -106,41 +116,54 @@ class Users extends Admin_Controller
         }
         else
         {
-            $email_check = $this->ion_auth->email_check($this->input->post('email'));
-            if($email_check){
+            // email check
+            $input_email['where'] = array('email' => $this->input->post('email'), 'id <>' =>$user_id);
+            $email_check = $this->users_model->get_list($input_email);
+            // phone check
+            $input_phone['where'] = array('phone' => $this->input->post('phone'), 'id <>' =>$user_id);
+            $phone_check = $this->users_model->get_list($input_phone);
+            if(count($email_check) > 0 ){
                 $this->postal->add('Email already exists !','error');
                 if($user = $this->ion_auth->user((int) $user_id)->row())
                 {
                     $this->data['user'] = $user;
                 }
                 $this->render('admin/users/edit_view');
-                return;
-            }
-            $user_id = $this->input->post('user_id');
-            $new_data = array(
-                'email' => $this->input->post('email'),
-                'first_name' => $this->input->post('first_name'),
-                'last_name'  => $this->input->post('last_name'),
-                'birth_day'    => $this->input->post('birth_day'),
-                'address'    => $this->input->post('address'),
-                'phone'      => $this->input->post('phone')
-                );
-            if(strlen($this->input->post('password'))>=6) $new_data['password'] = $this->input->post('password');
-
-            $this->ion_auth->update($user_id, $new_data);
-
-            //Update the groups user belongs to
-            $groups = $this->input->post('groups');
-            if (isset($groups) && !empty($groups))
-            {
-                $this->ion_auth->remove_from_group('', $user_id);
-                foreach ($groups as $group)
+            }else if(count($phone_check) > 0 ){
+                $this->postal->add('Phone already exists !','error');
+                if($user = $this->ion_auth->user((int) $user_id)->row())
                 {
-                    $this->ion_auth->add_to_group($group, $user_id);
+                    $this->data['user'] = $user;
                 }
-            }
-            $this->postal->add($this->ion_auth->messages(),'success');
-            redirect('admin/users');
+                $this->render('admin/users/edit_view');
+            }else{
+                $user_id = $this->input->post('user_id');
+                $new_data           = array(
+                    'email'         => $this->input->post('email'),
+                    'first_name'    => $this->input->post('first_name'),
+                    'last_name'     => $this->input->post('last_name'),
+                    'birth_day'     => $this->input->post('birth_day'),
+                    'address'       => $this->input->post('address'),
+                    'phone'         => $this->input->post('phone'),
+                    'modified_date' => date('Y-m-d H:i:s')
+                    );
+                if(strlen($this->input->post('password'))>=6) $new_data['password'] = $this->input->post('password');
+
+                $this->ion_auth->update($user_id, $new_data);
+
+                //Update the groups user belongs to
+                $groups = $this->input->post('groups');
+                if (isset($groups) && !empty($groups))
+                {
+                    $this->ion_auth->remove_from_group('', $user_id);
+                    foreach ($groups as $group)
+                    {
+                        $this->ion_auth->add_to_group($group, $user_id);
+                    }
+                }
+                $this->postal->add($this->ion_auth->messages(),'success');
+                redirect('admin/users');
+            }            
         }
     }
 
@@ -162,6 +185,16 @@ class Users extends Admin_Controller
             }
             
         }
+        redirect('admin/users');
+    }
+
+    public function lock($item_id, $status){
+        $status = $status == 1 ? 0 : 1;
+        $data = array('active' => $status);
+        if(!$this->users_model->update($item_id, $data))
+        {             
+            $this->postal->add('Edited fail !','error');
+        }else{ $this->postal->add('Edited successfully ','success'); }
         redirect('admin/users');
     }
 }
