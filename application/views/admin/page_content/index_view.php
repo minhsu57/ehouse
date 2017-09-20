@@ -3,7 +3,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">QUẢN LÝ NỘI DUNG CÁC TRANG</h2>
+            <h3 class="text-center">PAGE CONTENT MANAGEMENT</h3>
         </div>
     </div>
     <!-- <div class="row">
@@ -35,8 +35,8 @@
                     echo '<td>'.$item->note.'</td>';
                     echo '<td><img src="'.base_url($item->image_name).'" style="width: 150px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>';
-                    echo '<td>';
-                    echo '<a href="'.base_url("admin/").'page_content/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Sửa</button></a> ';
+                    echo '<td><div  style="text-align:center">';
+                    echo '<a href="'.base_url("admin/").'page_content/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a> </div>';
                     ?>
                     <?php
                     echo '</td>';

@@ -13,7 +13,7 @@ class Users extends Admin_Controller
             $this->postal->add('You are not allowed to visit the Users page','error');
             redirect('admin');
         }
-        $this->load->helper(array('url', 'form'));
+        $this->load->helper(array('url', 'form', 'file'));
         $this->load->model('users_model');
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->load->library('form_validation');
@@ -196,5 +196,39 @@ class Users extends Admin_Controller
             $this->postal->add('Edited fail !','error');
         }else{ $this->postal->add('Edited successfully ','success'); }
         redirect('admin/users');
+    }
+
+    public function media($user_id)
+    {   
+        $this->load->model('files_model');     
+        $input['where'] = array('user_id' => $user_id);
+        $this->data['user_id'] = $user_id;
+        $this->data['items'] = $this->files_model->get_list($input);
+        $this->render('admin/users/media_view');
+    }
+
+    public function media_upload(){
+        $this->load->model('files_model');
+        $this->config = array('upload_path' => './public/upload/media/', 'allowed_types' => 'gif|jpg|png|mp3');
+        $user_id = $this->input->post('user_id');
+        $this->load->library('upload', $this->config);
+        if($this->upload->do_upload('media_file'))
+        {
+            $file_ppt = $this -> upload -> data();
+            $file_name = $file_ppt['file_name'];
+
+            $insert_data = array('name' => $file_name, 'link' => $file_name,'user_id' => $user_id);
+            if(!$this->files_model->create($insert_data))
+            {             
+                $this->postal->add('Uploaded successfully ','success');                    
+            }else{
+                //unlink(base_url('public/upload/media/').$file_name);
+                $this->postal->add('Uploaded fail ','error');
+            }
+        }else
+        {
+            $this->postal->add('Uploaded fail ','error');
+        }
+        redirect('admin/users/media/'.$user_id);        
     }
 }

@@ -20,8 +20,9 @@
         <div class="col-lg-12">
 
             <div class="form-group col-md-12 col-lg-12">
+                <label>Name</label>
+                <span class="error">*</span>
                 <?php
-                echo form_label('Name','name');
                 echo form_error('name','<p class="error">');
                 ?>
                 <input type="text" name="name" class="form-control" value="<?php if(set_value("name")) echo set_value("name"); else echo $item->name; ?>">
@@ -34,15 +35,24 @@
                 <input type="text" name="teacher" class="form-control" value="<?php if(set_value("teacher")) echo set_value("teacher"); else echo $item->teacher; ?>">
             </div>
             <div class="form-group col-md-12 col-lg-12">
+                <label>Total day</label>
+                <span class="error">*</span>
                 <?php
-                echo form_label('Start Date','start_date');
+                echo form_error('total_day','<p class="error">');
+                ?>
+                <input type="text" name="total_day" class="form-control" value="<?php if(set_value("total_day")) echo set_value("total_day"); else echo $item->total_day; ?>">
+            </div>
+            <div class="form-group col-md-12 col-lg-12">
+                <label>Start date</label>
+                <span class="error">*</span>
+                <?php
                 echo form_error('start_date','<p class="error">');
                 ?>
                 <input type="text" id="start_date" name="start_date" class="form-control date" value="<?php if(set_value("start_date")) echo set_value("start_date"); else echo $item->start_date; ?>">
             </div>
             <div class="form-group col-md-12 col-lg-12">
+                <label>End date</label>
                 <?php
-                echo form_label('End Date','end_date');
                 echo form_error('end_date','<p class="error">');
                 ?>
                 <input type="text" id="end_date" name="end_date" class="form-control date" value="<?php if(set_value("end_date")) echo set_value("end_date"); else echo $item->end_date; ?>">

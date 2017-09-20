@@ -222,10 +222,11 @@
 		<div><span style="font-weight: bold; font-size: 13px;">To :</span> <span style="font-weight: bold; color: #7c3b5e; font-size: 15px;"><?php echo $user->last_name.' '.$user->first_name; ?></span></div>
 		<div><span style="font-weight: bold; font-size: 13px;">Group :</span> </div>
 		<div><span style="font-weight: bold; color: #3b3b7c; font-size: 13px;"><?php echo $course->name; ?></span></div>
-		<div><span style="font-weight: bold;font-size: 13px;">Starting Date :</span> </div>
-		<div><span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->start_date; ?></span></div>
-		<div><span style="font-weight: bold;font-size: 13px;">Ending Date :</span> </div>
-		<div><span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->end_date; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Starting Date :</span> <span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->start_date; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Ending Date :</span> <span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $course->end_date; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Total day :</span> <span style="font-weight: bold; color: #41790f; font-size: 13px;"><?php echo $course->total_day; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Days spent :</span> <span style="font-weight: bold; color: #921027; font-size: 13px;"><?php echo $days_spent; ?></span></div>
+		<div><span style="font-weight: bold;font-size: 13px;">Days remaining :</span> <span style="font-weight: bold; color: #009688; font-size: 13px;"><?php echo $days_remaining; ?></span></div>
 	</div>
 
 	<div id='calendar'></div>

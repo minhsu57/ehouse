@@ -17,6 +17,7 @@
             echo '<table class="table table-hover table-bordered table-condensed">';
             echo '<thead>';
             echo '<tr>';
+            echo '<th><div class="text-center">No</div></th>';
             echo '<th>Category name</th>';
             echo '<th>Slogan</th>';
             echo '<th>Hình</th>';
@@ -29,9 +30,10 @@
             if(!empty($items))
             {
 
-                foreach($items as $item)
+                foreach($items as $key => $item)
                 {
                     echo '<tr>';
+                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
                     echo '<td>'.$item->category_name.'</td>';
                     echo '<td>'.$item->description.'</td>';
                     echo '<td><img src="'.base_url($item->image_name).'" style="width: 180px;"></td>';                    

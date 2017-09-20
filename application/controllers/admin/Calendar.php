@@ -56,6 +56,11 @@ class Calendar extends Admin_Controller
         // get data of course table
         $input['where'] = array('id' => $this->data['course_id']);
         $this->data['course'] = $this->course_model->get_row($input);
+        // get days spent
+        $input['where'] = array('user_name' => $this->data['user_name'], 'course_id' => $this->data['course_id'], 'color' => '#3a87ad');
+        $this->data['days_spent'] = $this->calendar_model->get_total($input);
+        // days remaining
+        $this->data['days_remaining'] = $this->data['course']->total_day - $this->data['days_spent'];
         // get data of user table
         $input['where'] = array('username' => $this->data['user_name']);
         $this->data['user'] = $this->users_model->get_row($input);

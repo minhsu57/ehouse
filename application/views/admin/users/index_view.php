@@ -3,7 +3,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">USERS MANAGEMENT</h2>
+            <h3 class="text-center">USERS MANAGEMENT</h3>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
     </div>
     <div class="row" style="margin-top: 5px;">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/users/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li></button></a>
+            <a href="<?php echo base_url('admin/users/create') ?>"><button title="Click to create new" class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li></button></a>
         </div>
     </div>
     <div class="row">
@@ -51,12 +51,12 @@
             echo '<tr>';
             echo '<th><div class="text-center">No</div></th>';
             echo '<th>Username</th>';
-            echo '<th>First name</th>';
             echo '<th>Last name</th>';
+            echo '<th>First name</th>';
             echo '<th>Email</th>';
             echo '<th>Phone</th>';
             echo '<th>Modifed date</th>';
-            echo '<th style="width: 120px !important">Actions</th>';
+            echo '<th style="width: 160px !important">Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -66,20 +66,21 @@
                 foreach($items as $key => $item)
                 {
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.$key.'</div></td>';
-                    echo '<td>'.$item->username.'</td>';
-                    echo '<td>'.$item->first_name.'</td>';                    
+                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
+                    echo '<td>'.$item->username.'</td>';                    
                     echo '<td>'.$item->last_name.'</td>';
+                    echo '<td>'.$item->first_name.'</td>';
                     echo '<td>'.$item->email.'</td>';
                     echo '<td>'.$item->phone.'</td>';
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
-                    echo '<a href="'.base_url("admin/").'users/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a> ';
-                    echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'/'.$item->username.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
+                    echo '<a href="'.base_url("admin/").'users/media/'.$item->id.'" style="color:#fff"><button title="Click to view media" class="btn btn-sm btn-info"><li class="fa fa-file-video-o"></li></button></a> ';
+                    echo '<a href="'.base_url("admin/").'users/edit/'.$item->id.'" style="color:#fff"><button title="Click to edit" class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a> ';
+                    echo '<a href="'.base_url("admin/").'users/delete/'.$item->id.'/'.$item->username.'" style="color:#fff" onclick="return confirm(\'Are you sure want to delete ?\')"><button title="Click to delete" class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
                     if($item->active == 1){
-                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to lock it ?\')"><button class="btn btn-sm btn-warning"><li class="fa fa-lock"></li></button></a>';
+                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to lock it ?\')"><button title="Click to lock" class="btn btn-sm btn-warning"><li class="fa fa-lock"></li></button></a>';
                     }else{
-                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to unlock it ?\')"><button class="btn btn-sm btn-default"><li class="fa fa-unlock"></li></button></a>';
+                        echo '<a href="'.base_url('admin/users/lock/'.$item->id.'/'.$item->active).'" style="color:#fff; margin-left:5px" onclick="return confirm(\'Are you sure want to unlock it ?\')"><button title="Click to unlock" class="btn btn-sm btn-default"><li class="fa fa-unlock"></li></button></a>';
                     }                
                     ?>
                     <?php

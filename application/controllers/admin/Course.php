@@ -35,6 +35,7 @@ class Course extends Admin_Controller
             $this->form_validation->set_message('required', $this->lang->line('required'));
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('teacher', 'Teacher', 'trim');
+            $this->form_validation->set_rules('total_day', 'Total day', 'trim|required|greater_than[0]');
             $this->form_validation->set_rules('start_date', 'Start Date', 'trim|required');
             if(preg_replace('/\s+/', '', $this->input->post('end_date')) != ""){
                 $this->form_validation->set_rules('end_date', 'Start Date', 'trim|callback_check_equal_less['.$this->input->post('start_date').']');
@@ -46,10 +47,11 @@ class Course extends Admin_Controller
          }else{
             $name = $this->input->post('name');
             $teacher = $this->input->post('teacher');
+            $total_day = $this->input->post('total_day');
             $start_date = $this->input->post('start_date');
             $end_date = $this->input->post('end_date');
             $description = $this->input->post('description');
-            $insert_data = array('name' => $name,'teacher' => $teacher, 'start_date' => $start_date, 'end_date' => $end_date, 'description' => $description, 'modified_date'=>date('Y-m-d H:i:s'));
+            $insert_data = array('name' => $name,'teacher' => $teacher, 'total_day' => $total_day, 'start_date' => $start_date, 'end_date' => $end_date, 'description' => $description, 'modified_date'=>date('Y-m-d H:i:s'));
             if(!$this->course_model->create($insert_data))
             {             
                 $this->postal->add('Created new fail','error');
@@ -67,6 +69,7 @@ public function edit($item_id)
     if($this->input->post('submit')){
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('teacher', 'Teacher', 'trim');
+        $this->form_validation->set_rules('total_day', 'Total day', 'trim|required|greater_than[0]');
         $this->form_validation->set_rules('start_date', 'Start Date', 'trim|required');
         if(preg_replace('/\s+/', '', $this->input->post('end_date')) != ""){
             $this->form_validation->set_rules('end_date', 'Start Date', 'trim|callback_check_equal_less['.$this->input->post('start_date').']');
@@ -78,10 +81,11 @@ public function edit($item_id)
      }else{
         $name = $this->input->post('name');
         $teacher = $this->input->post('teacher');
+        $total_day = $this->input->post('total_day');
         $start_date = $this->input->post('start_date');
         $end_date = $this->input->post('end_date');
         $description = $this->input->post('description');
-        $insert_data = array('name' => $name,'teacher' => $teacher, 'start_date' => $start_date, 'end_date' => $end_date, 'description' => $description, 'modified_date'=>date('Y-m-d H:i:s'));
+        $insert_data = array('name' => $name,'teacher' => $teacher, 'total_day' => $total_day, 'start_date' => $start_date, 'end_date' => $end_date, 'description' => $description, 'modified_date'=>date('Y-m-d H:i:s'));
         if(!$this->course_model->update($item_id, $insert_data))
         {             
             $this->postal->add('Edited fail !','error');

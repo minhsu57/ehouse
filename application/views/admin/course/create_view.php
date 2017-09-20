@@ -20,8 +20,9 @@
         <div class="col-lg-12">
 
             <div class="form-group col-md-12 col-lg-12">
+                <label>Name</label>
+                <span class="error">*</span>
                 <?php
-                echo form_label('Name','name');
                 echo form_error('name','<p class="error">');
                 ?>
                 <input type="text" name="name" class="form-control" value="<?php echo set_value("name"); ?>">
@@ -34,8 +35,17 @@
                 <input type="text" name="teacher" class="form-control" value="<?php echo set_value("teacher"); ?>">
             </div>
             <div class="form-group col-md-12 col-lg-12">
+                <label>Total day</label>
+                <span class="error">*</span>
                 <?php
-                echo form_label('Start Date','start_date');
+                echo form_error('total_day','<p class="error">');
+                ?>
+                <input type="text" name="total_day" class="form-control" value="<?php echo set_value("total_day"); ?>">
+            </div>
+            <div class="form-group col-md-12 col-lg-12">
+                <label>Start Date</label>
+                <span class="error">*</span>
+                <?php
                 echo form_error('start_date','<p class="error">');
                 ?>
                 <input type="text" id="start_date" name="start_date" class="form-control date" value="<?php echo set_value("start_date"); ?>">

@@ -3,7 +3,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">CALENDAR MANAGEMENT</h2>
+            <h3 class="text-center">CALENDAR MANAGEMENT</h3>
         </div>
     </div>
     <div class="row">
@@ -12,7 +12,7 @@
                 <select class="form-control" name="user" id="user_name">
                     <option value="0">Please select student</option>
                     <?php foreach ($users as $user) { ?>
-                    <option value="<?php echo $user->username; ?>"><?php echo $user->first_name.' '.$user->last_name; ?></option>
+                    <option value="<?php echo $user->username; ?>"><?php echo $user->last_name.' '.$user->first_name; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -45,7 +45,7 @@
                     <select class="form-control" name="course_id">
                         <option value="">------- All Courses -------</option>
                         <?php foreach ($courses as $value) { ?>
-                        <option value="<?php echo $value->id; ?>" <?php if($this->input->get('course_id') == $value->id) echo 'selected'; ?>><?php echo $value->name; ?></option>
+                        <option value="<?php echo $value->id; ?>" <?php if($this->input->get('course_id') == $value->id) echo 'selected'; ?>><?php echo $value->name.' - '.$value->start_date; ?></option>
                         <?php } ?>
                     </select>                    
                 </div>
@@ -77,10 +77,13 @@
             echo '<th><div class="text-center">No</div></th>';
             echo '<th>Course name</th>';
             echo '<th>Student name</th>';
-            echo '<th>Email</th>';
-            echo '<th>Student start date</th>';
-            echo '<th>Phone</th>';
-            echo '<th style="width: 90px !important">Actions</th>';
+            echo '<th><div class="text-center">Total day</div></th>';
+            echo '<th><div class="text-center">Days spent</div></th>';
+            echo '<th><div class="text-center">Days remaining</div></th>';
+            echo '<th><div class="text-center">Email</div</th>';
+            echo '<th><div class="text-center">Student start date</div></th>';
+            echo '<th><div class="text-center">Phone</div></th>';
+            echo '<th style="width: 90px !important"><div class="text-center">Actions</div></th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -90,13 +93,16 @@
                 foreach($items as $key=> $item)
                 {
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.$key.'</div></td>';
+                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
                     echo '<td>'.$item->course_name.'</td>'; 
                     echo '<td><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'">'.$item->last_name .' '.$item->first_name.'</a></td>';
+                    echo '<td><div class="text-center">'.$item->total_day.'</div></td>';
+                    echo '<td><div class="text-center">'.$item->days_spent.'</div></td>';
+                    echo '<td><div class="text-center">'.$item->days_remaining.'</div></td>';
                     echo '<td>'.$item->email.'</td>';
                     echo '<td>'.$item->start_date.'</td>';                     
                     echo '<td>'.$item->phone.'</td>';
-                    echo '<td><div style="width: 100%; text-align: center"><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'" style="color:#fff"><button class="btn btn-sm btn-success"><li class="fa fa-calendar"></li></button></a> <a href="'.base_url("admin/").'calendar/delete/'.$item->course_id.'/'.$item->user_name.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a> </div></td>';
+                    echo '<td><div style="width: 100%; text-align: center"><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'" style="color:#fff"><button title="Click to view attendance" class="btn btn-sm btn-success"><li class="fa fa-calendar"></li></button></a> <a href="'.base_url("admin/").'calendar/delete/'.$item->course_id.'/'.$item->user_name.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button title="Click to delete" class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a> </div></td>';
                     echo '</tr>';
                 }
             }
