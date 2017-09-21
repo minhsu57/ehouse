@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>NEWS MANAGEMENT</b></h4>
+            <h3 class="text-center">NEWS MANAGEMENT</h3>
         </div>
     </div>
     <div class="row">

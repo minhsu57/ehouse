@@ -32,7 +32,6 @@ class Course extends Admin_Controller
     public function create()
     {
         if($this->input->post('submit')){
-            $this->form_validation->set_message('required', $this->lang->line('required'));
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('teacher', 'Teacher', 'trim');
             $this->form_validation->set_rules('total_day', 'Total day', 'trim|required|greater_than[0]');
@@ -43,8 +42,8 @@ class Course extends Admin_Controller
             $this->form_validation->set_rules('description', 'Description', 'trim');
             if ($this->form_validation->run() == FALSE)
             {
-             $this->render('admin/course/create_view');
-         }else{
+               $this->render('admin/course/create_view');
+           }else{
             $name = $this->input->post('name');
             $teacher = $this->input->post('teacher');
             $total_day = $this->input->post('total_day');
@@ -77,8 +76,8 @@ public function edit($item_id)
         $this->form_validation->set_rules('description', 'Description', 'trim');
         if ($this->form_validation->run() == FALSE)
         {
-         $this->render('admin/course/edit_view');
-     }else{
+           $this->render('admin/course/edit_view');
+       }else{
         $name = $this->input->post('name');
         $teacher = $this->input->post('teacher');
         $total_day = $this->input->post('total_day');
@@ -95,38 +94,38 @@ public function edit($item_id)
 }else { $this->render('admin/course/edit_view'); }
 }
 
-    public function delete($item_id){
-        $where = array('item_id' => $item_id);
+public function delete($item_id){
+    $where = array('item_id' => $item_id);
 
-        if(!$this->course_model->delete($item_id))
-        {
-            $this->postal->add("Course doesn't exist",'error');
-            redirect('admin/course');
-        }else{
-            $this->postal->add('Deleted successfully','success');            
-        }
-        redirect('admin/course');
-    }
-
-    function check_equal_less($second_field,$first_field)
+    if(!$this->course_model->delete($item_id))
     {
-        if ($second_field <= $first_field)
-        {
-            $this->form_validation->set_message('check_equal_less', 'The End date must be greater than the Start date.');
-            return false;       
-        }else
-        {
-            return true;
-        }
-    }
-
-    public function lock($item_id, $status){
-        $status = $status == 1 ? 0 : 1;
-        $data = array('active' => $status);
-        if(!$this->course_model->update($item_id, $data))
-        {             
-            $this->postal->add('Edited fail !','error');
-        }else{ $this->postal->add('Edited successfully ','success'); }
+        $this->postal->add("Course doesn't exist",'error');
         redirect('admin/course');
+    }else{
+        $this->postal->add('Deleted successfully','success');            
     }
+    redirect('admin/course');
+}
+
+function check_equal_less($second_field,$first_field)
+{
+    if ($second_field <= $first_field)
+    {
+        $this->form_validation->set_message('check_equal_less', 'The End date must be greater than the Start date.');
+        return false;       
+    }else
+    {
+        return true;
+    }
+}
+
+public function lock($item_id, $status){
+    $status = $status == 1 ? 0 : 1;
+    $data = array('active' => $status);
+    if(!$this->course_model->update($item_id, $data))
+    {             
+        $this->postal->add('Edited fail !','error');
+    }else{ $this->postal->add('Edited successfully ','success'); }
+    redirect('admin/course');
+}
 }

@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>EDIT USER</b></h4>
+            <h3 class="text-center">EDIT USER</h3>
         </div>
     </div>
     <?php echo form_open_multipart('admin/users/edit/'.$user->id);?>
@@ -81,6 +81,13 @@
                 echo form_error('birth_day','<p class="error">');
                 ?>
                 <input type="text" id="birth_day" name="birth_day" class="form-control" value="<?php if(set_value("birth_day")) echo set_value("birth_day"); else echo $user->birth_day; ?>">
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <?php echo form_label('Profile','profile'); ?>  
+                <div id="editor">
+                    <textarea class="ckeditor" name="profile"><?php if(set_value("profile")) echo set_value("profile"); else echo $user->profile; ?></textarea> 
+                    <?php echo form_error('profile','<p class="error">'); ?>
+                </div>
             </div>
             <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
             <input type="hidden" name="groups[]" value="2" checked="checked">

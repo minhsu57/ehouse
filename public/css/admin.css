@@ -1,6 +1,10 @@
 .error {
 	color: red;
 }
+.info {
+    color: #673AB7;
+    font-style: italic;
+}
 .pd-l-0{
 	padding-left: 0;
 	padding-right: 5px;

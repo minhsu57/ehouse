@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>ADD NEWS</b></h4>
+            <h3 class="text-center">ADD NEWS</h3>
         </div>
     </div>
     <?php echo form_open_multipart('admin/news/create/');?>

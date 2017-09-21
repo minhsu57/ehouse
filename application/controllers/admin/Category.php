@@ -62,8 +62,8 @@ class Category extends Admin_Controller
                     $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $parent, 'level' => $level, 'meta_keyword' => $meta_keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                     if(!$this->category_model->create($update_data))
                     {             
-                        $this->postal->add('Thêm mới thất bại !','error');
-                    }else { $this->postal->add('Thêm mới thành công.','success'); }
+                        $this->postal->add('Save fail !','error');
+                    }else { $this->postal->add('Save successfully.','success'); }
                     redirect('admin/category');
                 }
             }
@@ -91,12 +91,12 @@ class Category extends Admin_Controller
             $this->data['url'] = $this->input->post('url');
             $this->data['meta_keyword'] = $this->input->post('meta_keyword');
             $this->data['meta_description'] = $this->input->post('meta_description');
-            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['conten2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'level' => $level, 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
+            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['content2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'level' => $level, 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
             if(!$this->category_model->update($id, $update_data))
             {             
-                $this->postal->add('Chỉnh sửa thất bại !','error');
-            }else $this->postal->add('Chỉnh sửa thành công.','success');
-            redirect('admin/category');            
+                $this->postal->add('Save fail !','error');
+            }else $this->postal->add('Save successfully.','success');
+            redirect('admin/category/edit/'.$id);            
         }else{
             $input['where'] = array('id' => $id);
             $this->data['item'] = $this->category_model->get_row($input);            

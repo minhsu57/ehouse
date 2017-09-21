@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>COURSES MANAGEMENT</b></h4>
+            <h3 class="text-center">COURSES MANAGEMENT</h3>
         </div>
     </div>
     <div class="row">
@@ -21,7 +21,7 @@
                         <option value="0" <?php if($this->input->get('active')==0) echo 'selected'; ?> >Locked</option>
                     </select>
                 </div>
-                <button class="btn btn-primary btn-md pull-right"  type="submit"><li class="fa fa-search"></li> SEARCH</button>
+                <button class="btn btn-primary btn-md"  type="submit"><li class="fa fa-search"></li> SEARCH</button>
             </form>
         </div>
     </div>

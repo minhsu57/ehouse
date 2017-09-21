@@ -12,8 +12,12 @@ class Dashboard extends Admin_Controller
 
     public function index()
     {
-        $this->render('admin/dashboard_view');
-
+        if(!$this->ion_auth->in_group('admin'))
+        {
+            redirect('/member/index','refresh');
+        }else{
+            $this->render('admin/dashboard_view');
+        }       
     }
 
     public function clear_cache()

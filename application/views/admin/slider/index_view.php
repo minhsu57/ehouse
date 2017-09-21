@@ -3,7 +3,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="text-center">QUẢN LÝ SLIDER</h2>
+            <h3 class="text-center">QUẢN LÝ SLIDER</h3>
         </div>
     </div>
     <div class="row">

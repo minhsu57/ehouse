@@ -17,14 +17,14 @@
 			<form action="<?php echo base_url('login'); ?>" method="post" accept-charset="utf-8">
 					<div class="box-body">
 						<div class="form-group col-md-8">
-							<label for="InputEmail">Địa chỉ email</label>
-							<input type="email" name="email" class="form-control" id="InputEmail" placeholder="Vui lòng nhập email" value="">
-							<span class="error"></span>
+							<label for="InputEmail">Tài khoản</label>
+							<input type="text" name="user_name" class="form-control" placeholder="Vui lòng nhập tài khoản" value="">
+							<?php echo form_error('user_name','<p class="error">'); ?>
 						</div>
 						<div class="form-group col-md-8">
 							<label for="InputPassword">Mật khẩu</label>
-							<input type="password" name="password" class="form-control" id="InputPassword" placeholder="Mật khẩu" value="">
-							<span class="error"></span>				  
+							<input type="password" name="password" class="form-control" placeholder="Mật khẩu" value="">
+							<?php echo form_error('password','<p class="error">'); ?>			  
 						</div>
 						<p class="help-block col-md-8"><a href="#">Quên mật khẩu ?</a></p>	
 						<div class="error-message col-md-8"></div>									

@@ -16,3 +16,12 @@ function create_calendar(){
 	}
 	
 }
+
+function handleChangeMediaType(value){
+	if(value == 'audio'){
+		$('#media_area').html('<input type="file" name="audio_file" class="form-control" id="audio">');	
+	}else{
+		$('#media_area').html('<input type="text" name="video" class="form-control" id="video" placeholder="Enter video link here">');		
+	}                    
+
+}

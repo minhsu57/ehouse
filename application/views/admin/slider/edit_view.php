@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-md-10">
-            <h1 class="text-center">Sửa Slider</h1>
+            <h3 class="text-center">Sửa Slider</h3>
             <?php echo form_open_multipart('admin/slider/edit/'.$item->id);?>
             <div class="col-md-6">
                 <label>Category </label><span class="error">*</span>

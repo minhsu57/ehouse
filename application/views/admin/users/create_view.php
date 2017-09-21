@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center"><b>CREATE NEW USER</b></h4>
+            <h3 class="text-center">CREATE NEW USER</h3>
         </div>
     </div>
     <?php echo form_open_multipart('admin/users/create');?>
@@ -81,6 +81,13 @@
                 echo form_error('birth_day','<p class="error">');
                 ?>
                 <input type="text" id="birth_day" name="birth_day" class="form-control" value="<?php echo set_value("birth_day"); ?>">
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <?php echo form_label('Profile','profile'); ?>   
+                <div id="editor">
+                    <textarea class="ckeditor" name="profile"></textarea> 
+                    <?php echo form_error('profile','<p class="error">'); ?>
+                </div>
             </div>
             <?php echo form_close();?>
         </div>

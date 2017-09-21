@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <?php echo form_open_multipart('admin/page_content/edit/'.$item->id);?>
             <div class="col-lg-12">
-                <h3 class="col-lg-10" style="margin-top: 0"><?php echo $item->title; ?></h3>
+                <h3 class="col-lg-10" style="margin-top: 10px;  text-align: center"><?php echo $item->title; ?></h3>
 
                 <div class="col-lg-2 pull-right">
                     <?php echo form_submit('submit', 'Save', 'class="btn btn-primary btn-lg btn-sm"');?>

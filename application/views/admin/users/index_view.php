@@ -21,12 +21,6 @@
                 <div class="col-lg-5 pd-l-0">
                     <input type="text" name="last_name" class="form-control" placeholder="Enter Last name to search" value="<?php echo $this->input->get('last_name'); ?>">
                 </div>
-                <div class="col-lg-5 pd-l-0">
-                    <input type="text" name="email" class="form-control" placeholder="Enter email to search" value="<?php echo $this->input->get('email'); ?>">
-                </div>
-                <div class="col-lg-5 pd-l-0">
-                    <input type="text" name="phone" class="form-control" placeholder="Enter phone to search" value="<?php echo $this->input->get('phone'); ?>">
-                </div>
                 <div class="col-lg-2 pd-l-0">
                     <select name="active" class="form-control">
                         <option value="" <?php if($this->input->get('active')=="") echo 'selected'; ?> >All users status</option>
@@ -34,6 +28,13 @@
                         <option value="0" <?php if($this->input->get('active')==0) echo 'selected'; ?> >Locked</option>
                     </select>
                 </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="email" class="form-control" placeholder="Enter email to search" value="<?php echo $this->input->get('email'); ?>">
+                </div>
+                <div class="col-lg-5 pd-l-0">
+                    <input type="text" name="phone" class="form-control" placeholder="Enter phone to search" value="<?php echo $this->input->get('phone'); ?>">
+                </div>
+                
                 <button class="btn btn-primary btn-md pull-right"  type="submit"><li class="fa fa-search"></li> SEARCH</button>
             </form>
         </div>

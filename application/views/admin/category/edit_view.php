@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="text-center">SỬA CATEGORY</h1>
+            <h3 class="text-center">SỬA CATEGORY</h3>
             <?php echo form_open_multipart('admin/category/edit/'.$item->id);?>
             <div class="col-lg-12">
                 <h3 class="col-lg-10" style="margin-top: 0"></h3>

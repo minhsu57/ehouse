@@ -8,8 +8,7 @@ class Users extends Admin_Controller
     function __construct()
     {
         parent::__construct();
-        if(!$this->ion_auth->in_group('admin'))
-        {
+        if(!$this->ion_auth->in_group('admin')){
             $this->postal->add('You are not allowed to visit the Users page','error');
             redirect('admin');
         }
@@ -18,6 +17,7 @@ class Users extends Admin_Controller
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->load->library('form_validation');
         $this->lang->load('form_validation', 'english');
+        $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
     }
 
     public function index()
@@ -33,7 +33,6 @@ class Users extends Admin_Controller
 
     public function create()
     {
-        $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
         $this->form_validation->set_rules('username','Username','trim|required|regex_match[/^[a-z A-Z0-9%._\-@]+$/]|min_length[2]|max_length[30]');
         $this->form_validation->set_rules('first_name','First name','trim|required');
         $this->form_validation->set_rules('last_name','Last name','trim|required');
@@ -43,10 +42,9 @@ class Users extends Admin_Controller
         $this->form_validation->set_rules('password','Password','min_length[6]|required');
         $this->form_validation->set_rules('password_confirm','Password confirmation','matches[password]|required');
 
-        if($this->form_validation->run()===FALSE)
-        {
+        if($this->form_validation->run()===FALSE){
             $this->render('admin/users/create_view');
-        }else {
+        }else{
             $email_check = $this->ion_auth->email_check($this->input->post('email'));
             $input['where'] = array('username' => $this->input->post('username'));
             $username_check = $this->users_model->get_list($input);
@@ -72,6 +70,7 @@ class Users extends Admin_Controller
                     'birth_day'     => $this->input->post('birth_day'),
                     'address'       => $this->input->post('address'),
                     'phone'         => $this->input->post('phone'),
+                    'profile'         => $this->input->post('profile'),
                     'modified_date' =>date('Y-m-d H:i:s')
                     );
                 $this->ion_auth->register($username, $password, $email, $additional_data, $group_ids);
@@ -89,9 +88,7 @@ class Users extends Admin_Controller
             $this->postal->add('Use the profile page to change your own credentials.','error');
             redirect('admin/users');
         }
-        $this->data['page_title'] = 'Edit user';
-
-        $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
+        
         $this->form_validation->set_rules('first_name','First name','trim|required');
         $this->form_validation->set_rules('last_name','Last name','trim|required');
         $this->form_validation->set_rules('phone','Phone','trim|required');
@@ -101,14 +98,10 @@ class Users extends Admin_Controller
         $this->form_validation->set_rules('password_confirm','Password confirmation','matches[password]');
         $this->form_validation->set_rules('user_id','User ID','trim|integer|required');
 
-        if($this->form_validation->run() === FALSE)
-        {
-            if($user = $this->ion_auth->user((int) $user_id)->row())
-            {
+        if($this->form_validation->run() === FALSE){
+            if($user = $this->ion_auth->user((int) $user_id)->row()){
                 $this->data['user'] = $user;
-            }
-            else
-            {
+            }else{
                 $this->postal->add('The user doesn\'t exist.','error');
                 redirect('admin/users');
             }
@@ -145,6 +138,7 @@ class Users extends Admin_Controller
                     'birth_day'     => $this->input->post('birth_day'),
                     'address'       => $this->input->post('address'),
                     'phone'         => $this->input->post('phone'),
+                    'profile'         => $this->input->post('profile'),
                     'modified_date' => date('Y-m-d H:i:s')
                     );
                 if(strlen($this->input->post('password'))>=6) $new_data['password'] = $this->input->post('password');
@@ -153,8 +147,7 @@ class Users extends Admin_Controller
 
                 //Update the groups user belongs to
                 $groups = $this->input->post('groups');
-                if (isset($groups) && !empty($groups))
-                {
+                if (isset($groups) && !empty($groups)){
                     $this->ion_auth->remove_from_group('', $user_id);
                     foreach ($groups as $group)
                     {
@@ -169,16 +162,19 @@ class Users extends Admin_Controller
 
     public function delete($user_id = NULL, $user_name)
     {
-        if(is_null($user_id))
-        {
+        $this->load->model('files_model');
+        if(is_null($user_id)){
             $this->postal->add('There\'s no user to delete','error');
-        }
-        else
-        {
+        }else{
             $this->load->model('calendar_model');
             $input['where'] = array('user_name' => $user_name);
+            // get total media file of this user
+            $input_files['where'] = array('user_id' => $user_id);
+            $total_media = $this->files_model->get_total($input_files);
             if(count($this->calendar_model->get_list($input)) >0){
                 $this->postal->add('Delete User fail, please delete calendar of this user first !','error');
+            }else if($total_media >0){
+                $this->postal->add('Delete User fail, please delete media of this user first !','error');
             }else{                
                 $this->ion_auth->delete_user($user_id);
                 $this->postal->add($this->ion_auth->messages(),'success');
@@ -200,35 +196,93 @@ class Users extends Admin_Controller
 
     public function media($user_id)
     {   
-        $this->load->model('files_model');     
-        $input['where'] = array('user_id' => $user_id);
-        $this->data['user_id'] = $user_id;
-        $this->data['items'] = $this->files_model->get_list($input);
-        $this->render('admin/users/media_view');
-    }
-
-    public function media_upload(){
+        $input['where'] = array('id' => $user_id);
+        $this->data['user'] = $this->users_model->get_row($input);
         $this->load->model('files_model');
-        $this->config = array('upload_path' => './public/upload/media/', 'allowed_types' => 'gif|jpg|png|mp3');
-        $user_id = $this->input->post('user_id');
-        $this->load->library('upload', $this->config);
-        if($this->upload->do_upload('media_file'))
-        {
-            $file_ppt = $this -> upload -> data();
-            $file_name = $file_ppt['file_name'];
+        if($this->input->post('submit')){
+            $name     = $this->input->post('name');
+            $type     = $this->input->post('type');
+            $this->load->helper(array('url', 'form', 'file'));
+            $this->form_validation->set_rules('name','Description','trim|required');
+            if($type == "audio"){
+                if(empty($_FILES['audio_file']['name']))
+                {
+                    $this->form_validation->set_rules('audio_file','Audio file','required');
+                }          
+                
+                if($this->form_validation->run() == FALSE){
+                    $this->postal->add(form_error('audio_file',''),'error');
+                    $this->postal->add(form_error('name',''),'error');
+                }else{
+                    $config['upload_path']          = './public/upload/media/';
+                    $config['allowed_types']        = 'mp3|ogg';
+                    $config['max_size']             = 20480;
+                    
+                    $this->load->library('upload', $config);
+                    if($this->upload->do_upload('audio_file'))
+                    {
+                        $file_ppt = $this->upload->data();
+                        $file_name = $file_ppt['file_name'];
 
-            $insert_data = array('name' => $file_name, 'link' => $file_name,'user_id' => $user_id);
-            if(!$this->files_model->create($insert_data))
-            {             
-                $this->postal->add('Uploaded successfully ','success');                    
+                        $insert_data = array('name' => $name, 'link' => $file_name, 'user_id' => $user_id, 'type' => $type, 'created_date'=>date('Y-m-d H:i:s'));
+                        if($this->files_model->create($insert_data)){             
+                            $this->postal->add('Created successfully ','success');                    
+                        }else{
+                            $this->postal->add('Created fail because uploading fail','error');
+                        }
+                    }else{
+                        $this->postal->add('Uploaded fail '.$this->upload->display_errors(),'error');
+                    }
+                }                
             }else{
-                //unlink(base_url('public/upload/media/').$file_name);
-                $this->postal->add('Uploaded fail ','error');
+                $this->form_validation->set_rules('video','Video','trim|required');
+                if($this->form_validation->run() == FALSE){
+                    $this->postal->add(form_error('video',''),'error');
+                    $this->postal->add(form_error('name',''),'error');
+                }else{
+                   $video = $this->input->post('video');
+                   $insert_data = array('name' => $name, 'link' => $video, 'user_id' => $user_id, 'type' => $type, 'created_date'=>date('Y-m-d H:i:s'));
+                   if($this->files_model->create($insert_data)){             
+                    $this->postal->add('Created successfully','success');                     
+                }else{
+                    $this->postal->add('Created fail','error');
+                } 
             }
-        }else
-        {
-            $this->postal->add('Uploaded fail ','error');
-        }
-        redirect('admin/users/media/'.$user_id);        
+        }            
     }
+
+    $input['where'] = array('user_id' => $user_id);
+    $this->data['user_id'] = $user_id;
+    $this->data['items'] = $this->files_model->get_list($input);
+    $this->render('admin/users/media_view');
+}
+
+public function delete_media($id)
+{
+    $this->load->model('files_model');
+            // get row from media id
+    $input['where'] = array('id' => $id);
+    $row = $this->files_model->get_row($input);
+
+    if(is_null($id)){
+        $this->postal->add('There\'s no media to delete','error');
+    }else{
+        if($row->type == "audio"){
+            if(file_exists('./public/upload/media/'.$row->link)){
+                if(!unlink('./public/upload/media/'.$row->link)){
+                    $this->postal->add('Deleted file fail'.public_helper('upload/media/'.$row->link), 'error');
+                    redirect('admin/users/media/'.$row->user_id);
+                }
+            }
+        } 
+
+        if(!$this->files_model->delete($id)){
+            $this->postal->add('Deleted fail','error');
+        }else{
+            $this->postal->add('Deleted successfully','success');            
+        }
+
+    }
+    redirect('admin/users/media/'.$row->user_id);
+}
 }
