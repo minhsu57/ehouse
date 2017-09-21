@@ -23,5 +23,10 @@ class Calendar_model extends MY_Model
         else 
             return FALSE;
     }
+
+    public function get_list_canlendar_user($username){
+        $rows = $this->db->query('select distinct s.total_day, s.name course_name, c.course_id from calendar c, course s  where c.course_id = s.id and c.user_name = "'.$username.'"');
+        return $rows->result();
+    }
     
 }

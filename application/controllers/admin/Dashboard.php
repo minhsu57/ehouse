@@ -14,7 +14,7 @@ class Dashboard extends Admin_Controller
     {
         if(!$this->ion_auth->in_group('admin'))
         {
-            redirect('/member/index','refresh');
+            redirect('/member/info/profile','refresh');
         }else{
             $this->render('admin/dashboard_view');
         }       
