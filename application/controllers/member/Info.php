@@ -57,6 +57,7 @@ class Info extends Admin_Controller {
     }
 
     public function process(){
+        $type = $this->input->post('type');
         if($type == 'fetch')
         {
             $events = array();
@@ -79,6 +80,13 @@ class Info extends Admin_Controller {
             }            
             echo json_encode($events);
         }
+    }
+
+    public function document(){
+        $this->load->model('files_model');
+        $input['where'] = array('user_id' => $this->current_user->id);
+        $this->data['items'] = $this->files_model->get_list($input);
+        $this->load->view('member/document_view', $this->data);
     }
 
 }

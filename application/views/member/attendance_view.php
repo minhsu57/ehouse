@@ -8,11 +8,11 @@
             <h4 class="text-center">ATTENDANCE</h4>
             <div class="list-group">
                 <a href="#" class="list-group-item active">
-                LIST OF COURSES LEARNED
+                GROUP OF COURSES LEARNED
                 </a>
                 <?php foreach($items as $item)
                 { ?>
-                    <a href="calendar?course_id=<?php echo $item->course_id; ?>" class="list-group-item"><?php echo $item->course_name; ?></a>
+                    <a href="calendar?course_id=<?php echo $item->course_id; ?>" class="list-group-item"><?php echo $item->course_name.' - '.$item->start_date; ?></a>
                 <?php } ?>
             </div>
         </div>

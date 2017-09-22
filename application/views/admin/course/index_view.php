@@ -78,10 +78,13 @@
             }
             echo '</tbody>';
             echo '</table>';
-            echo '<nav><ul class="pagination">';
-            // echo //$next_previous_pages;
-            echo '</ul></nav>';
             ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <?php echo $pagination; ?>
+        </div>
+    </div>
+
 </div>

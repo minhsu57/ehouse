@@ -64,6 +64,7 @@
                     <li><?php echo anchor('member/info/policy','POLICY');?></li>                   
                     <li><?php echo anchor('member/info/profile','PROFILE');?></li>
                     <li><?php echo anchor('member/info/attendance','ATTENDANCE');?></li>
+                    <li><?php echo anchor('member/info/document','DOCUMENTS');?></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

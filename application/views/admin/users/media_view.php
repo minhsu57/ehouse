@@ -81,9 +81,6 @@
         }
         echo '</tbody>';
         echo '</table>';
-        echo '<nav><ul class="pagination">';
-            // echo //$next_previous_pages;
-        echo '</ul></nav>';
         ?>
     </div>
 </div>

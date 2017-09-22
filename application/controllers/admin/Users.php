@@ -18,16 +18,36 @@ class Users extends Admin_Controller
         $this->load->library('form_validation');
         $this->lang->load('form_validation', 'english');
         $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
+        $this->load->library('pagination'); 
     }
 
     public function index()
     {
+        // condition for get course data
         $first_name = str_replace('"', "'", $this->input->get('first_name'));
         $last_name  = str_replace('"', "'", $this->input->get('last_name'));
         $email      = str_replace('"', "'", $this->input->get('email'));
         $phone      = str_replace('"', "'", $this->input->get('phone'));
         $active     = $this->input->get('active');
-        $this->data['items'] = $this->users_model->get_list_where($first_name, $last_name, $email, $phone, $active);
+        
+        //pagination settings
+        $config["per_page"] = 3;
+        $config['base_url'] = site_url('admin/users?active='.$this->input->get('active').'&first_name='.$this->input->get('first_name').'&last_name='.$this->input->get('last_name').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
+        $input['where'] = array('first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone'=>$phone);
+        //$input['like'] = array('active' , $active);
+        $config['total_rows'] = $this->users_model->get_total($input);
+        $this->data['total'] = $config['total_rows'];
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = $choice;       
+        
+        // pagination
+        $page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+        $this->pagination->initialize($config);        
+        $this->data['pagination'] = $this->pagination->create_links();
+        $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // get list data
+
+        $this->data['items'] = $this->users_model->get_list_where($config["per_page"], $offset, $first_name, $last_name, $email, $phone, $active);
         $this->render('admin/users/index_view');
     }
 

@@ -18,14 +18,32 @@ class Course extends Admin_Controller
         $this->load->library('form_validation');
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->lang->load('form_validation', 'english');
+        $this->load->library('pagination'); 
     }
 
     public function index()
     {
+        // condition for get course data
         $active = $this->input->get('active');
         $input['order'] = array('start_date','DESC');
         $input['like'] = array('active', $active);
+        //pagination settings
+        $config["per_page"] = 15;
+        $config['base_url'] = site_url('admin/course?active='.$this->input->get('active'));
+        $config['total_rows'] = $this->course_model->get_total($input);
+        $this->data['total'] = $config['total_rows'];
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = $choice;       
+        
+        // pagination
+        $page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+        $this->pagination->initialize($config);        
+        $this->data['pagination'] = $this->pagination->create_links();
+        $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // get list data
+        $input['limit'] = array($config["per_page"], $offset);        
         $this->data['items'] = $this->course_model->get_list($input);
+
         $this->render('admin/course/index_view');
     }
 

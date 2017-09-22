@@ -12,7 +12,7 @@
 
 	$.ajax({
 
-		url: '../../admin/calendar/process',
+		url: '<?php echo base_url('member/info/') ?>process',
     type: 'POST', // Send post data
     data: 'type=fetch&user_name=<?php echo $user_name; ?>&course_id=<?php echo $course_id; ?>',
     async: false,
@@ -65,8 +65,8 @@
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		editable: true,
-		droppable: true, 
+		editable: false,
+		droppable: false, 
 		slotDuration: '00:30:00',
 		allDay: false,
 		eventReceive: function(event){
@@ -89,90 +89,6 @@
 			});
 			$('#calendar').fullCalendar('updateEvent',event);
 			console.log(event);
-		},
-		eventDrop: function(event, delta, revertFunc) {
-			var title = event.title;
-			var start = event.start.format();
-			var end = (event.end == null) ? start : event.end.format();
-			$.ajax({
-				url: 'process',
-				data: 'type=resetdate&title='+title+'&start='+start+'&end='+end+'&eventid='+event.id,
-				type: 'POST',
-				dataType: 'json',
-				success: function(response){
-					if(response.status != 'success')		    				
-						revertFunc();
-				},
-				error: function(e){		    			
-					revertFunc();
-					alert('Error processing your request: '+e.responseText);
-				}
-			});
-		},
-		eventClick: function(event, jsEvent, view) {
-			console.log(event.id);
-			var title = prompt('Event Title:', event.title, { buttons: { Ok: true, Cancel: false} });
-			if (title){
-				event.title = title;
-				console.log('type=changetitle&title='+title+'&eventid='+event.id);
-				$.ajax({
-					url: 'process',
-					data: 'type=changetitle&title='+title+'&eventid='+event.id,
-					type: 'POST',
-					dataType: 'json',
-					success: function(response){	
-						if(response.status == 'success')			    			
-							$('#calendar').fullCalendar('updateEvent',event);
-					},
-					error: function(e){
-						alert('Error processing your request: '+e.responseText);
-					}
-				});
-			}
-		},
-		eventResize: function(event, delta, revertFunc) {
-			console.log(event);
-			var title = event.title;
-			var end = event.end.format();
-			var start = event.start.format();
-			var color = event.color;
-			$.ajax({
-				url: 'process',
-				data: 'type=resetdate&title='+title+'&start='+start+'&end='+end+'&eventid='+event.id+'&color='+color,
-				type: 'POST',
-				dataType: 'json',
-				success: function(response){
-					if(response.status != 'success')		    				
-						revertFunc();
-				},
-				error: function(e){		    			
-					revertFunc();
-					alert('Error processing your request: '+e.responseText);
-				}
-			});
-		},
-		eventDragStop: function (event, jsEvent, ui, view) {
-			if (isElemOverDiv()) {
-				var con = confirm('Are you sure to delete this event permanently?');
-				if(con == true) {
-					$.ajax({
-						url: 'process',
-						data: 'type=remove&eventid='+event.id,
-						type: 'POST',
-						dataType: 'json',
-						success: function(response){
-							console.log(response);
-							if(response.status == 'success'){
-								$('#calendar').fullCalendar('removeEvents');
-								getFreshEvents();
-							}
-						},
-						error: function(e){	
-							alert('Error processing your request: '+e.responseText);
-						}
-					});
-				}   
-			}
 		}
 	});
 
