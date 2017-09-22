@@ -18,20 +18,12 @@ class Calendar extends Admin_Controller
         $this->load->model('users_model');
         $this->load->model('course_model');
         $this->load->library('Ajax_pagination');
-        $this->perPage = 2;
+        $this->load->library('pagination'); 
     }
 
     public function index()
     {
-        //total rows count
-        // $totalRec = $this->calendar_model->get_total();
-        // //pagination configuration
-        // $config['target']      = '#postList';
-        // $config['base_url']    = base_url().'/admin/calendar';
-        // $config['total_rows']  = $totalRec;
-        // $config['per_page']    = $this->perPage;
-        // $config['link_func']   = 'searchFilter';
-        // $this->ajax_pagination->initialize($config);
+        // condition for get calendar data
         $email = $this->input->get('email');
         $phone = $this->input->get('phone');
         $course_id = $this->input->get('course_id');
@@ -44,8 +36,22 @@ class Calendar extends Admin_Controller
         // get data of course model
 
         $this->data['courses'] = $this->course_model->get_list($input);
+        
+        //pagination settings
+        $config["per_page"] = 2;
+        $config['base_url'] = site_url('admin/calendar?course_id='.$this->input->get('course_id').'&start_date='.$this->input->get('start_date').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
+        $config['total_rows'] = $this->calendar_model->get_total_calendar($email, $phone, $course_id, $start_date);
+        $this->data['total'] = $config['total_rows'];
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = $choice;       
+        
+        // pagination
+        $page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+        $this->pagination->initialize($config);        
+        $this->data['pagination'] = $this->pagination->create_links();
+        $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
         // get data of calendar model
-        $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course($email, $phone, $course_id, $start_date);
+        $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course($config['per_page'], $offset, $email, $phone, $course_id, $start_date);
         $this->render('admin/calendar/index_view');
     }
 

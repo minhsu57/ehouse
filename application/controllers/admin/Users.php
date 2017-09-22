@@ -23,7 +23,7 @@ class Users extends Admin_Controller
 
     public function index()
     {
-        // condition for get course data
+        // condition for get users data
         $first_name = str_replace('"', "'", $this->input->get('first_name'));
         $last_name  = str_replace('"', "'", $this->input->get('last_name'));
         $email      = str_replace('"', "'", $this->input->get('email'));
@@ -35,7 +35,7 @@ class Users extends Admin_Controller
         $config['base_url'] = site_url('admin/users?active='.$this->input->get('active').'&first_name='.$this->input->get('first_name').'&last_name='.$this->input->get('last_name').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
         $input['where'] = array('first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone'=>$phone);
         //$input['like'] = array('active' , $active);
-        $config['total_rows'] = $this->users_model->get_total($input);
+        $config['total_rows'] = $this->users_model->get_list_record($first_name, $last_name, $email, $phone, $active);
         $this->data['total'] = $config['total_rows'];
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = $choice;       

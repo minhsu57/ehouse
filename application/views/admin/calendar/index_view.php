@@ -12,7 +12,7 @@
                 <select class="form-control" name="user" id="user_name">
                     <option value="0">Please select student</option>
                     <?php foreach ($users as $user) { ?>
-                    <option value="<?php echo $user->username; ?>"><?php echo $user->last_name.' '.$user->first_name; ?></option>
+                    <option title="<?php echo $user->email.' - '.$user->phone; ?>" value="<?php echo $user->username; ?>"><?php echo $user->last_name.' '.$user->first_name.' - '.$user->email; ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -108,10 +108,12 @@
             }
             echo '</tbody>';
             echo '</table>';
-            echo '<nav><ul class="pagination">';
-            // echo //$next_previous_pages;
-            echo '</ul></nav>';
             ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <?php echo $pagination; ?>
         </div>
     </div>
 </div>
