@@ -67,7 +67,7 @@
                 foreach($items as $key => $item)
                 {
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
+                    echo '<td><div class="text-center">'.$record_number.'</div></td>';
                     echo '<td>'.$item->username.'</td>';                    
                     echo '<td>'.$item->last_name.'</td>';
                     echo '<td>'.$item->first_name.'</td>';
@@ -87,6 +87,7 @@
                     <?php
                     echo '</td>';
                     echo '</tr>';
+                    $record_number++;
                 }
             }
             echo '</tbody>';

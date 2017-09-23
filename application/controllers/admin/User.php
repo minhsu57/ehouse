@@ -86,8 +86,14 @@ class User extends MY_Controller
 
     public function logout()
     {
+        if($this->ion_auth->in_group('admin'))
+        {
+            $redirect = "/admin/user/login";
+        }else{
+            $redirect = "/login";
+        }
         $this->ion_auth->logout();
         $this->postal->add($this->ion_auth->messages(),'error');
-        redirect('/admin/user/login');
+        redirect($redirect);
     }
 }

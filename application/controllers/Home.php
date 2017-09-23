@@ -34,10 +34,7 @@ class Home extends Public_Controller {
         // get content of registering test level
         $input_resgiter['where'] = array('id' => 'resgiter_test_level');
         $this->data['note_rtl'] = $this->page_content_model->get_row($input_resgiter);
-        // get 3 items of news model
-        $input_news['limit'] = array('3' ,'0');
-        $input_news['order'] = array('modified_date','DESC');
-        $this->data['news'] = $this->news_model->get_list($input_news);
+
         $this->render('user/home_view');
     }
 }

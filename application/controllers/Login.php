@@ -15,7 +15,7 @@ class Login extends Public_Controller {
 	{
 		if($this->ion_auth->logged_in())
         {
-            redirect('/member/index','refresh');
+            redirect('/member/info/profile','refresh');
         }
         // get content of slider
         $input['where'] = array('status' => 1, "category_id" => 'login');

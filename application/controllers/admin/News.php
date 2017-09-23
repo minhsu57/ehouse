@@ -18,12 +18,31 @@ class News extends Admin_Controller
         $this->load->library('form_validation');
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->lang->load('form_validation', 'english');
+        $this->load->library('pagination'); 
     }
 
     public function index()
     {
-        $input['order'] = array('modified_date','DESC');
-        $this->data['items'] = $this->news_model->get_list($input);
+        //pagination settings
+        $config["per_page"] = 15;
+        $config['base_url'] = site_url('admin/news');
+        $config['total_rows'] = $this->news_model->get_total();
+        $this->data['total'] = $config['total_rows'];
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = $choice;       
+        
+        // pagination
+        $page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+        $this->pagination->initialize($config);        
+        $this->data['pagination'] = $this->pagination->create_links();
+        $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // record number for each page
+        $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
+        // get list data
+        $input_news['limit'] = array($config["per_page"], $offset);
+
+        $input_news['order'] = array('modified_date','DESC');
+        $this->data['items'] = $this->news_model->get_list($input_news);
         //$this->data['next_previous_pages'] = $this->menu_item_model->all_pages;
         $this->render('admin/news/index_view');
     }
@@ -41,14 +60,13 @@ class News extends Admin_Controller
             }else{
                 $title = $this->input->post('title');
                 $content = $this->input->post('content');
+                $image   = $this->input->post('image');
                 $short_content = $this->input->post('short_content');
                 $keyword = $this->input->post('keyword');
                 $meta_description = $this->input->post('meta_description');
                 // get value of src img tag
-                $doc = new DOMDocument();
-                $doc->loadHTML($content);
-                $xpath = new DOMXPath($doc);
-                $image = $xpath->evaluate("string(//img/@src)");
+                $image = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($content))->xpath("//img/@src"));
+
                 $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'image' => $image, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->news_model->create($insert_data))
                 {             
@@ -73,16 +91,13 @@ class News extends Admin_Controller
             {
                  $this->render('admin/news/edit_view');
             }else{
-                $title = $this->input->post('title');
+                $title   = $this->input->post('title');
                 $content = $this->input->post('content');
+                $image   = $this->input->post('image');
                 $short_content = $this->input->post('short_content');
                 $keyword = $this->input->post('keyword');
                 $meta_description = $this->input->post('meta_description');
-                // get value of src img tag
-                $doc = new DOMDocument();
-                $doc->loadHTML($content);
-                $xpath = new DOMXPath($doc);
-                $image = $xpath->evaluate("string(//img/@src)");
+                
                 $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'image' => $image, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->news_model->update($item_id, $insert_data))
                 {             

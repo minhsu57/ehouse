@@ -30,11 +30,14 @@
             {
                 foreach($items as $key => $item)
                 {
+                    // get value of src img tag
+                    preg_match( '@src="([^"]+)"@' , $item->image, $match);
+                    $image = array_pop($match);
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
+                    echo '<td><div class="text-center">'.$record_number.'</div></td>';
                     echo '<td><div style="max-width: 300px;">'.$item->title.'</div></td>';
                     echo '<td><div style="max-width: 300px;">'.$item->short_content.'</div></td>'; 
-                    echo '<td><img src="'.base_url($item->image).'" style="width: 150px;"></td>';                    
+                    echo '<td><img src="'.$image.'" style="width: 150px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
                     echo '<a href="'.base_url('admin/news/edit/'.$item->id).'" style="color:#fff"><button title="Click to edit" class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a>';
@@ -43,14 +46,17 @@
                     <?php
                     echo '</td>';
                     echo '</tr>';
+                    $record_number++;
                 }
             }
             echo '</tbody>';
             echo '</table>';
-            echo '<nav><ul class="pagination">';
-            // echo //$next_previous_pages;
-            echo '</ul></nav>';
             ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <?php echo $pagination; ?>
         </div>
     </div>
 </div>

@@ -110,7 +110,14 @@
                     <textarea class="ckeditor" name="favicon"><?php echo $item_vi->favicon ?></textarea> 
                     <?php echo form_error('favicon','<p class="error">'); ?>
                 </div>
-            </div>            
+            </div>
+            <div class="form-group col-md-6 col-lg-6">
+                <strong>Advertisement</strong>
+                <div id="editor">
+                    <textarea class="ckeditor" name="ad_video"><?php echo $item_vi->ad_video ?></textarea> 
+                    <?php echo form_error('ad_video','<p class="error">'); ?>
+                </div>
+            </div>             
             
             <!-- AJAX Response will be outputted on this DIV container -->
             <?php echo form_hidden('id',$item_vi->id);?>

@@ -1,10 +1,13 @@
 <div class="sidebar">
 	<div class="row row-div col-lg-12"><label>TIN TỨC MỚI</label></div>
-	<?php foreach ($news as $item) { ?>
+	<?php foreach ($news as $item) {
+	// get value of src img tag
+    preg_match( '@src="([^"]+)"@' , $item->image, $match);
+    $image = array_pop($match); ?>
 	<div class="row row-article">
 		<div class="col-xs-4 col-md-2 col-lg-4">
 			<div class="news_image  hidden-md">
-				<a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)); ?>"><img src="<?php echo $item->image; ?>"></a>
+				<a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)); ?>"><img src="<?php echo $image; ?>"></a>
 			</div>
 			<div class="visible-md">-</div>			
 		</div>
@@ -13,6 +16,12 @@
 		</div>
 	</div>
 	<?php } ?>
+	<!-- <div class="row row-div col-lg-12"><label>VIDEO</label></div> -->
+	<div class="row row-div col-lg-12">
+		<div class="textwidget">
+			<?php echo $website->ad_video; ?>
+		</div>
+	</div>
 	<div class="row row-div col-lg-12"><label>KEYWORD</label></div>
 	<div class="row row-div col-lg-12">
 		<ul class="list-unstyled">
@@ -20,11 +29,5 @@
 				<?php echo $website->keyword; ?>
 			</div>
 		</ul>
-	</div>
-	<div class="row row-div col-lg-12"><label>VIDEO</label></div>
-	<div class="row row-div col-lg-12">
-		<div class="textwidget">
-			<iframe style="min-width:100%; height:315px" src="https://www.youtube.com/embed/Cjf-mcQ9zVc?rel=0&wmode=transparent" frameborder="0" allowfullscreen=""></iframe>
-		</div>
 	</div>
 </div>

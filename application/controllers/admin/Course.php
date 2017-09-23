@@ -40,6 +40,8 @@ class Course extends Admin_Controller
         $this->pagination->initialize($config);        
         $this->data['pagination'] = $this->pagination->create_links();
         $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // record number for each page
+        $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
         // get list data
         $input['limit'] = array($config["per_page"], $offset);        
         $this->data['items'] = $this->course_model->get_list($input);

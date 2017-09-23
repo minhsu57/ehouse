@@ -582,6 +582,8 @@ pct end cover code */
 }
 .news .item .summary {
     text-align: justify; 
+    height: 52px;
+    overflow-y: hidden;
 }
 .news .item .readmore a {
     color: #3FB871; 

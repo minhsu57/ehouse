@@ -42,6 +42,14 @@
                 </div>
             </div>
             <div class="form-group col-md-12 col-lg-12">
+                <label>Wrapper photo</label>
+                <div id="editor">
+                    <?php echo form_error('image','<p class="error">'); ?>
+                    <textarea class="ckeditor" name="image"><?php echo $item->image; ?></textarea> 
+                    
+                </div>
+            </div>
+            <div class="form-group col-md-12 col-lg-12">
                 <h5><b>SEO SECTION</b></h5>
             </div>
             <div class="form-group col-md-12 col-lg-12">

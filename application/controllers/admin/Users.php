@@ -31,7 +31,7 @@ class Users extends Admin_Controller
         $active     = $this->input->get('active');
         
         //pagination settings
-        $config["per_page"] = 3;
+        $config["per_page"] = 15;
         $config['base_url'] = site_url('admin/users?active='.$this->input->get('active').'&first_name='.$this->input->get('first_name').'&last_name='.$this->input->get('last_name').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
         $input['where'] = array('first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone'=>$phone);
         //$input['like'] = array('active' , $active);
@@ -45,6 +45,8 @@ class Users extends Admin_Controller
         $this->pagination->initialize($config);        
         $this->data['pagination'] = $this->pagination->create_links();
         $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // record number for each page
+        $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
         // get list data
 
         $this->data['items'] = $this->users_model->get_list_where($config["per_page"], $offset, $first_name, $last_name, $email, $phone, $active);

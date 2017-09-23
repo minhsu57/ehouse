@@ -93,7 +93,7 @@
                 foreach($items as $key=> $item)
                 {
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
+                    echo '<td><div class="text-center">'.$record_number.'</div></td>';
                     echo '<td>'.$item->course_name.'</td>'; 
                     echo '<td><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'">'.$item->last_name .' '.$item->first_name.'</a></td>';
                     echo '<td><div class="text-center">'.$item->total_day.'</div></td>';
@@ -104,6 +104,7 @@
                     echo '<td>'.$item->phone.'</td>';
                     echo '<td><div style="width: 100%; text-align: center"><a href="'.base_url('admin/calendar/update?user_name='.$item->user_name.'&course_id='.$item->course_id).'" style="color:#fff"><button title="Click to view attendance" class="btn btn-sm btn-success"><li class="fa fa-calendar"></li></button></a> <a href="'.base_url("admin/").'calendar/delete/'.$item->course_id.'/'.$item->user_name.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button title="Click to delete" class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a> </div></td>';
                     echo '</tr>';
+                    $record_number++;
                 }
             }
             echo '</tbody>';

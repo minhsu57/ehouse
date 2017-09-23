@@ -81,13 +81,13 @@
             <div class="slider">
                 <div id="student-image-slider">
                     <div class="item">
-                        <a href="#"><img src="<?php echo public_helper("images/slider.jpg"); ?>" alt="room pic"></a>
+                        <a href="#"><img src="<?php echo public_helper("upload/images/20954068_766300523555605_2360528083992401766_n.jpg"); ?>" alt="room pic"></a>
                     </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider1.jpg"); ?>"  alt="room pic"></a>
+                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21427355_773358372849820_8901164579932885266_o.jpg"); ?>"  alt="room pic"></a>
                     </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider2.jpg"); ?>" alt="room pic"></a>
+                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21618047_779470692238588_1457376775425124219_n.jpg"); ?>" alt="room pic"></a>
                     </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("images/slider3.jpg"); ?>" alt="room pic"></a>
+                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21686155_779470592238598_2740585090004133537_n.jpg"); ?>" alt="room pic"></a>
                     </div>
                 </div>
             </div>
@@ -109,9 +109,12 @@
                 <?php foreach ($news as $item) {
                     $year = date('Y', strtotime($item->modified_date));
                     $month = date('m', strtotime($item->modified_date));
-                    $date = date('d', strtotime($item->modified_date)); ?>
+                    $date = date('d', strtotime($item->modified_date)); 
+                    // get value of src img tag
+                    preg_match( '@src="([^"]+)"@' , $item->image, $match);
+                    $image = array_pop($match); ?>
                     <div class="item col-md-4">
-                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo base_url($item->image); ?>" class="img-responsive img-opacity" alt=""></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $image; ?>" class="img-responsive img-opacity" alt=""></a></div>
                         <p class="date"><?php echo 'Ngày cập nhật - '.$date.' tháng '.$month.' năm '.$year; ?></p>
                         <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
                         <p class="summary"><?php echo $item->short_content; ?></p>

@@ -14,8 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-md-4 social">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="<?php echo base_url('login'); ?>"><i class="fa fa-fw fa-user"></i><span class="hidden-xs">Đăng nhập</span></a></li>
-                    <li><a href="<?php echo base_url('account'); ?>"><i class="fa fa-fw fa-user-plus"></i><span class="hidden-xs">Đăng ký</span></a></li>
+                    <li><a href="<?php echo base_url('login'); ?>"><i class="fa fa-fw fa-user"></i><span class="">Đăng nhập</span></a></li>
+                    <!-- <li><a href="<?php echo base_url('account'); ?>"><i class="fa fa-fw fa-user-plus"></i><span class="hidden-xs">Đăng ký</span></a></li> -->
                 </ul>
             </div>
         </div>

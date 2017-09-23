@@ -38,7 +38,7 @@ class Calendar extends Admin_Controller
         $this->data['courses'] = $this->course_model->get_list($input);
         
         //pagination settings
-        $config["per_page"] = 2;
+        $config["per_page"] = 10;
         $config['base_url'] = site_url('admin/calendar?course_id='.$this->input->get('course_id').'&start_date='.$this->input->get('start_date').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
         $config['total_rows'] = $this->calendar_model->get_total_calendar($email, $phone, $course_id, $start_date);
         $this->data['total'] = $config['total_rows'];
@@ -50,6 +50,8 @@ class Calendar extends Admin_Controller
         $this->pagination->initialize($config);        
         $this->data['pagination'] = $this->pagination->create_links();
         $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // record number for each page
+        $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
         // get data of calendar model
         $this->data['items'] = $this->calendar_model->get_list_canlendar_user_course($config['per_page'], $offset, $email, $phone, $course_id, $start_date);
         $this->render('admin/calendar/index_view');

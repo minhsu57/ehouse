@@ -53,7 +53,7 @@
                 foreach($items as $key => $item)
                 {
                     echo '<tr>';
-                    echo '<td><div class="text-center">'.($key+1).'</div></td>';
+                    echo '<td><div class="text-center">'.$record_number.'</div></td>';
                     echo '<td><div style="max-width: 300px;">'.$item->name.'</div></td>';
                     echo '<td><div style="max-width: 300px;">'.$item->teacher.'</div></td>';
                     echo '<td><div class="text-center">'.$item->total_day.'</div></td>';
@@ -74,6 +74,7 @@
                     <?php
                     echo '</td>';
                     echo '</tr>';
+                    $record_number++;
                 }
             }
             echo '</tbody>';
@@ -86,5 +87,4 @@
             <?php echo $pagination; ?>
         </div>
     </div>
-
 </div>

@@ -45,7 +45,7 @@ class Public_Controller extends MY_Controller
 		$this->data['website']->meta_keyword = "";
 		$this->data['website']->meta_description = "";
         // get 7 items of news model
-		$input_news['limit'] = array('7' ,'0');
+		$input_news['limit'] = array('6' ,'0');
 		$input_news['order'] = array('modified_date','DESC');
 		$this->data['news'] = $this->news_model->get_list($input_news);
 	}

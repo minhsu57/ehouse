@@ -7,12 +7,14 @@ class News extends Public_Controller {
         $this->load->helper('url');
        	$this->load->database();
        	$this->load->library('session');
+        
         $this->load->model('category_model');
         $this->load->model('slider_model');
        	$this->load->model('news_model');
         // slider
         $input['where'] = array('status' => 1, "category_id" => 'tin-tuc');
         $this->data['sliders'] = $this->slider_model->get_list($input);
+        $this->load->library('pagination');
     }
     
 	public function index()
@@ -22,8 +24,23 @@ class News extends Public_Controller {
         $page = $this->category_model->get_row($input);
         $this->data['website']->meta_keyword = $page->meta_keyword;
         $this->data['website']->meta_description = $page->meta_description;
+        //pagination settings
+        $config["per_page"] = 30;
+        $config['base_url'] = site_url('tin-tuc');
+        $config['total_rows'] = $this->news_model->get_total();
+        $this->data['total'] = $config['total_rows'];
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = $choice;       
+        
+        // pagination
+        $page = ($this->input->get('page')) ? $this->input->get('page') : 1;
+        $this->pagination->initialize($config);        
+        $this->data['pagination'] = $this->pagination->create_links();
+        $offset = ($page  == 1) ? 0 : ($page * $config['per_page']) - $config['per_page'];
+        // get list data
+        $input_news['limit'] = array($config["per_page"], $offset);
         // get list news	
-        $this->data['items'] = $this->news_model->get_list();
+        $this->data['items'] = $this->news_model->get_list($input_news);
 		$this->render('user/news_view');
 	}
 	public function detail($id)
