@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Speaking_English extends Public_Controller {
+class Speaking_english extends Public_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
@@ -13,8 +13,8 @@ class Speaking_English extends Public_Controller {
         
         // title for button in view
         $this->data['tab1_title'] = "Thông tin khóa học";
-        $this->data['tab2_title'] = "Đăng kí khóa học";
-        $this->data['tab3_title'] = "Nội dung khóa học";
+        $this->data['tab2_title'] = "Lịch khai giảng";
+        $this->data['tab3_title'] = "Đăng ký";
     }
 
     public function index($id)

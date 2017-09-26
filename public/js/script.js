@@ -130,3 +130,50 @@ $.fn.extend({
         return this;
     }
 });
+
+$(function(){
+    $("#ehouse_course_tab .dropdown-menu li a").click(function(){
+        $("#ehouse_course_id").val($(this).text());
+    });
+});
+
+function sendInfo(base_url){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var student_name        = $('#student_name').val().trim();
+    var student_phone       = $('#student_phone').val().trim();
+    var student_email       = $('#student_email').val().trim();
+    var course              = $('#ehouse_course_id').val().trim();
+    var student_message     = $('#student_message').html();
+    if(student_name == "" || student_phone == "" || student_email == ""){
+        BootstrapDialog.alert('Vui lòng nhập đầy đủ thông tin !');
+    }else if(ehouse_course_id == ""){
+        BootstrapDialog.alert('Vui lòng chọn khóa học !');
+    }else if(!re.test(student_email)){
+        BootstrapDialog.alert('Email không đúng định dạng !');
+    }else{
+        var dataString = {name: student_name , phone: student_phone, email: student_email, course: course, message: student_message};
+        $.ajax({
+            url: base_url+'Send_mail',
+            type: 'POST',
+            data: dataString,
+            timeout: 1000,
+            dataType: "json",
+            async: false,
+            success: function(msg){
+                if(msg.sent){
+                    BootstrapDialog.alert('Gửi thông tin thành công');
+                }
+                else{
+                    BootstrapDialog.alert('Gửi thông tin thất bại !');
+                }
+            },
+            error: function (e){
+                BootstrapDialog.alert('Có lỗi xảy ra '+e);               
+            }
+        });
+    }
+}
+
+
+

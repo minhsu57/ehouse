@@ -10,7 +10,7 @@
     <?php foreach ($content_course as $item) { ?> 
     <div class="col-xs-12 col-md-6 col-lg-15"> 
         <a href="<?php echo base_url().$item->link; ?>">     
-            <p><img src="<?php echo $item->image_name; ?>" class="img-opacity"></p>
+            <p><img src="<?php echo $item->image_name; ?>" class="img-opacity" alt="<?php echo $item->title; ?>"></p>
             
             <div class="content-course-title">
                 <div>
@@ -22,7 +22,6 @@
     <?php } ?>
 </div>
 <!-- End cac khoa hoc -->
-
 <section class="testimonials-section" style="background-image:url('<?php echo $course_consultant->image_name; ?>'); height: 100%; ">
     <div class="container">
         <div id="class-res" class="col-xs-12 col-md-5 pull-right">
@@ -31,28 +30,28 @@
                 <span class="col-xs-12"></span>
                 <div class="text-center">
                     <div class="col-xs-12">
-                        <img class="img-circle img-thumbnail" alt="logo_content" src="<?php echo public_helper('upload/images/call.png'); ?>">
+                        <img class="img-circle img-thumbnail" alt="<?php echo $website->page_title; ?>" src="<?php echo public_helper('upload/images/call.png'); ?>">
                     </div>
                 </div>
-                <input class="form-control" placeholder="Họ và tên">
-                <input class="form-control" placeholder="Số điện thoại">
-                <input class="form-control" placeholder="Email">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Bạn cần tư vấn chương trình:">
+                <input class="form-control" placeholder="Họ và tên" id="student_name">
+                <input class="form-control" placeholder="Số điện thoại" id="student_phone">
+                <input class="form-control" placeholder="Email" id="student_email">
+                <div class="input-group" id="ehouse_course_tab">
+                    <input type="text" class="form-control" placeholder="Bạn cần tư vấn chương trình" disabled id="ehouse_course_id">
                     <label class="input-group-addon dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                     </label>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Luyện nghe nói tiếng Anh nhóm 4-5 bạn</a></li>
-                        <li><a href="#">Luyện nghe nói tiếng Anh nhóm 8 bạn</a></li>
-                        <li><a href="#">Luyện nghe nói tiếng Anh theo nhóm tại công ty</a></li>
-                        <li><a href="#">Luyện thi IELTS</a></li>
-                        <li><a href="#">Thi thử IELTS</a></li>
+                        <li><a>Luyện nghe nói tiếng Anh nhóm 4-5 bạn</a></li>
+                        <li><a>Luyện nghe nói tiếng Anh nhóm 8 bạn</a></li>
+                        <li><a>Luyện nghe nói tiếng Anh theo nhóm tại công ty</a></li>
+                        <li><a>Luyện thi IELTS</a></li>
+                        <li><a>Thi thử IELTS</a></li>
                     </ul>
                 </div>
-                <textarea class="form-control" placeholder="Nếu bạn có lời nhắn, xin hãy để lại khung này"></textarea>
+                <textarea class="form-control" placeholder="Nếu bạn có lời nhắn, xin hãy để lại khung này" id="student_message"></textarea>
                 <div class="text-center" style="margin-top:20px;">
-                    <button class="btn btn-info">Gửi thông tin</button>
+                    <button class="btn btn-info" onclick="sendInfo('<?php echo base_url(); ?>')">Gửi thông tin</button>
                 </div>
             </div>
         </div>
@@ -114,7 +113,7 @@
                     preg_match( '@src="([^"]+)"@' , $item->image, $match);
                     $image = array_pop($match); ?>
                     <div class="item col-md-4">
-                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $image; ?>" class="img-responsive img-opacity" alt=""></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $image; ?>" class="img-responsive img-opacity" alt="<?php echo $item->title; ?>"></a></div>
                         <p class="date"><?php echo 'Ngày cập nhật - '.$date.' tháng '.$month.' năm '.$year; ?></p>
                         <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
                         <p class="summary"><?php echo $item->short_content; ?></p>
