@@ -13,19 +13,11 @@ class Send_mail extends Public_Controller {
     public function index()
     {   
         $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'minhsu57', // change it to yours
-            'smtp_pass' => 'sti4000sti', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'starttls'  => true,
             'newline'   => "\r\n"
         );
-        $this->load->library('email', $config);
-
-        
         
         /* get info from user input */       
         $name   = $this->input->post('name');
@@ -36,13 +28,19 @@ class Send_mail extends Public_Controller {
         /* Send email to customer */
         $subject = 'Đăng ký tư vấn khóa học';
         /* ************************ */
-        $message = '123';
-        $this->load->library('email', $config);
+        $content = '<p style="text-align: center; font-size: 20px; color: #2196F3;"><b>Thông tin đăng ký vừa nhận được</b></p>';
+        $content .= '<p><b>Tên : '. $name.'</b></p>';
+        $content .= '<p><b>Điện thoại : '. $phone.'</b></p>';
+        $content .= '<p><b>Email : '. $email.'</b></p>';
+        $content .= '<p><b>Chương trình cần tư vấn : '. $course.'</b></p>';
+        $content .= '<p><b>Lời nhắn : '. $message.'</b></p>';
+        $this->load->library('email', $config); 
+        $this->email->set_crlf( "\r\n" );
         //$this->email->set_newline("\n");
-        $this->email->from('minhsu57@gmail.com'); // change it to yours
+        $this->email->from('ehousecoffee_support@gmail.com'); // change it to yours
         $this->email->to('minhsu0602@gmail.com');// change it to yours
         $this->email->subject($subject);
-        $this->email->message($message);
+        $this->email->message($content);
         if ($this->email->send()){
             echo json_encode(array("sent"=>TRUE));
         }else{

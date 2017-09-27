@@ -144,10 +144,11 @@ function sendInfo(base_url){
     var student_phone       = $('#student_phone').val().trim();
     var student_email       = $('#student_email').val().trim();
     var course              = $('#ehouse_course_id').val().trim();
-    var student_message     = $('#student_message').html();
+    var student_message     = $('#student_message').val().trim();
+
     if(student_name == "" || student_phone == "" || student_email == ""){
         BootstrapDialog.alert('Vui lòng nhập đầy đủ thông tin !');
-    }else if(ehouse_course_id == ""){
+    }else if(course == ""){
         BootstrapDialog.alert('Vui lòng chọn khóa học !');
     }else if(!re.test(student_email)){
         BootstrapDialog.alert('Email không đúng định dạng !');
