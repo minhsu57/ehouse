@@ -82,7 +82,13 @@
                 echo form_input('email',set_value('email',$item_vi->email),'class="form-control"');
                 ?>
             </div>
-
+            <div class="form-group col-md-4 col-lg-4">
+                <?php
+                echo form_label('Admin email','admin_email');
+                echo form_error('admin_email');
+                echo form_input('admin_email',set_value('admin_email',$item_vi->admin_email),'class="form-control"');
+                ?>
+            </div>
             <div class="form-group col-md-4 col-lg-4">
                 <?php
                 echo form_label('Address','address');
@@ -90,7 +96,7 @@
                 echo form_input('address',set_value('address',$item_vi->address),'class="form-control"');
                 ?> 
             </div>
-            <div class="form-group col-md-8 col-lg-8">
+            <div class="form-group col-md-4 col-lg-4">
                 <?php
                 echo form_label('Slogan','slogan');
                 echo form_error('slogan');

@@ -52,7 +52,7 @@ $_CONFIG = array(
     'thumbWidth' => 100,
     'thumbHeight' => 100,
 
-    'watermark' => "",
+    'watermark' => "ehouse coffee",
 
 
 // DISABLE / ENABLE SETTINGS

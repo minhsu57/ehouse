@@ -15,15 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </p>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <form action="" class="form-newsletter">
+                    <div class="form-newsletter">
                         <label>
                             Đăng ký nhận email từ chúng tôi
                         </label>
                         <div class="form-group">
-                            <input class="input-control" type="text">
-                            <button><i class="fa fa-paper-plane"></i></button>
+                            <input class="input-control" type="text" id="customer_email">
+                            <button onclick="receiveEmail('<?php echo base_url(); ?>')"><i class="fa fa-paper-plane"></i></button>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
             </div>

@@ -37,10 +37,11 @@ class Website extends Admin_Controller
             $mobile_phone = $this->input->post('mobile_phone');
             $google_map = $this->input->post('google_map');
             $email = $this->input->post('email');
+            $admin_email = $this->input->post('admin_email');
             $address = $this->input->post('address');
             $slogan = $this->input->post('slogan');            
             $keyword = $this->input->post('keyword');
-            $update_data = array('website_name' => $website_name, 'favicon' => $favicon,'facebook' => $facebook, 'youtube' => $youtube, 'google_plus' => $google_plus, 'twitter' => $twitter, 'ad_video' => $ad_video, 'phone' => $phone, 'mobile_phone' => $mobile_phone, 'google_map' => $google_map,'email' => $email, 'address' => $address, 'slogan' => $slogan, 'slogan' => $slogan, 'keyword'=>$keyword, 'modified_date'=>date('Y-m-d'));
+            $update_data = array('website_name' => $website_name, 'favicon' => $favicon,'facebook' => $facebook, 'youtube' => $youtube, 'google_plus' => $google_plus, 'twitter' => $twitter, 'ad_video' => $ad_video, 'phone' => $phone, 'mobile_phone' => $mobile_phone, 'google_map' => $google_map, 'email' => $email, 'admin_email' => $admin_email, 'address' => $address, 'slogan' => $slogan, 'slogan' => $slogan, 'keyword'=>$keyword, 'modified_date'=>date('Y-m-d'));
             if(!$this->website_model->update($id, $update_data))
             {             
                 $this->postal->add('Update failed !','error');

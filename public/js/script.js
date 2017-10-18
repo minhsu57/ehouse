@@ -90,14 +90,6 @@ $(window).resize(function(){
 });
 // end pct add code
 jQuery(window).bind('scroll', function () {
-    // pct replace code
-    // if (jQuery(window).scrollTop() > 10) {
-    //     jQuery('#header-2').addClass('navbar-fixed-top').removeClass('topnavbar');
-    //     jQuery('body').addClass('bodytopmargin').removeClass('bodynomargin');
-    // } else {
-    //     jQuery('#header-2').removeClass('navbar-fixed-top').addClass('topnavbar');
-    //     jQuery('body').removeClass('bodytopmargin').addClass('bodynomargin');
-    // }
     if (window.innerWidth > 768) {
         if (jQuery(window).scrollTop() > 50) {
             jQuery('#header-2').removeClass('hidden');
@@ -113,10 +105,6 @@ jQuery(window).bind('scroll', function () {
             jQuery('body').removeClass('bodytopmargin').addClass('bodynomargin');
         }
     }
-    // pct end replace code
-    // if (jQuery(window).scrollTop() > 150 && jQuery(window).scrollTop() < 300) {
-    //     jQuery('.content-course img').animateCss('bounce');
-    // }
     if (jQuery(window).scrollTop() > 600 && jQuery(window).scrollTop() < 800) {
         jQuery('.register img').animateCss('tada');
     }
@@ -164,9 +152,48 @@ function sendInfo(base_url){
             success: function(msg){
                 if(msg.sent){
                     BootstrapDialog.alert('Gửi thông tin thành công');
+                    $('#student_name').val('');
+                    $('#student_phone').val('');
+                    $('#student_email').val('');
+                    $('#ehouse_course_id').val('');
+                    $('#student_message').val('');
                 }
                 else{
                     BootstrapDialog.alert('Gửi thông tin thất bại !');
+                }
+            },
+            error: function (e){
+                BootstrapDialog.alert('Có lỗi xảy ra '+e);               
+            }
+        });
+    }
+}
+
+function receiveEmail(base_url){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var customer_email = $('#customer_email').val().trim();
+
+    if(customer_email == ""){
+        BootstrapDialog.alert('Vui lòng nhập email !');
+    }else if(!re.test(customer_email)){
+        BootstrapDialog.alert('Email không đúng định dạng !');
+    }else{
+        var dataString = {email: customer_email};
+        $.ajax({
+            url: base_url+'Send_mail/customerInfo',
+            type: 'POST',
+            data: dataString,
+            timeout: 1000,
+            dataType: "json",
+            async: false,
+            success: function(msg){
+                if(msg.sent){
+                    BootstrapDialog.alert('Đăng ký thành công');
+                    $('#customer_email').val('');
+                }
+                else{
+                    BootstrapDialog.alert('Đăng ký thất bại !');
                 }
             },
             error: function (e){

@@ -38,7 +38,34 @@ class Send_mail extends Public_Controller {
         $this->email->set_crlf( "\r\n" );
         //$this->email->set_newline("\n");
         $this->email->from('ehousecoffee_support@gmail.com'); // change it to yours
-        $this->email->to('minhsu0602@gmail.com');// change it to yours
+        $this->email->to($this->data['website']->admin_email);// change it to yours
+        $this->email->subject($subject);
+        $this->email->message($content);
+        if ($this->email->send()){
+            echo json_encode(array("sent"=>TRUE));
+        }else{
+            echo json_encode(array("sent"=>FALSE));
+        }
+    }
+
+    public function customerInfo()
+    {   
+        $config = Array(
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'starttls'  => true,
+            'newline'   => "\r\n"
+        );
+             
+        $email  = $this->input->post('email');
+        /* Send email to customer */
+        $subject = 'Đăng ký nhận email, thông tin từ EHOUSE COFFEE';
+        /* ************************ */
+        $content = '<p style="text-align: center; font-size: 20px; color: #2196F3;"><b>Email đăng ký vừa nhận được</b></p>';
+        $content .= '<p><b>Email : '. $email.'</b></p>';
+        $this->load->library('email', $config); 
+        $this->email->from('ehousecoffee_support@gmail.com'); // change it to yours
+        $this->email->to($this->data['website']->admin_email);// change it to yours
         $this->email->subject($subject);
         $this->email->message($content);
         if ($this->email->send()){

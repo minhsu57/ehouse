@@ -15,4 +15,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-sm-12 col-md-3 col-lg-3" style="min-height: 1100px"><?php $this->load->view('user/sidebar_view'); ?></div>
 	</div>
 </div>
-s
