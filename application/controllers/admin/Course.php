@@ -25,7 +25,7 @@ class Course extends Admin_Controller
     {
         // condition for get course data
         $active = $this->input->get('active');
-        $input['order'] = array('start_date','DESC');
+        $input['order'] = array('start_date','desc');
         $input['like'] = array('active', $active);
         //pagination settings
         $config["per_page"] = 15;
@@ -43,8 +43,8 @@ class Course extends Admin_Controller
         // record number for each page
         $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
         // get list data
-        $input['limit'] = array($config["per_page"], $offset);        
-        $this->data['items'] = $this->course_model->get_list($input);
+        $input_course['limit'] = array($config["per_page"], $offset);        
+        $this->data['items'] = $this->course_model->get_list($input_course);
 
         $this->render('admin/course/index_view');
     }

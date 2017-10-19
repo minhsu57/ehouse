@@ -19,11 +19,10 @@ class Contact extends Public_Controller {
         $this->data['website']->meta_keyword = $page->meta_keyword;
         $this->data['website']->meta_description = $page->meta_description;
         // get list slider
-		$input['where'] = array('status' => 1, 'category_id' => 'lien-he');
-    	$this->data['sliders'] = $this->slider_model->get_list($input);
+		    $input['where'] = array('status' => 1, 'category_id' => 'lien-he');
+    	 $this->data['sliders'] = $this->slider_model->get_list($input);
         // get content of contact page
-        $input['where'] = array('id' => 'lien-he');
-        $this->data['item'] = $this->category_model->get_row($input);
+        $this->data['item'] = $page;
 		$this->render('user/contact_view');
 	}
 }

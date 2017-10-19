@@ -86,6 +86,7 @@ class User extends MY_Controller
 
     public function logout()
     {
+        $this->session->unset_userdata('IsAuthorized');
         if($this->ion_auth->in_group('admin'))
         {
             $redirect = "/admin/user/login";

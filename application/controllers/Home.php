@@ -11,7 +11,6 @@ class Home extends Public_Controller {
         $this->load->model('category_model');
         $this->load->model('slider_model');
         $this->load->model('page_content_model');
-        $this->load->model('news_model');
     }
 
     public function index()

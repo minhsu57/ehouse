@@ -70,6 +70,7 @@ class Admin_Controller extends MY_Controller
 			//redirect them to the login page
 			redirect('admin/user/login', 'refresh');
 		}
+		$_SESSION['IsAuthorized'] = true;
 		$current_user = $this->ion_auth->user()->row();
 		$this->user_id = $current_user->id;
 		$this->data['current_user'] = $current_user;

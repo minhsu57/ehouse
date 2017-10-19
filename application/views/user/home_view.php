@@ -33,7 +33,7 @@
                         <img class="img-circle img-thumbnail" alt="<?php echo $website->page_title; ?>" src="<?php echo public_helper('upload/images/call.png'); ?>">
                     </div>
                 </div>
-                <input class="form-control" placeholder="Họ và tên" id="student_name">
+                <input class="form-control" placeholder="Họ và tên id="student_name">
                 <input class="form-control" placeholder="Số điện thoại" id="student_phone">
                 <input class="form-control" placeholder="Email" id="student_email">
                 <div class="input-group" id="ehouse_course_tab">
@@ -42,9 +42,9 @@
                         <span class="caret"></span>
                     </label>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a>Luyện nghe nói tiếng Anh nhóm 4-5 bạn</a></li>
-                        <li><a>Luyện nghe nói tiếng Anh nhóm 8 bạn</a></li>
-                        <li><a>Luyện nghe nói tiếng Anh theo nhóm tại công ty</a></li>
+                        <li><a>Luyện nghe nói tiếng anh nhóm 4-5 bạn</a></li>
+                        <li><a>Luyện nghe nói tiếng anh nhóm 8 bạn</a></li>
+                        <li><a>Luyện nghe nói tiếng anh theo nhóm tại công ty</a></li>
                         <li><a>Luyện thi IELTS</a></li>
                         <li><a>Thi thử IELTS</a></li>
                     </ul>
@@ -59,7 +59,7 @@
     </div>                  
 </section>
 
-<!-- Đăng ký kiểm tra trình độ và lưu ý -->
+<!-- ÄÄƒng kÃ½ kiá»ƒm tra trÃ¬nh Ä‘á»™ vÃ  lÆ°u Ã½ -->
 <section class="text-section">
     <div class="seft-test container">
         <div class="text-center">
@@ -76,7 +76,7 @@
 <div class="student-info">
     <div class="container">
         <div class="panel-xanh">
-            <div class="panel-heading"><div class="panel-title">Hình ảnh học viên</div></div>
+            <div class="panel-heading"><div class="panel-title">HÌNH ẢNH HỌC VIÊN</div></div>
             <div class="slider">
                 <div id="student-image-slider">
                     <div class="item">
@@ -102,7 +102,7 @@
 <div class="news">
     <div class="container">
         <div class="panel-xanh">
-            <div class="panel-heading"><div class="panel-title">Tin tức</div></div>
+            <div class="panel-heading"><div class="panel-title">TIN TỨC</div></div>
             <div class="news-list">
                 <div>
                 <?php foreach ($news as $item) {
