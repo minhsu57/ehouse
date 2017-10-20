@@ -13,5 +13,6 @@ $route['english/(:any)'] 		= "speaking_english/index/$1";
 $route['lien-he'] 				= "contact";
 $route['tin-tuc/(:num)-(:any)'] = "news/detail/$1";
 $route['tin-tuc'] 				= "news/index";
+$route['thu-vien-hinh-anh'] 	= "images/index";
 
 $route['member/index'] 			= "member/profile";

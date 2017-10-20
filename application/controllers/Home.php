@@ -11,6 +11,7 @@ class Home extends Public_Controller {
         $this->load->model('category_model');
         $this->load->model('slider_model');
         $this->load->model('page_content_model');
+        $this->load->model('images_model');
     }
 
     public function index()
@@ -33,6 +34,10 @@ class Home extends Public_Controller {
         // get content of registering test level
         $input_resgiter['where'] = array('id' => 'resgiter_test_level');
         $this->data['note_rtl'] = $this->page_content_model->get_row($input_resgiter);
+        // get list student's images
+        $input_images['order'] = array('sort','DESC');
+        $input_images['limit'] = array('10' ,'0');
+        $this->data['images_library'] = $this->images_model->get_list($input_images);
 
         $this->render('user/home_view');
     }

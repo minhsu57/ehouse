@@ -27,7 +27,6 @@ $config = array();
 
 $config['authentication'] = function () {
     //return true;
-    echo "<script type='text/javascript'>alert('123');</script>";
     return isset($_SESSION['IsAuthorized']) && $_SESSION['IsAuthorized'];
 };
 
@@ -35,7 +34,7 @@ $config['authentication'] = function () {
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
 $config['licenseName'] = 'localhost';
-$config['licenseKey']  = '1GZGMGBWP7PH6QP8PVG64Z656USJ3';
+$config['licenseKey']  = 'CFDFXBHVECMRAFBE5LU84ANDRG7EW';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

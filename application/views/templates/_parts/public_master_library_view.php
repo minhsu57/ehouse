@@ -27,9 +27,24 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="<?php echo public_helper("lib/jquery/jquery.min.js"); ?>"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
     <script type="text/javascript" src="<?php echo public_helper('lib/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo public_helper("owlcarousel/owl.carousel.min.js"); ?>"></script>
     
     <script type="text/javascript" src="<?php echo public_helper("js/script.js"); ?>"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="<?php echo public_helper('fancy-box/jquery.fancybox.js?v=2.1.3') ?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo public_helper('fancy-box/jquery.fancybox.css?v=2.1.2') ?>" media="screen" />
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+             *  Simple image gallery. Uses default settings
+             */
+
+            $('.fancybox').fancybox();
+        });
+    </script>

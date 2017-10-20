@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/images_library/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <a href="<?php echo base_url('admin/images_library/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Add</button></a>
         </div>
     </div>
     <div class="row">
@@ -19,9 +19,9 @@
             echo '<tr>';
             echo '<th><div class="text-center">No</div></th>';
             echo '<th>name</th>';
-            echo '<th>Hình</th>';
-            echo '<th>Ngày upload</th>';
-            echo '<th>Thao tác</th>';
+            echo '<th>Image</th>';
+            echo '<th>Created date</th>';
+            echo '<th><div style="text-align: center">Actions</div></th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -36,11 +36,11 @@
                     echo '<td><img src="'.base_url($item->image).'" style="width: 120px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>'; ?>
                     <?php
-                    echo '<td>';
-                    echo '<a href="images_library/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Are you sure to delete ?\')"><button class="btn btn-sm btn-danger">Xóa</button></a>';
+                    echo '<td><div style="text-align: center;">';
+                    echo '<a href="images_library/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Are you sure to delete ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
                     ?>
                     <?php
-                    echo '</td>';
+                    echo '</div></td>';
                     echo '</tr>';
                 }
             }

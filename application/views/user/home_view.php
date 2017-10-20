@@ -33,7 +33,7 @@
                         <img class="img-circle img-thumbnail" alt="<?php echo $website->page_title; ?>" src="<?php echo public_helper('upload/images/call.png'); ?>">
                     </div>
                 </div>
-                <input class="form-control" placeholder="Họ và tên id="student_name">
+                <input class="form-control" placeholder="Họ và tên" id="student_name">
                 <input class="form-control" placeholder="Số điện thoại" id="student_phone">
                 <input class="form-control" placeholder="Email" id="student_email">
                 <div class="input-group" id="ehouse_course_tab">
@@ -79,20 +79,16 @@
             <div class="panel-heading"><div class="panel-title">HÌNH ẢNH HỌC VIÊN</div></div>
             <div class="slider">
                 <div id="student-image-slider">
+                    <?php foreach ($images_library as $value) { ?>                       
                     <div class="item">
-                        <a href="#"><img src="<?php echo public_helper("upload/images/20954068_766300523555605_2360528083992401766_n.jpg"); ?>" alt="room pic"></a>
+                        <a class="fancybox" data-fancybox-group="gallery" href="<?php echo base_url($value->image); ?>"><img src="<?php echo base_url($value->image); ?>" alt="<?php echo $value->name; ?>"></a>
                     </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21427355_773358372849820_8901164579932885266_o.jpg"); ?>"  alt="room pic"></a>
-                    </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21618047_779470692238588_1457376775425124219_n.jpg"); ?>" alt="room pic"></a>
-                    </div>
-                    <div class="item"><a href="#"><img src="<?php echo public_helper("upload/images/21686155_779470592238598_2740585090004133537_n.jpg"); ?>" alt="room pic"></a>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <div style="clear: both;"></div>
             <div class="text-center">
-                <button type="button" class="btn btn-info">Xem thêm hình ảnh khác</button>
+                <a href="<?php echo base_url('thu-vien-hinh-anh') ?>"><button type="button" class="btn btn-info">Xem thêm hình ảnh khác</button></a>
             </div>
         </div>
     </div>

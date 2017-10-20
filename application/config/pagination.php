@@ -18,7 +18,7 @@
  */
 
 // --------------------------------------------------------------------------
-$config['per_page'] = 15;
+$config['per_page'] = 30;
 $config['uri_segment'] = 3;
 $config['num_links'] = 9;
 $config['page_query_string'] = TRUE;
