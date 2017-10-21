@@ -23,9 +23,9 @@
                 </div>
                 <div class="col-lg-2 pd-l-0">
                     <select name="active" class="form-control">
-                        <option value="" <?php if($this->input->get('active')=="") echo 'selected'; ?> >All users status</option>
+                        <option value="" <?php if(!$this->input->get('active') || $this->input->get('active')=="" ) echo 'selected'; ?> >All users status</option>
                         <option value="1" <?php if($this->input->get('active')==1) echo 'selected'; ?> >Actived</option>
-                        <option value="0" <?php if($this->input->get('active')==0) echo 'selected'; ?> >Locked</option>
+                        <option value="0" <?php if($this->input->get('active')=="0") echo 'selected'; ?> >Locked</option>
                     </select>
                 </div>
                 <div class="col-lg-5 pd-l-0">

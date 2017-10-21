@@ -15,7 +15,7 @@ class Slider_model extends MY_Model
     }
 
     public function get_list_slider_category(){
-    	$rows = $this->db->query('select c.name category_name, s.* from category c, slider s where c.id = s.category_id');
+    	$rows = $this->db->query('select c.name category_name, s.* from category c, slider s where c.id = s.category_id order by s.modified_date asc');
         return $rows->result();
     }
 

@@ -13,38 +13,40 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label>Link </label><span class="error">*</span>
+                <label>Link </label>
                 <?php
                 echo form_error('link');
                 echo form_input('link',set_value('link',''),'class="form-control"');
                 ?>
             </div>             
             <div class="form-group col-md-5">
-                <label>Slogan 01 </label><span class="error">*</span>
+                <label>Slogan 01 <span class="error">*</span></label>
                 <?php
-                echo form_error('description');
+                echo form_error('description','<span class="error">');
                 echo form_input('description',set_value('description',''),'class="form-control"');
                 ?>
             </div>
             <div class="form-group col-md-5">
-                <label>Slogan 02 </label><span class="error">*</span>
+                <label>Slogan 02 </label>
                 <?php
                 echo form_error('description2');
                 echo form_input('description2',set_value('description2',''),'class="form-control"');
                 ?>
             </div>
             <div class="col-md-2">
-                <label>Status </label><span class="error">*</span>
+                <label>Status <span class="error">*</span></label>
                 <select class="form-control" name="status">
-                    <option value="1">Hiện</option>
-                    <option value="0">Ẩn</option>
+                    <option value="1">Show</option>
+                    <option value="0">Hide</option>
                 </select>
             </div>
             <div class="form-group col-md-12">
-                <label>Hình ảnh <span class="error">*</span></label>
-                <div id="editor">
-                    <textarea class="ckeditor" name="image"></textarea> 
-                    <?php echo form_error('image','<p class="error">'); ?>
+                <label>Image <span class="error">*</span></label>
+                <?php echo form_error('image','<p class="error">'); ?>
+                <div>
+                    <input type="hidden" name="image" id="image" value="<?php echo set_value("image"); ?>">
+                    <img src="<?php echo base_url(set_value("image")); ?>" id="image_link_img" style="max-height: 300px" onclick="openPopup()" name="image_link_img">
+                    <button type="button" class="btn btn-default" onclick="openPopup()"><li class="fa fa-image"></li> Browse Image</button>
                 </div>
             </div>
                      
@@ -56,3 +58,22 @@
         </div>
     </div>
 </div>
+<script src="<?php echo public_helper('ckfinder/ckfinder.js?t='.rand())?>"></script>
+<script>
+     function openPopup() {
+         CKFinder.popup( {
+             chooseFiles: true,
+             onInit: function( finder ) {
+                 finder.on( 'files:choose', function( evt ) {
+                     var file = evt.data.files.first();
+                     document.getElementById( 'image' ).value = file.getUrl();
+                     document.getElementById( 'image_link_img' ).src = base_url+file.getUrl();
+                 } );
+                 finder.on( 'file:choose:resizedImage', function( evt ) {
+                     document.getElementById('image').value = evt.data.resizedUrl;
+                   document.getElementById( 'image_link_img' ).src = base_url+evt.data.resizedUrl;
+                 } );
+             }
+         } );
+     }
+ </script>

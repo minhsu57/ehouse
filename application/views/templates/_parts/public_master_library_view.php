@@ -9,7 +9,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <link href="<?php echo $website->favicon_icon; ?>" rel="shortcut icon" type="image/x-icon" />
+    <link href="<?php echo $website->favicon; ?>" rel="shortcut icon" type="image/x-icon" />
     <meta http-equiv="content-language" content="vi" />
     <meta name="description" content="<?php echo $website->meta_description; ?>" />
     <meta name="keywords" content="<?php echo $website->meta_keyword; ?>" />
@@ -32,8 +32,8 @@
     <script type="text/javascript" src="<?php echo public_helper("owlcarousel/owl.carousel.min.js"); ?>"></script>
     
     <script type="text/javascript" src="<?php echo public_helper("js/script.js"); ?>"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
+    <link href="<?php echo public_helper('bootstrap-dialog/bootstrap-dialog.min.css') ?>" rel="stylesheet" type="text/css" />
+    <script src="<?php echo public_helper('bootstrap-dialog/bootstrap-dialog.min.js') ?>"></script>
 
     <!-- Add fancyBox main JS and CSS files -->
     <script type="text/javascript" src="<?php echo public_helper('fancy-box/jquery.fancybox.js?v=2.1.3') ?>"></script>

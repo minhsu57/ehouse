@@ -111,19 +111,24 @@
                 </div>
             </div>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Favicon</strong>
-                <div id="editor">
-                    <textarea class="ckeditor" name="favicon"><?php echo $item_vi->favicon ?></textarea> 
-                    <?php echo form_error('favicon','<p class="error">'); ?>
-                </div>
-            </div>
-            <div class="form-group col-md-6 col-lg-6">
                 <strong>Advertisement</strong>
                 <div id="editor">
                     <textarea class="ckeditor" name="ad_video"><?php echo $item_vi->ad_video ?></textarea> 
                     <?php echo form_error('ad_video','<p class="error">'); ?>
                 </div>
-            </div>             
+            </div> 
+            <div class="form-group col-md-6 col-lg-6">
+                <label>Favicon <span class="error">*</span></label>
+                <?php echo form_error('favicon','<p class="error">'); ?>
+                <div>
+                    <input type="hidden" name="favicon" id="favicon" value="<?php echo set_value("favicon",$item_vi->favicon); ?>">
+                    <img src="<?php echo base_url(set_value("favicon",$item_vi->favicon)); ?>" id="favicon_link_img" style="max-width: 300px; margin-bottom: 5px; cursor: pointer;" onclick="openPopup()" name="favicon_link_img">
+                    <div>
+                        <button type="button" class="btn btn-default" onclick="openPopup()"><li class="fa fa-image"></li> Browse Image</button>
+                    </div>
+                    
+                </div>
+            </div>                        
             
             <!-- AJAX Response will be outputted on this DIV container -->
             <?php echo form_hidden('id',$item_vi->id);?>
@@ -132,3 +137,22 @@
         </div>
     </div>
 </div>
+<script src="<?php echo public_helper('ckfinder/ckfinder.js?t='.rand())?>"></script>
+<script>
+     function openPopup() {
+         CKFinder.popup( {
+             chooseFiles: true,
+             onInit: function( finder ) {
+                 finder.on( 'files:choose', function( evt ) {
+                     var file = evt.data.files.first();
+                     document.getElementById( 'favicon' ).value = file.getUrl();
+                     document.getElementById( 'favicon_link_img' ).src = base_url+file.getUrl();
+                 } );
+                 finder.on( 'file:choose:resizedImage', function( evt ) {
+                     document.getElementById('favicon').value = evt.data.resizedUrl;
+                   document.getElementById( 'favicon_link_img' ).src = base_url+evt.data.resizedUrl;
+                 } );
+             }
+         } );
+     }
+ </script>

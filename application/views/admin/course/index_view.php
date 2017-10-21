@@ -18,7 +18,7 @@
                     <select name="active" class="form-control" title="Course status">
                         <option value="" <?php if($this->input->get('active')=="") echo 'selected'; ?> >All course status</option>
                         <option value="1" <?php if($this->input->get('active')==1) echo 'selected'; ?> >Actived</option>
-                        <option value="0" <?php if($this->input->get('active')==0) echo 'selected'; ?> >Locked</option>
+                        <option value="0" <?php if($this->input->get('active')=="0") echo 'selected'; ?> >Locked</option>
                     </select>
                 </div>
                 <button class="btn btn-primary btn-md"  type="submit"><li class="fa fa-search"></li> SEARCH</button>

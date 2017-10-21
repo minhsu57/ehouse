@@ -5,14 +5,14 @@
             <h3 class="text-center">ADD IMAGE LIBRARY</h3>
             <?php echo form_open_multipart('admin/images_library/create/');?>
             <div class="col-md-6">
-                <label>Name </label><span class="error">*</span>
+                <label>Name <span class="error">*</span></label>
                 <?php
                 echo form_error('name','<p class="error">');
                 echo form_input('name',set_value('name',''),'class="form-control"');
                 ?>
             </div>
             <div class="col-md-6">
-                <label>Sort </label><span class="error">*</span>
+                <label>Sort <span class="error">*</span></label>
                 <?php
                 echo form_error('sort','<p class="error">');
                 echo form_input('sort',set_value('sort',''),'class="form-control"');
@@ -22,7 +22,7 @@
                 <label>Image <span class="error">*</span></label>
                 <?php echo form_error('image_link','<p class="error">'); ?>
                 <input type="hidden" name="image_link" id="image_link">
-                <img src="" id="image_link_img" style="max-width: 400px">
+                <img src="" id="image_link_img" style="max-width: 400px" onclick="openPopup()">
                 <button type="button" class="btn btn-default" onclick="openPopup()"><li class="fa fa-image"></li> Browse Image</button>
             </div>
             
@@ -47,7 +47,8 @@
                      document.getElementById( 'image_link_img' ).src = base_url+file.getUrl();
                  } );
                  finder.on( 'file:choose:resizedImage', function( evt ) {
-                     document.getElementById('image_link').value = evt.data;
+                     document.getElementById('image_link').value = evt.data.resizedUrl;
+                   document.getElementById( 'image_link_img' ).src = base_url+evt.data.resizedUrl;
                  } );
              }
          } );

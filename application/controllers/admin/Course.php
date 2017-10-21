@@ -43,7 +43,8 @@ class Course extends Admin_Controller
         // record number for each page
         $this->data['record_number'] = ($config["per_page"] * ($page - 1) ) + 1;
         // get list data
-        $input_course['limit'] = array($config["per_page"], $offset);        
+        $input_course['limit']  = array($config["per_page"], $offset);
+        $input_course['like']   = array('active', $active);         
         $this->data['items'] = $this->course_model->get_list($input_course);
 
         $this->render('admin/course/index_view');

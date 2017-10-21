@@ -14,7 +14,7 @@
         <div class="item <?php if($key == 0) echo "active"; ?>">
             <div class="blend">
                 <div></div>
-                <p><img src="<?php echo base_url($value->image_name); ?>" class="img-responsive" alt=""></p>
+                <p><img src="<?php echo base_url($value->image); ?>" class="img-responsive" alt=""></p>
             </div>
             <div class="carousel-caption animated flipInX" style="animation-delay: 0.4s">
                 <h1 class="hidden-xs"><?php echo $value->description; ?></h1>

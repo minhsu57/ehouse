@@ -3,12 +3,12 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="text-center">QUẢN LÝ SLIDER</h3>
+            <h3 class="text-center">SLIDER MANAGEMENT</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/slider/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <a href="<?php echo base_url('admin/slider/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> ADD NEW</button></a>
         </div>
     </div>
     <div class="row">
@@ -20,10 +20,10 @@
             echo '<th><div class="text-center">No</div></th>';
             echo '<th>Category name</th>';
             echo '<th>Slogan</th>';
-            echo '<th>Hình</th>';
-            echo '<th>Ngày upload</th>';
-            echo '<th>T.Thái</th>';
-            echo '<th>Thao tác</th>';
+            echo '<th>Image</th>';
+            echo '<th>Modified date</th>';
+            echo '<th>Status</th>';
+            echo '<th>Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -36,13 +36,13 @@
                     echo '<td><div class="text-center">'.($key+1).'</div></td>';
                     echo '<td>'.$item->category_name.'</td>';
                     echo '<td>'.$item->description.'</td>';
-                    echo '<td><img src="'.base_url($item->image_name).'" style="width: 180px;"></td>';                    
+                    echo '<td><img src="'.base_url($item->image).'" style="width: 180px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>'; ?>
-                    <td><?php if($item->status == 1) echo "Hiện"; else echo "Ẩn"; ?></td>
+                    <td><?php if($item->status == 1) echo "Showing"; else echo "Hiding"; ?></td>
                     <?php
                     echo '<td>';
-                    echo '<a href="slider/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning">Sửa</button></a> ';
-                    echo '<a href="slider/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Bạn chắc chắn muốn xóa ?\')"><button class="btn btn-sm btn-danger">Xóa</button></a>';
+                    echo '<a href="slider/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning"><li class="fa fa-pencil"></li></button></a> ';
+                    echo '<a href="slider/delete/'.$item->id.'" style="color:#fff" onclick="return confirm(\'Are you sure to delete ?\')"><button class="btn btn-sm btn-danger"><li class="fa fa-trash"></li></button></a>';
                     ?>
                     <?php
                     echo '</td>';

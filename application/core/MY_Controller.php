@@ -33,14 +33,7 @@ class Public_Controller extends MY_Controller
 		$this->load->model('website_model');
 		$this->load->model('news_model');
 		$input['where'] = array('language_slug'=>'vi');
-		$this->data['website'] = $this->website_model->get_row($input);
-        // get value of src favicon tag
-		if($this->data['website']->favicon != "" && $this->data['website']->favicon != NULL){
-			$doc = new DOMDocument();
-			$doc->loadHTML($this->data['website']->favicon);
-			$xpath = new DOMXPath($doc);
-			$this->data['website']->favicon_icon = $xpath->evaluate("string(//img/@src)");
-		}else $this->data['website']->favicon_icon = "";	
+		$this->data['website'] = $this->website_model->get_row($input);	
 		$this->data['website']->page_title = $this->data['website']->website_name;
 		$this->data['website']->meta_keyword = "";
 		$this->data['website']->meta_description = "";

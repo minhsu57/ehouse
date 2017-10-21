@@ -18,6 +18,7 @@ class News extends Admin_Controller
         $this->load->library('form_validation');
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->lang->load('form_validation', 'english');
+        $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
         $this->load->library('pagination'); 
     }
 
@@ -50,10 +51,10 @@ class News extends Admin_Controller
     public function create()
     {        
         if($this->input->post('submit')){
-            $this->form_validation->set_message('required', $this->lang->line('required'));
-            $this->form_validation->set_rules('title', 'lang:title', 'required');
-            $this->form_validation->set_rules('content', 'lang:content', 'required');
-            $this->form_validation->set_rules('short_content', 'lang:short_content', 'required');
+            $this->form_validation->set_rules('title', 'Title', 'trim|required');
+            $this->form_validation->set_rules('content', 'Content', 'trim|required');
+            $this->form_validation->set_rules('short_content', 'Short Content', 'trim|required');
+            $this->form_validation->set_rules('image', 'Wrapper photo', 'trim|required');
             if ($this->form_validation->run() == FALSE)
             {
                  $this->render('admin/news/create_view');
@@ -64,8 +65,6 @@ class News extends Admin_Controller
                 $short_content = $this->input->post('short_content');
                 $keyword = $this->input->post('keyword');
                 $meta_description = $this->input->post('meta_description');
-                // get value of src img tag
-                $image = (string) reset(simplexml_import_dom(DOMDocument::loadHTML($content))->xpath("//img/@src"));
 
                 $insert_data = array('title' => $title,'short_content' => $short_content,'status' => 1, 'content' => $content, 'image' => $image, 'keyword' => $keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                 if(!$this->news_model->create($insert_data))
@@ -83,10 +82,10 @@ class News extends Admin_Controller
         $input['where'] = array('id' => $item_id);
         $this->data['item'] = $this->news_model->get_row($input);        
         if($this->input->post('submit')){
-            $this->form_validation->set_message('required', $this->lang->line('required'));
-            $this->form_validation->set_rules('title', 'lang:title', 'required');
-            $this->form_validation->set_rules('content', 'lang:content', 'required');
-            $this->form_validation->set_rules('short_content', 'lang:short_content', 'required');
+            $this->form_validation->set_rules('title', 'Title', 'trim|required');
+            $this->form_validation->set_rules('content', 'Content', 'trim|required');
+            $this->form_validation->set_rules('short_content', 'Short Content', 'trim|required');
+            $this->form_validation->set_rules('image', 'Wrapper photo', 'trim|required');
             if ($this->form_validation->run() == FALSE)
             {
                  $this->render('admin/news/edit_view');

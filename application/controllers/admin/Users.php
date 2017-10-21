@@ -31,7 +31,7 @@ class Users extends Admin_Controller
         $active     = $this->input->get('active');
         
         //pagination settings
-        $config["per_page"] = 15;
+        $config["per_page"] = $this->pagination->per_page;
         $config['base_url'] = site_url('admin/users?active='.$this->input->get('active').'&first_name='.$this->input->get('first_name').'&last_name='.$this->input->get('last_name').'&email='.$this->input->get('email').'&phone='.$this->input->get('phone'));
         $input['where'] = array('first_name'=>$first_name,'last_name'=>$last_name,'email'=>$email,'phone'=>$phone);
         //$input['like'] = array('active' , $active);

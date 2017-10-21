@@ -13,6 +13,10 @@ class Slider extends Admin_Controller
             $this->postal->add('You are not allowed to visit the Categories page','error');
             redirect('admin');
         }
+        $this->load->helper(array('form'));
+        $this->lang->load('form_validation', 'english');
+        $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
+
         $this->load->model('slider_model');
         $this->load->model('category_model');        
         $input['order'] = array('id','DESC');
@@ -27,25 +31,27 @@ class Slider extends Admin_Controller
 
     public function create()
     {
-        if($this->input->post('submit')){            
-            $category = $this->input->post('category');
-            $link = $this->input->post('link');
-            $description = $this->input->post('description');
-            $description2 = $this->input->post('description2');
-            $status = $this->input->post('status');
-            $image = $this->input->post('image');
-            // get value of src img tag
-            $doc = new DOMDocument();
-            $doc->loadHTML($image);
-            $xpath = new DOMXPath($doc);
-            $image_name = $xpath->evaluate("string(//img/@src)");
-            $insert_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
-                'status'=>'status', 'image'=> $image, 'image_name'=> $image_name, 'status' => $status);
-            if(!$this->slider_model->create($insert_data))
-            {             
-                $this->postal->add('Thêm slider thất bại !','error');
-            }else $this->postal->add('Thêm slider thành công.','success');
-            redirect('admin/slider');            
+        if($this->input->post('submit')){
+            $this->form_validation->set_rules('description', 'Slogan 01', 'trim|required');
+            $this->form_validation->set_rules('image', 'Image', 'trim|required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->render('admin/slider/create_view');
+            }else{
+                $category = $this->input->post('category');
+                $link = $this->input->post('link');
+                $description = $this->input->post('description');
+                $description2 = $this->input->post('description2');
+                $status = $this->input->post('status');
+                $image = $this->input->post('image');
+                $insert_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
+                    'status'=>'status', 'image'=> $image, 'status' => $status);
+                if(!$this->slider_model->create($insert_data))
+                {             
+                    $this->postal->add('Thêm slider thất bại !','error');
+                }else $this->postal->add('Thêm slider thành công.','success');
+                redirect('admin/slider');
+            }                     
         }else{
             $this->render('admin/slider/create_view');
         }
@@ -54,25 +60,27 @@ class Slider extends Admin_Controller
     public function edit($id)
     {
         $this->data['item'] = $this->slider_model->get_slider_category_by_id($id);
-        if($this->input->post('submit')){            
-            $category = $this->input->post('category');
-            $link = $this->input->post('link');
-            $description = $this->input->post('description');
-            $description2 = $this->input->post('description2');
-            $status = $this->input->post('status');
-            $image = $this->input->post('image');
-                // get value of src img tag
-            $doc = new DOMDocument();
-            $doc->loadHTML($image);
-            $xpath = new DOMXPath($doc);
-            $image_name = $xpath->evaluate("string(//img/@src)");
-            $update_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
-                'status'=>'status', 'image'=> $image, 'image_name'=> $image_name, 'status' => $status);
-            if(!$this->slider_model->update($id , $update_data))
-            {             
-                $this->postal->add('Sửa slider thất bại !','error');
-            }else $this->postal->add('Sửa slider thành công.','success');
-            redirect('admin/slider');            
+            if($this->input->post('submit')){
+            $this->form_validation->set_rules('description', 'Slogan 01', 'trim|required');
+            $this->form_validation->set_rules('image', 'Image', 'trim|required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->render('admin/slider/create_view');
+            }else{                            
+                $category = $this->input->post('category');
+                $link = $this->input->post('link');
+                $description = $this->input->post('description');
+                $description2 = $this->input->post('description2');
+                $status = $this->input->post('status');
+                $image = $this->input->post('image');
+                $update_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
+                    'status'=>'status', 'image'=> $image, 'status' => $status);
+                if(!$this->slider_model->update($id , $update_data))
+                {             
+                    $this->postal->add('Sửa slider thất bại !','error');
+                }else $this->postal->add('Sửa slider thành công.','success');
+                redirect('admin/slider');
+            }            
         }else{
             $this->render('admin/slider/edit_view');
         }

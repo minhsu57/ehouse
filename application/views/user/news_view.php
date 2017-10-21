@@ -12,15 +12,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="news-list">
                 <div>
                 <?php foreach ($items as $item) {
-                    // get value of src img tag
-                    preg_match( '@src="([^"]+)"@' , $item->image, $match);
-                    $image = array_pop($match);
-                    // 
                     $year = date('Y', strtotime($item->modified_date));
                     $month = date('m', strtotime($item->modified_date));
                     $date = date('d', strtotime($item->modified_date)); ?>
                     <div class="row-div item col-md-4">
-                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $image; ?>" class="img-responsive img-opacity" alt="<?php echo $item->title; ?>"></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $item->image; ?>" class="img-responsive img-opacity" alt="<?php echo $item->title; ?>"></a></div>
                         <p class="date"><?php echo 'Ngày cập nhật - '.$date.' tháng '.$month.' năm '.$year; ?></p>
                         <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
                         <p class="summary"><?php echo $item->short_content; ?></p>
