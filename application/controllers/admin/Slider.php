@@ -13,6 +13,7 @@ class Slider extends Admin_Controller
             $this->postal->add('You are not allowed to visit the Categories page','error');
             redirect('admin');
         }
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
         $this->load->helper(array('form'));
         $this->lang->load('form_validation', 'english');
         $this->form_validation->set_error_delimiters('<span class="form_error">','</span>');
@@ -44,8 +45,7 @@ class Slider extends Admin_Controller
                 $description2 = $this->input->post('description2');
                 $status = $this->input->post('status');
                 $image = $this->input->post('image');
-                $insert_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
-                    'status'=>'status', 'image'=> $image, 'status' => $status);
+                $insert_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 'status'=>'status', 'image'=> $image, 'status' => $status, 'modified_date' => date('Y-m-d H:i:s'));
                 if(!$this->slider_model->create($insert_data))
                 {             
                     $this->postal->add('Thêm slider thất bại !','error');
@@ -73,8 +73,7 @@ class Slider extends Admin_Controller
                 $description2 = $this->input->post('description2');
                 $status = $this->input->post('status');
                 $image = $this->input->post('image');
-                $update_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 
-                    'status'=>'status', 'image'=> $image, 'status' => $status);
+                $update_data = array('category_id' => $category,'link' => $link,'description' => $description, 'description2' => $description2, 'status'=>'status', 'image'=> $image, 'status' => $status, 'modified_date' => date('Y-m-d H:i:s'));
                 if(!$this->slider_model->update($id , $update_data))
                 {             
                     $this->postal->add('Sửa slider thất bại !','error');

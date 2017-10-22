@@ -33,7 +33,7 @@
                     echo '<tr>';
                     echo '<td>'.$item->title.'</td>';
                     echo '<td>'.$item->note.'</td>';
-                    echo '<td><img src="'.base_url($item->image_name).'" style="width: 150px;"></td>';                    
+                    echo '<td><img src="'.base_url($item->image).'" style="width: 150px;"></td>';                    
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td><div  style="text-align:center">';
                     echo '<a href="'.base_url("admin/").'page_content/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-info"><li class="fa fa-pencil"></li></button></a> </div>';

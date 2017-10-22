@@ -27,9 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12 col-sm-12 pull-right">
                 <p class="ct-text-2"><i class="fa fa-phone"></i> <?php echo $website->phone; ?></p>
-                <form action="https://greenshop-theme.bizwebvietnam.net/search" class="search-box">
-                    <input type="text" name="query" class="input-control" placeholder="Tìm kiếm...">
-                    <button><i class="fa fa-search"></i></button>
+                <form method="POST" action="<?php echo base_url().'tim-kiem' ?>" class="search-box">
+                    <input type="text" name="id" class="input-control" placeholder="Tìm kiếm...">
+                    <button type="submit" value="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>

@@ -10,7 +10,7 @@
     <?php foreach ($content_course as $item) { ?> 
     <div class="col-xs-12 col-md-6 col-lg-15"> 
         <a href="<?php echo base_url().$item->link; ?>">     
-            <p><img src="<?php echo $item->image_name; ?>" class="img-opacity" alt="<?php echo $item->title; ?>"></p>
+            <p><img src="<?php echo $item->image; ?>" class="img-opacity" alt="<?php echo $item->title; ?>"></p>
             
             <div class="content-course-title">
                 <div>
@@ -22,7 +22,7 @@
     <?php } ?>
 </div>
 <!-- End cac khoa hoc -->
-<section class="testimonials-section" style="background-image:url('<?php echo $course_consultant->image_name; ?>'); height: 100%; ">
+<section class="testimonials-section" style="background-image:url('<?php echo $course_consultant->image; ?>'); height: 100%; ">
     <div class="container">
         <div id="class-res" class="col-xs-12 col-md-5 pull-right">
             <h3 class="text-center"><?php echo $course_consultant->title; ?></h3>
@@ -105,11 +105,9 @@
                     $year = date('Y', strtotime($item->modified_date));
                     $month = date('m', strtotime($item->modified_date));
                     $date = date('d', strtotime($item->modified_date)); 
-                    // get value of src img tag
-                    preg_match( '@src="([^"]+)"@' , $item->image, $match);
-                    $image = array_pop($match); ?>
+                    ?>
                     <div class="item col-md-4">
-                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $image; ?>" class="img-responsive img-opacity" alt="<?php echo $item->title; ?>"></a></div>
+                        <div class="hinh"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><img src="<?php echo $item->image; ?>" class="img-responsive img-opacity" alt="<?php echo $item->title; ?>"></a></div>
                         <p class="date"><?php echo 'Ngày cập nhật - '.$date.' tháng '.$month.' năm '.$year; ?></p>
                         <h3 class="title"><a href="<?php echo base_url('tin-tuc/'.$item->id.'-'.create_slug($item->title)) ?>"><?php echo $item->title; ?></a></h3>
                         <p class="summary"><?php echo $item->short_content; ?></p>
