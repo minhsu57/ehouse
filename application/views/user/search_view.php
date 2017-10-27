@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php foreach ($items as $item) { ?>
                     <div class="row-div item col-md-12">
                         <h3 class="title" style="font-size: 20px"><a href="<?php if($item->slug == "tin-tuc") echo base_url($item->slug.'/'.$item->id.'-'.create_slug($item->name)); else echo base_url($item->slug.'/'.create_slug($item->name)); ?>   "><?php echo $item->name; ?></a></h3>
-                        <div class="readmore"><a href="<?php if($item->slug == "tin-tuc") echo base_url($item->slug.'/'.$item->id.'-'.create_slug($item->name)); else echo base_url($item->slug.'/'.create_slug($item->name)); ?>"><i>Đọc tiếp</i></a></div>
+                        <div class="readmore"><a href="<?php if($item->slug == "tin-tuc") echo base_url($item->slug.'/'.$item->id.'-'.create_slug($item->name)); else echo base_url($item->slug.'/'.$item->id); ?>"><i>Đọc tiếp</i></a></div>
                     </div>
                 <?php } ?>                    
                 </div>
