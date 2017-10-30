@@ -743,6 +743,9 @@ pct end cover code */
   background-color: #dbccea;
   box-shadow: none;
 }
+.tab-content {
+    margin-left: 15px;
+}
 #tab_a {
   -webkit-animation-duration: 1.5s;
   -moz-animation-duration: 1.5s;

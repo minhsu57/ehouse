@@ -23,7 +23,8 @@ class Category extends Admin_Controller
 
     public function index()
     {
-        $this->data['items'] = $this->category_model->get_list();
+        $input['order'] = array('sort_order', 'ASC');
+        $this->data['items'] = $this->category_model->get_list($input);
         $this->render('admin/category/index_view');
     }
 
@@ -51,6 +52,7 @@ class Category extends Admin_Controller
                 }else{
                     $parent = $this->input->post('parent') == "" ? NULL : $this->input->post('parent');
                     $level = $parent != NULL && $parent != "" ? 1 : 0;
+                    $this->data['sort_order'] = $this->input->post('sort_order');
                     $description = $this->input->post('description');
                     $content = $this->input->post('content');
                     $content2 = $this->input->post('content2');
@@ -59,7 +61,7 @@ class Category extends Admin_Controller
                     $this->data['url'] = $this->input->post('url');
                     $meta_keyword = $this->input->post('meta_keyword');
                     $meta_description = $this->input->post('meta_description');
-                    $update_data = array('id' => create_slug($name), 'name' => $name, 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $parent, 'level' => $level, 'meta_keyword' => $meta_keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
+                    $update_data = array('id' => create_slug($name), 'name' => $name, 'sort_order' => $this->data['sort_order'], 'description' => $description, 'content' => $content, 'content2' => $content2, 'content3' => $content3, 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $parent, 'level' => $level, 'meta_keyword' => $meta_keyword, 'meta_description' => $meta_description, 'modified_date'=>date('Y-m-d H:i:s'));
                     if(!$this->category_model->create($update_data))
                     {             
                         $this->postal->add('Save fail !','error');
@@ -83,6 +85,7 @@ class Category extends Admin_Controller
         if($this->input->post('submit')){
             $this->data['parent'] = $this->input->post('parent');
             $level = $level_id->level == -1 ? -1 : ($this->data['parent'] != NULL && $this->data['parent']  != "" ? 1 : 0);
+            $this->data['sort_order'] = $this->input->post('sort_order');
             $this->data['description'] = $this->input->post('description');
             $this->data['content'] = $this->input->post('content');
             $this->data['content2'] = $this->input->post('content2');
@@ -91,7 +94,7 @@ class Category extends Admin_Controller
             $this->data['url'] = $this->input->post('url');
             $this->data['meta_keyword'] = $this->input->post('meta_keyword');
             $this->data['meta_description'] = $this->input->post('meta_description');
-            $update_data = array('description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['content2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'level' => $level, 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
+            $update_data = array('sort_order' => $this->data['sort_order'], 'description' => $this->data['description'], 'content' => $this->data['content'], 'content2' => $this->data['content2'], 'content3' => $this->data['content3'], 'content4' => $this->data['content4'], 'url' => $this->data['url'], 'parent' => $this->data['parent'], 'level' => $level, 'meta_keyword' => $this->data['meta_keyword'], 'meta_description' => $this->data['meta_description'], 'modified_date'=>date('Y-m-d H:i:s'));
             if(!$this->category_model->update($id, $update_data))
             {             
                 $this->postal->add('Save fail !','error');

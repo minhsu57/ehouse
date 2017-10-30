@@ -35,7 +35,7 @@ class Home extends Public_Controller {
         $input_resgiter['where'] = array('id' => 'resgiter_test_level');
         $this->data['note_rtl'] = $this->page_content_model->get_row($input_resgiter);
         // get list student's images
-        $input_images['order'] = array('sort','DESC');
+        $input_images['order'] = array('sort','ASC');
         $input_images['limit'] = array('10' ,'0');
         $this->data['images_library'] = $this->images_model->get_list($input_images);
 

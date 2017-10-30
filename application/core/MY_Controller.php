@@ -32,6 +32,7 @@ class Public_Controller extends MY_Controller
 		parent::__construct();
 		$this->load->model('website_model');
 		$this->load->model('news_model');
+		$this->load->model('category_model');
 		$input['where'] = array('language_slug'=>'vi');
 		$this->data['website'] = $this->website_model->get_row($input);	
 		$this->data['website']->page_title = $this->data['website']->website_name;
@@ -41,6 +42,24 @@ class Public_Controller extends MY_Controller
 		$input_news['limit'] = array('6' ,'0');
 		$input_news['order'] = array('modified_date','DESC');
 		$this->data['news'] = $this->news_model->get_list($input_news);
+
+		// get category level - 01
+		$input_cate['where'] = array('level' => 0);
+		$input_cate['order'] = array('sort_order', 'ASC');
+		$cate_lv01 = $this->category_model->get_list_arr($input_cate);
+		//
+		$this->data['cate_lv01'] = array();
+		foreach ($cate_lv01 as $key=>$item) {
+			$input_child_cate['where'] = array('parent' => $item['id']);
+			$input_child_cate['order'] = array('sort_order', 'ASC');
+			$cate_child = $this->category_model->get_list_arr($input_child_cate);
+			$item['children'] = $cate_child;
+			array_push($this->data['cate_lv01'], $item);
+		}
+	}
+
+	function getCate(){
+
 	}
 
 	protected function render($the_view = NULL, $template = 'public_master')

@@ -3,12 +3,12 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="text-center">QUẢN LÝ CATEGORY</h3>
+            <h3 class="text-center">CATEGORY MANAGEMENT</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?php echo base_url('admin/category/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> Thêm mới</button></a>
+            <a href="<?php echo base_url('admin/category/create') ?>"><button class="btn btn-primary btn-md pull-right"><li class="fa fa-plus"></li> ADD NEW</button></a>
         </div>
     </div>
     <div class="row">
@@ -19,6 +19,7 @@
             echo '<tr>';
             echo '<th>Category Name</th>';
             echo '<th>Category Parent</th>';
+            echo '<th>Sort Order</th>';
             echo '<th>Modify Date</th>';
             echo '<th style="width: 90px !important">Actions</th>';
             echo '</tr>';
@@ -31,7 +32,8 @@
                 {
                     echo '<tr>';
                     echo '<td>'.$item->name.'</td>';
-                    echo '<td>'.$item->parent.'</td>';                    
+                    echo '<td>'.$item->parent.'</td>'; 
+                    echo '<td>'.$item->sort_order.'</td>';                   
                     echo '<td>'.$item->modified_date.'</td>';
                     echo '<td>';
                     echo '<a href="'.base_url("admin/").'category/edit/'.$item->id.'" style="color:#fff"><button class="btn btn-sm btn-warning"><li class="fa fa-pencil"></li></button></a> ';

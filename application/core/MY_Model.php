@@ -198,7 +198,7 @@ class MY_Model extends CI_Model {
     }
     
     /**
-     * Lay danh sach
+     * Lay danh sach kieu object
      * $input : mang cac du lieu dau vao
      */
     function get_list($input = array())
@@ -210,6 +210,21 @@ class MY_Model extends CI_Model {
         $query = $this->db->get($this->table);
         //echo $this->db->last_query();
         return $query->result();
+    }
+
+    /**
+     * Lay danh sach kieu array
+     * $input : mang cac du lieu dau vao
+     */
+    function get_list_arr($input = array())
+    {
+        //xu ly ca du lieu dau vao
+        $this->get_list_set_input($input);
+        
+        //thuc hien truy van du lieu
+        $query = $this->db->get($this->table);
+        //echo $this->db->last_query();
+        return $query->result_array();
     }
     
     /**

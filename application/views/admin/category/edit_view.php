@@ -2,7 +2,7 @@
 <div class="container" style="margin-top:0px;">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="text-center">SỬA CATEGORY</h3>
+            <h3 class="text-center">EDIT CATEGORY</h3>
             <?php echo form_open_multipart('admin/category/edit/'.$item->id);?>
             <div class="col-lg-12">
                 <h3 class="col-lg-10" style="margin-top: 0"></h3>
@@ -12,15 +12,15 @@
                     <?php echo anchor('/admin/category', 'Cancel','class="btn btn-default btn-lg btn-sm"');?>
                 </div>
             </div>
-            <div class="form-group col-md-6 col-lg-6">
+            <div class="form-group col-md-5 col-lg-5">
+                <label>Title <span class="error">*</span></label>
                 <?php
-                echo form_label('Tiêu đề','name');
                 echo form_error('name');
                 ?>
                 <input type="text" name="name" class="form-control" disabled value="<?php echo $item->name; ?>" title="<?php echo $item->name; ?>">
             </div>
             <?php if($item->level != -1) { ?>
-            <div class="form-group col-md-6 col-lg-6">
+            <div class="form-group col-md-4 col-lg-4">
                 <?php
                 echo form_label('Category Cha','parent');
                 ?>
@@ -33,10 +33,17 @@
                     <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
                 <?php } ?>
                 </select>
-            </div>
+            </div>            
             <?php } ?>
+            <div class="form-group col-md-3 col-lg-3">
+                <?php
+                echo form_label('Sort Order','sort_order');
+                echo form_error('sort_order');
+                ?>
+                <input type="text" name="sort_order" class="form-control" value="<?php echo $item->sort_order; ?>" title="<?php echo $item->sort_order; ?>">
+            </div>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Mô tả</strong>   
+                <strong>Description</strong>   
                 <div id="editor">
                     <textarea class="ckeditor" name="description"><?php echo $item->description ?></textarea> 
                     <?php echo form_error('description','<p class="error">'); ?>
@@ -44,7 +51,7 @@
             </div>
             <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Thông tin khóa học</strong>  
+                <strong>Tab 01</strong>  
                 <div id="editor">
                     <textarea class="ckeditor" name="content"><?php echo $item->content; ?></textarea> 
                     <?php echo form_error('content','<p class="error">'); ?>
@@ -53,7 +60,7 @@
             <?php } ?>
             <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Đăng ký khóa học</strong>
+                <strong>Tab 02</strong>
                 <div id="editor">
                     <textarea class="ckeditor" name="content2"><?php echo $item->content2; ?></textarea> 
                     <?php echo form_error('content2','<p class="error">'); ?>
@@ -62,7 +69,7 @@
             <?php } ?>
             <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Nội dung khóa học</strong>
+                <strong>Tab 03</strong>
                 <div id="editor">
                     <textarea class="ckeditor" name="content3"><?php echo $item->content3; ?></textarea> 
                     <?php echo form_error('content3','<p class="error">'); ?>
@@ -71,7 +78,7 @@
             <?php } ?>
             <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
-                <strong>Nội dung 4</strong>
+                <strong>Content 04 (bellow 3 tabs)</strong>
                 <div id="editor">
                     <textarea class="ckeditor" name="content4"><?php echo $item->content4; ?></textarea> 
                     <?php echo form_error('content4','<p class="error">'); ?>
@@ -81,7 +88,7 @@
             <?php if($item->level != -1) { ?>
             <div class="form-group col-md-6 col-lg-6">
                 <?php
-                echo form_label('Link đăng ký ngay','url');
+                echo form_label('Button (Đăng ký ngay) - Url','url');
                 echo form_error('url');
                 ?>
                 <input type="text" name="url" class="form-control" value="<?php echo $item->url; ?>" >

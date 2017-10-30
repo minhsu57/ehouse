@@ -21,8 +21,8 @@
             <div class="form-group col-md-12" style="margin-top: 5px">
                 <label>Image <span class="error">*</span></label>
                 <?php echo form_error('image_link','<p class="error">'); ?>
-                <input type="hidden" name="image_link" id="image_link">
-                <img src="" id="image_link_img" style="max-width: 400px" onclick="openPopup()">
+                <input type="hidden" name="image_link" id="image_link" value="<?php echo set_value("image_link"); ?>">
+                <img src="<?php echo set_value("image_link"); ?>" id="image_link_img" style="max-width: 400px" onclick="openPopup()">
                 <button type="button" class="btn btn-default" onclick="openPopup()"><li class="fa fa-image"></li> Browse Image</button>
             </div>
             

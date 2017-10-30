@@ -20,6 +20,7 @@
             echo '<th><div class="text-center">No</div></th>';
             echo '<th>name</th>';
             echo '<th>Image</th>';
+            echo '<th>Sort Order</th>';
             echo '<th>Created date</th>';
             echo '<th><div style="text-align: center">Actions</div></th>';
             echo '</tr>';
@@ -33,7 +34,8 @@
                     echo '<tr>';
                     echo '<td><div class="text-center">'.($key+1).'</div></td>';
                     echo '<td>'.$item->name.'</td>';
-                    echo '<td><img src="'.base_url($item->image).'" style="width: 120px;"></td>';                    
+                    echo '<td><img src="'.base_url($item->image).'" style="width: 120px;"></td>'; 
+                    echo '<td>'.$item->sort.'</td>';                   
                     echo '<td>'.$item->modified_date.'</td>'; ?>
                     <?php
                     echo '<td><div style="text-align: center;">';

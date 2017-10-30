@@ -53,26 +53,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav c-nav-left">
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
-            <!-- <li><a href="<?php echo base_url('gioi-thieu'); ?>">Giới thiệu<span class="sr-only">(current)</span></a></li> -->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url('english/luyen-noi-nhom-4-5-ban-cung-100-gvnn'); ?>">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-noi-nhom-8-ban-cung-100-gvnn'); ?>">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
-                </ul>
-            </li>
-            <li><a href="<?php echo base_url('english/khoa-luyen-noi-tieng-anh-tai-cong-ty'); ?>">Khóa luyện nói tiếng Anh tại công ty</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa luyện thi IELTS<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url('english/luyen-thi-tieng-anh-speaking-writing'); ?>">Luyện thi SPEAKING & WRITING</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-thi-tieng-anh-reading-listening'); ?>">Luyện thi READING & LISTENING</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-thi-4-ki-nang-ielts'); ?>">Luyện thi 4 kĩ năng IELTS</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="<?php echo base_url('english/thi-thu-ielts'); ?>">Thi thử IELTS</a>
-            </li>
+            <?php foreach ($cate_lv01 as $cate) { ?>
+                <li class="dropdown">
+                    <a <?php if(count($cate['children'])==0){ ?> href="<?php echo base_url('english/'.$cate['id']); ?>" <?php } ?> ><?php echo $cate['name']; ?> <?php if(count($cate['children'])>0){ ?><span class="caret"></span><?php } ?></a>
+                    <?php 
+                    if(count($cate['children'])>0){
+                    echo '<ul class="dropdown-menu">';                   
+                    foreach ($cate['children'] as $key => $value) {
+                        echo '<li><a href="'.base_url('english/'.$value['id']).'">'.$value['name'].'</a></li>';                        
+                    }
+                    echo '</ul>';
+                    }
+                    ?>
+                </li>
+            <?php } ?>
             <li><a href="<?php echo base_url('tin-tuc'); ?>">Tin tức</a></li>
             <li><a href="<?php echo base_url('lien-he'); ?>">Liên hệ</a></li>
         </ul>
@@ -102,26 +96,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav c-nav-left">
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
-            <!-- <li><a href="<?php echo base_url('gioi-thieu'); ?>">Giới thiệu<span class="sr-only">(current)</span></a></li> -->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa học luyện nói tiếng Anh<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url('english/luyen-noi-nhom-4-5-ban-cung-100-gvnn'); ?>">Luyện nói nhóm 4-5 bạn cùng 100% GVNN</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-noi-nhom-8-ban-cung-100-gvnn'); ?>">Luyện nói nhóm 8 bạn cùng 100% GVNN</a></li>
-                </ul>
-            </li>
-            <li><a href="<?php echo base_url('english/khoa-luyen-noi-tieng-anh-tai-cong-ty'); ?>">Khóa luyện nói tiếng Anh tại công ty</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khóa luyện thi IELTS<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url('english/luyen-thi-tieng-anh-speaking-writing'); ?>">Luyện thi SPEAKING & WRITING</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-thi-tieng-anh-reading-listening'); ?>">Luyện thi READING & LISTENING</a></li>
-                    <li><a href="<?php echo base_url('english/luyen-thi-4-ki-nang-ielts'); ?>">Luyện thi 4 kĩ năng IELTS</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="<?php echo base_url('english/thi-thu-ielts'); ?>">Thi thử IELTS</a>
-            </li>
+            <?php foreach ($cate_lv01 as $cate) { ?>
+                <li class="dropdown">
+                    <a <?php if(count($cate['children'])==0){ ?> href="<?php echo base_url('english/'.$cate['id']); ?>" <?php } ?> ><?php echo $cate['name']; ?> <?php if(count($cate['children'])>0){ ?><span class="caret"></span><?php } ?></a>
+                    <?php 
+                    if(count($cate['children'])>0){
+                    echo '<ul class="dropdown-menu">';                   
+                    foreach ($cate['children'] as $key => $value) {
+                        echo '<li><a href="'.base_url('english/'.$value['id']).'">'.$value['name'].'</a></li>';                        
+                    }
+                    echo '</ul>';
+                    }
+                    ?>
+                </li>
+            <?php } ?>
             <li><a href="<?php echo base_url('tin-tuc'); ?>">Tin tức</a></li>
             <li><a href="<?php echo base_url('lien-he'); ?>">Liên hệ</a></li>
         </ul>
