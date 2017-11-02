@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
             <?php foreach ($cate_lv01 as $cate) { ?>
                 <li class="dropdown">
-                    <a <?php if(count($cate['children'])==0){ ?> href="<?php echo base_url('english/'.$cate['id']); ?>" <?php } ?> ><?php echo $cate['name']; ?> <?php if(count($cate['children'])>0){ ?><span class="caret"></span><?php } ?></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" <?php if(count($cate['children'])==0){ ?> href="<?php echo base_url('english/'.$cate['id']); ?>" <?php } ?> ><?php echo $cate['name']; ?> <?php if(count($cate['children'])>0){ ?><span class="caret"></span><?php } ?></a>
                     <?php 
                     if(count($cate['children'])>0){
                     echo '<ul class="dropdown-menu">';                   

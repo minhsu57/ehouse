@@ -623,7 +623,10 @@ pct end cover code */
       float: left;
       display: block;
       margin-left: 2%; 
-  } 
+  }
+  #myCarousel .carousel-caption {
+    bottom: 5% !important;
+  }
 }
 #class-res{
     background: #fff;
@@ -776,7 +779,7 @@ pct end cover code */
   background: rgba(0,0,0,0.6);
 }
 #myCarousel .carousel-caption{
-  bottom: 30% !important;
+  bottom: 30%;
 }
 .content-course{
   text-align: center; 
